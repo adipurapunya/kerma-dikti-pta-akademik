@@ -51,4 +51,9 @@ class BarangController extends Controller
 
         return redirect()->route('barang');
     }
+
+    public function hapus($id){
+        Barang::find($id)->delete();
+        return redirect()->route('barang');
+    }
 }
