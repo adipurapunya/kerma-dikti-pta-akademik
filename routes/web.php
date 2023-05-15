@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BarangController;
 use Illuminate\Support\Facades\Route;
 
@@ -13,6 +14,14 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::controller(AuthController::class)->group( function(){
+    Route::get('register','register')->name('register');
+    
+    Route::post('register','registerSimpan')->name('register.simpan');
+
+    Route::post('login','loginAksi')->name('login.aksi');
+});
 
 Route::get('/', function () {
     return view('welcome');
@@ -30,3 +39,5 @@ Route::controller(BarangController::class)->prefix('barang')->group(function(){
     Route::post('edit/{id}','update')->name('barang.tambah.update');
     Route::get('hapus/{id}','hapus')->name('barang.hapus');
 });
+
+
