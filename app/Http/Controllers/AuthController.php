@@ -28,6 +28,11 @@ class AuthController extends Controller
             'level' => 'Admin'
         ]);
 
-        return redirect()->route('login');
+        return redirect()->
+        route('login');
+    }
+
+    public function login(){
+        return view('auth/login');
     }
 }
