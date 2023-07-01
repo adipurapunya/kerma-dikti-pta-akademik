@@ -40,4 +40,12 @@
 </div>
 <br>
 
+<div class="row">
+	<div class="col">
+		<div class="card mb-4 shadow">
+
+		</div>
+	</div>
+</div>
+
 @endsection
