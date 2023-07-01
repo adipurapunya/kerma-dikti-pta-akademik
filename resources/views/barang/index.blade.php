@@ -1,24 +1,24 @@
 @extends('layouts.app')
 
-@section('title','Data Barang')
+@section('title','Data Universitas')
 
 @section('contents')
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Data Barang</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Data Universitas</h6>
     </div>
     <div class="card-body">
-        <a href="{{ route('barang.tambah') }}" class="btn btn-primary mb-3">Tambah Barang</a>
+        <a href="{{ route('barang.tambah') }}" class="btn btn-primary mb-3">Tambah Universitas</a>
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Kode Barang</th>
-                        <th>Nama Barang</th>
+                        <th>Kode Universitas</th>
+                        <th>Nama Universitas</th>
                         <th>Kategori</th>
-                        <th>Harga</th>
+                        <th>Telepon</th>
                         <th>Jumlah</th>
                         <th>Aksi</th>
                     </tr>

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Form Barang')
+@section('title','Form PT')
 
 @section('contents')
 <form action="{{ isset($barang) ? route('barang.tambah.update',$barang->id) : route('barang.tambah.simpan') }}" method="post">

@@ -21,7 +21,7 @@
     <li class="nav-item active">
         <a class="nav-link" href="{{ route('barang') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Barang</span></a>
+            <span>List Universitas</span></a>
     </li>
 
        <!-- Divider -->

@@ -9,14 +9,15 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Login</title>
+    <title>Login - Ijin Kerja Sama Dikti</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" 
+        rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="{{ asset('css/sb-admin-2.min.css" rel="stylesheet') }}">
+    <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
 
 </head>
 
@@ -33,46 +34,63 @@
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
-                            <div class="col-lg-6">
+                            <div class="col-lg-6 row justify-content-center" >
+                                <img alt="Image placeholder" width="250" height="250" src="https://izinkerma.kemdikbud.go.id/akademik//bootstrap/argon/assets/img/brand/logo_ristekdikti.png">
+                                <h1 class="h5 text-gray-900 mb-4 text-center">Direktorat Jenderal Pendidikan Tinggi, Riset dan Teknologi</h1>
+                                <h1 class="h5 text-gray-900 mb-4 text-center">Layanan Izin Kerja Sama Perguruan Tinggi Akademik</h1>
+                            </div>
+                            <div class="col-lg-6 ">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">Silahkan Login</h1>
                                     </div>
-                                    <form class="user">
+                                    <form action="{{ route('login.aksi') }}" method="POST" class="user">
+                                        @csrf
+                                        
+                                            @if($errors->any())
+                                            <div class="alert alert-danger">
+                                                <ul>  
+                                                    @foreach($errors->all() as $error)
+                                                    <li>{{ $error }}</li>
+                                                    @endforeach  
+                                                </ul>
+                                            </div>
+                                            @endif
+                                        
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
+                                            <input name="email" type="email" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
                                                 placeholder="Enter Email Address...">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user"
+                                            <input name="password" type="password" class="form-control form-control-user"
                                                 id="exampleInputPassword" placeholder="Password">
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck">
+                                                <input name="remember" type="checkbox" class="custom-control-input" id="customCheck">
                                                 <label class="custom-control-label" for="customCheck">Remember
                                                     Me</label>
                                             </div>
                                         </div>
-                                        <a href="index.html" class="btn btn-primary btn-user btn-block">
-                                            Login
-                                        </a>
+                                        <button type="submit" class="btn btn-primary btn-block btn-user">Login</button>
+                                
                                         <hr>
+                                    <!--
                                         <a href="index.html" class="btn btn-google btn-user btn-block">
                                             <i class="fab fa-google fa-fw"></i> Login with Google
                                         </a>
                                         <a href="index.html" class="btn btn-facebook btn-user btn-block">
                                             <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
                                         </a>
+                                    -->
                                     </form>
-                                    <hr>
+                                    
                                     <div class="text-center">
-                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
+                                        <a class="small" href="forgot-password.html">Lupa Password?</a>
                                     </div>
                                     <div class="text-center">
-                                        <a class="small" href="register.html">Create an Account!</a>
+                                        <a class="small" href="{{ route('register') }}">Buat Akun!</a>
                                     </div>
                                 </div>
                             </div>
