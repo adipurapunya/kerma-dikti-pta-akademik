@@ -12,14 +12,41 @@
     <title>Daftar Permohonan Kerma</title>
 
     <!-- Custom fonts for this template-->
-    <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
+    <link href="{{ asset('Login_Dikti_files/logo_ristekdikti.png') }}" rel="icon" type="image/png">
     <!-- Custom styles for this template-->
-    <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/sb-admin-2.css') }}" rel="stylesheet"> 
 
+    <link rel="stylesheet" href="{{ asset('vendor/bootstrap.min.css') }}" >
+    <link rel="stylesheet" href="{{ asset('vendor/bootstrap-datepicker.min.css') }}" >
+    
+    <!--
+    <link href="{{ asset('Login_Dikti_files/all.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('Login_Dikti_files/nucleo.css') }}" rel="stylesheet">  
+    
+    -->
+    <!--<link type="text/css" rel="stylesheet" href="{{ asset('Login_Dikti_files/all.min.css') }}">-->
+
+    <!--
+    <link type="text/css" href="{{ asset('Login_Dikti_files/select2.min.css') }}" rel="stylesheet">
+    <link type="text/css" href="{{ asset('Login_Dikti_files/preloader.css') }}" rel="stylesheet">
+
+    <link type="text/css" rel="stylesheet" href="{{ asset('Login_Dikti_files/all.min.css') }}">
+    <link type="text/css" rel="stylesheet" id="mce-u0" href=" {{ asset('Login_Dikti_files/skin.min.css') }}">
+-->
+    
+    <!--<link type="text/css" href=" {{asset('Login_Dikti_files/argon.css') }}" rel="stylesheet"> 
+    <link href="{{ asset('Login_Dikti_files/css') }}" rel="stylesheet">
+    
+    -->
+
+<!--
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>tinymce.init({ selector:'textarea' });</script>
+-->
 </head>
 
 <body id="page-top">
@@ -71,22 +98,52 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
+    <!--
+    <script src="{{ asset('Login_Dikti_files/jquery.min.js.download') }}"></script>
     
+    <script src="{{ asset('Login_Dikti_files/argon.js.download') }}"></script>
+    <script src="{{ asset('Login_Dikti_files/jquery.form.min.js.download') }}"></script>
+    -->
+    
+    <!--<script src="{{ asset('Login_Dikti_files/bootstrap.bundle.min.js.download') }}"></script>-->
+    
+    
+    <!--
+    -->
+    <!--
+    <script type="text/javascript" src="{{ asset('Login_Dikti_files/select2.min.js.download') }}"></script> 
+    <script type="text/javascript" src="{{ asset('Login_Dikti_files/sweetalert.js.download') }}"></script> -->
 
-    <!-- Bootstrap core JavaScript-->
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
-    <!-- Core plugin JavaScript-->
     <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-
-    <!-- Custom scripts for all pages-->
     <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+    <script src="{{ asset('vendor/bootstrap-datepicker.min.js') }}"></script>
+    
+    
+    <!-- Core plugin JavaScript-->
+    <!-- Custom scripts for all pages-->
+    
 
-    <!-- Page level plugins -->
-    <script src="{{ asset('vendor/chart.js/Chart.min.js') }}"></script>
-
-
+    <!-- Page level plugins 
+    <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+    -->
+    <!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+-->
+    <script type="text/javascript">
+            $(function() {
+                $('#datepicker').datepicker({
+                    inline: true
+                });
+                $('#datepickerAkhir').datepicker({
+                    inline: true
+                });
+            });
+    </script>
 </body>
 
 </html>

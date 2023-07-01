@@ -30,7 +30,7 @@
                         <th>{{ $no++ }}</th>
                         <td>{{ $row->kode_barang }}</td>
                         <td>{{ $row->nama_barang }}</td>
-                        <td>{{ $row->kategori_barang }}</td>
+                        <td>{{ $row->kategori->nama }}</td>
                         <td>{{ $row->harga }}</td>
                         <td>{{ $row->jumlah }}</td>
                         <td>

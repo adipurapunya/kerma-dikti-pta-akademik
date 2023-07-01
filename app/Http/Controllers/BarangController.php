@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Barang;
+use App\Models\kategori;
 use Illuminate\Http\Request;
 use PhpParser\Node\Expr\FuncCall;
 
@@ -15,14 +16,15 @@ class BarangController extends Controller
 
     public function tambah(){
 
-        return view('barang.form');
+        $kategori = Kategori::get();
+        return view('barang.form',['kategori' => $kategori]);
     }
 
     public function simpan(Request $request){
         $data = [
             'nama_barang' => $request->nama_barang,
             'kode_barang' => $request->kode_barang,
-            'kategori_barang' => $request->kategori_barang,
+            'id_kategori' => $request->id_kategori,
             'harga' => $request->harga,
             'jumlah' => $request->jumlah,
         ];
@@ -34,15 +36,16 @@ class BarangController extends Controller
 
     public function edit($id){
             $barang = Barang::find($id);
+            $kategori = Kategori::get();
 
-            return view('barang.form',['barang' => $barang]);
+            return view('barang.form',['barang' => $barang, 'kategori'=>$kategori]);
     }
 
     public function update($id, Request $request){
         $data = [
             'nama_barang' => $request->nama_barang,
             'kode_barang' => $request->kode_barang,
-            'kategori_barang' => $request->kategori_barang,
+            'id_kategori' => $request->id_kategori,
             'harga' => $request->harga,
             'jumlah' => $request->jumlah,
         ];
