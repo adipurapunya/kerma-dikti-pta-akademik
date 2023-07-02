@@ -24,10 +24,10 @@
 				<input type="hidden" id="statusView" value="N">
 				<ul class="nav nav-pills nav-fill flex-column flex-sm-row" id="tabs-text" role="tablist">
 					<li class="nav-item tab_up">
-						<a style="font-size: 1rem;" class="nav-link tab_up mb-sm-3 mb-md-0 " id="tabs-text-1-tab" href="{{ route('proposal.editBab1')}}">BAB 1<br>PROFIL PERGURUAN<br>TINGGI</a>
+						<a style="font-size: 1rem;" class="nav-link tab_up mb-sm-3 mb-md-0 " id="tabs-text-1-tab" href="{{ route('proposal.editBab1','')}}">BAB 1<br>PROFIL PERGURUAN<br>TINGGI</a>
 					</li>
 					<li class="nav-item tab_up">
-						<a style="font-size: 1rem;" class="nav-link tab_up mb-sm-3 mb-md-0 active" id="tabs-text-1-tab" href="{{ route('proposal.editBab2')}}">BAB 2<br>DOKUMEN KERJA SAMA</a>
+						<a style="font-size: 1rem;" class="nav-link tab_up mb-sm-3 mb-md-0 active" id="tabs-text-1-tab" href="{{ route('proposal.editBab2','')}}">BAB 2<br>DOKUMEN KERJA SAMA</a>
 					</li>
 					<li class="nav-item tab_up">
 						<a style="font-size: 1rem;" class="nav-link tab_up mb-sm-3 mb-md-0 " id="tabs-text-1-tab" href="{{ route('proposal.editBab3')}}">BAB 3<br>KESIAPAN SUMBER DAYA</a>

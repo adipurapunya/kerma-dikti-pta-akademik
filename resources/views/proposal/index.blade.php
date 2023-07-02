@@ -46,7 +46,7 @@
                         <td>{{ $row->status_berkas }}</td>
                         <td>
                             <a href="{{ route('proposal.viewBab1')}}" class="btn btn-success">View</a>
-                            <a href="{{ route('proposal.editBab1')}}" class="btn btn-warning">Edit</a>
+                            <a href="{{ route('proposal.editBab1', $row->id)}}" class="btn btn-warning">Edit</a>
                             <a href="" class="btn btn-danger">Hapus</a>
                         </td>
                     </tr>

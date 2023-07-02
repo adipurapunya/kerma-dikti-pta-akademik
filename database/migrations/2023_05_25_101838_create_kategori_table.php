@@ -23,8 +23,6 @@ return new class extends Migration
             $table->dropColumn('kategori_barang');
             $table->foreignId('id_kategori')->nullable() ->references('id')->on('kategori');
         });
-
-
     }
 
     /**

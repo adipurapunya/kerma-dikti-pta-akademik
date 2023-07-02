@@ -33,6 +33,7 @@ return array(
     'App\\Models\\kategori' => $baseDir . '/app/Models/kategori.php',
     'App\\Models\\kerjasama' => $baseDir . '/app/Models/kerjasama.php',
     'App\\Models\\proposal' => $baseDir . '/app/Models/proposal.php',
+    'App\\Models\\statusAkreditasi' => $baseDir . '/app/Models/statusAkreditasi.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',
     'App\\Providers\\BroadcastServiceProvider' => $baseDir . '/app/Providers/BroadcastServiceProvider.php',

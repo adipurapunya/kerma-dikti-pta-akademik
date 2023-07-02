@@ -29,10 +29,10 @@
 			<input type="hidden" id="statusView" value="N">
 			<ul class="nav nav-pills nav-fill flex-column flex-sm-row" id="tabs-text" role="tablist">
 				<li class="nav-item tab_up">
-					<a style="font-size: 1rem;" class="nav-link tab_up mb-sm-3 mb-md-0 active" id="tabs-text-1-tab" href="{{ route('proposal.editBab1')}}">BAB 1<br>PROFIL PERGURUAN<br>TINGGI</a>
+					<a style="font-size: 1rem;" class="nav-link tab_up mb-sm-3 mb-md-0 active" id="tabs-text-1-tab" href="{{ route('proposal.editBab1',$proposal->id)}}">BAB 1<br>PROFIL PERGURUAN<br>TINGGI</a>
 				</li>
 				<li class="nav-item tab_up">
-					<a style="font-size: 1rem;" class="nav-link tab_up mb-sm-3 mb-md-0 " id="tabs-text-1-tab" href="{{ route('proposal.editBab2')}}">BAB 2<br>DOKUMEN KERJA SAMA</a>
+					<a style="font-size: 1rem;" class="nav-link tab_up mb-sm-3 mb-md-0 " id="tabs-text-1-tab" href="{{ route('proposal.editBab2',$proposal->id)}}">BAB 2<br>DOKUMEN KERJA SAMA</a>
 				</li>
 				<li class="nav-item tab_up">
 					<a style="font-size: 1rem;" class="nav-link tab_up mb-sm-3 mb-md-0 " id="tabs-text-1-tab" href="{{ route('proposal.editBab3')}}">BAB 3<br>KESIAPAN SUMBER DAYA</a>
@@ -62,24 +62,24 @@
 							<h4>No Berkas</h4>
 						</td>
 						<td style="padding-bottom: 0; padding-top: 0.5;" width="5%">:</td>
-						<td style="padding-bottom: 0; padding-top: 0.5;" width="75%">2305140001.1</td>
+						<td style="padding-bottom: 0; padding-top: 0.5;" width="75%">{{$proposal->id}}</td>
 					</tr>
 					<tr>
 						<td style="padding-bottom: 0; padding-top: 0;" width="20%">
 							<h4>Judul Kerma</h4>
 						</td>
 						<td style="padding-bottom: 0; padding-top: 0;" width="5%">:</td>
-						<td style="padding-bottom: 0; padding-top: 0;" width="75%">
-							Gelar Ganda (Double Degree) Universitas Halu Oleo S1 Teknik Rekayasa Infrastruktur dan Lingkungan dengan ddd ssss
-						</td>
+						<td style="padding-bottom: 0; padding-top: 0;" width="75%">{{$proposal->judul}}</td>
 					</tr>
 					</tbody>
 					</table>
 				</div>
 				<div class="card-body border-bottom-info">
-					<form role="form" method="post" id="edit_bab_form" enctype="multipart/form-data" action="" onkeydown="return event.key != &#39;Enter&#39;;">
-						<input type="hidden" name="idkerma" value="2305140001.1">
-						<input type="hidden" id="kodeuniv" value="001029">
+					<form role="form" method="post" id="edit_bab_form" enctype="multipart/form-data" action="{{route('proposal.editBab1.tambah.update',$proposal->id)}}" onkeydown="return event.key != &#39;Enter&#39;;">
+						@csrf
+						<input type="hidden" name="idProposal" value="{{$proposal->id}}">
+						<input type="hidden" name="idBab1" value="{{$bab1->id}}">
+						
 						<table width="100%" class="table">
 						<thead class="bg-info">
 						<tr>
@@ -92,7 +92,7 @@
 								Nama PT<em style="color:red;">*</em>
 							</td>
 							<td class="block" width="60%">
-								<textarea name="" class="readonly form-control field " placeholder="" readonly="" maxlength="1000">Universitas Halu Oleo</textarea>
+								<textarea name="nama_pt" value="" class="readonly form-control field " placeholder="" readonly="" maxlength="1000">{{ $bab1->nama_pt }}</textarea>
 							</td>
 						</tr>
 						<tr class="topborder done" style="background: rgb(163, 255, 188);">
@@ -100,7 +100,7 @@
 								Alamat PT<em style="color:red;">*</em>
 							</td>
 							<td class="block" width="60%">
-								<textarea name="" class=" form-control field " placeholder="" maxlength="1000" id="mce_0" aria-hidden="true">Kampus Bumi Tridharma</textarea>
+								<textarea name="alamat_pt" class=" form-control field " placeholder="" maxlength="1000" id="mce_0" aria-hidden="true">{{ $bab1->alamat_pt }}</textarea>
 							</td>
 						</tr>
 						<tr class="topborder done" style="background: rgb(163, 255, 188);">
@@ -110,10 +110,15 @@
 							<td class="block" width="60%">
 								<span>Izin Operasional</span><br>
 								<!--<div class="char_count" style="text-align:right">1/1000</div>-->
-								<textarea name="" class=" form-control field " placeholder="Izin Operasional" maxlength="1000" id="mce_2" aria-hidden="true"></textarea>
+								<textarea name="ijin_operasional_pt" class=" form-control field " placeholder="Izin Operasional" maxlength="1000" id="mce_2" aria-hidden="true">{{ $bab1->ijin_operasional_pt }}</textarea>
 								<br>
 								<span>Scan Izin Operasional</span><br>
-								<input type="file" name="" value="" class="form-control" data-size="2 MB"><small class="keterangan" style="color:red;">Maks. 2 MB</small>
+								<input type="file" name="scan_ijin_operasional_pt"  class="form-control" data-size="2 MB"><small class="keterangan" style="color:red;">Maks. 2 MB</small>
+								<input type="hidden" name="scan_ijin_operasional_pt_hidden" value="{{$bab1->scan_ijin_operasional_pt}}">
+								<br>
+								@if($bab1->scan_ijin_operasional_pt)
+								<span><a href="{{url('').$bab1->scan_ijin_operasional_pt}}" target="_blank">File yang sudah diupload</a></span>
+								@endif
 							</td>
 						</tr>
 						<tr class="topborder done" style="background: rgb(163, 255, 188);">
@@ -122,14 +127,20 @@
 							</td>
 							<td class="block" width="60%">
 								<span>Status Akreditasi Institusi</span><br>
-								<select class="form-control" name="" data-select2-id="1" tabindex="-1" aria-hidden="true">
-									<option value="" disabled="">--Pilih Status Akreditasi Institusi--</option>
-									<option value="194">A (Unggul)</option>
-									<option value="195">B ( Baik Sekali )</option>
+								<select class="form-control" name="status_akreditasi_institusi" data-select2-id="1" tabindex="-1" aria-hidden="true">
+									<option value="" selected disabled hidden>--Pilih Status Akreditasi Institusi--</option>
+									@foreach($statusAkreditasi as $row)
+                                		<option value="{{ $row->id }}" {{ isset($bab1) ? ($bab1->id_status_akreditasi_institusi == $row->id ? 'selected' : '') :'' }}>{{$row->status}}</option>
+                            		@endforeach
 								</select>
 								<br>
 								<span>Scan SK Akreditasi Institusi</span><br>
-								<input type="file" name="" value="" class="form-control" data-size="2 MB"><small class="keterangan" style="color:red;">Maks. 2 MB</small>
+								<input type="file" name="scan_status_akreditasi_institusi" class="form-control" data-size="2 MB"><small class="keterangan" style="color:red;">Maks. 2 MB</small>
+								<input type="hidden" name="scan_status_akreditasi_institusi_hidden" value="{{$bab1->scan_status_akreditasi_institusi}}">
+								<br>
+								@if($bab1->scan_status_akreditasi_institusi)
+								<span><a href="{{url('').$bab1->scan_status_akreditasi_institusi}}" target="_blank">File yang sudah diupload</a></span>
+								@endif
 							</td>
 						</tr>
 						</tbody>
@@ -147,7 +158,7 @@
 							</td>
 							<td class="block" width="60%">
 								<!--<div class="char_count" style="text-align:right">1/1000</div>-->
-								<textarea name="field_8" class=" form-control field " placeholder="" maxlength="1000" id="mce_3" aria-hidden="true"></textarea>
+								<textarea name="nama_pt_mitra" class=" form-control field " placeholder="" maxlength="1000" id="mce_3" aria-hidden="true">{{$bab1->nama_pt_mitra}}</textarea>
 							</td>
 						</tr>
 						<tr class="topborder done" style="background: rgb(163, 255, 188);">
@@ -156,171 +167,18 @@
 							</td>
 							<td class="block" width="60%">
 								<!--<div class="char_count" style="text-align:right">1/1000</div> -->
-								<textarea name="field_9" class=" form-control field " placeholder="" maxlength="1000" id="mce_4" aria-hidden="true"></textarea>
+								<textarea name="alamat_pt_mitra" class=" form-control field " placeholder="" maxlength="1000" id="mce_4" aria-hidden="true">{{$bab1->alamat_pt_mitra}}</textarea>
 							</td>
 						</tr>
 						<tr class="topborder done" style="background: rgb(163, 255, 188);">
 							<td class="item block">Negara</td>
 							<td class="block" width="50%">
-								<select class="form-control selectpicker" name="field_10" id="list_univ" data-live-search="true">
-									<option value="">--Pilih Negara--</option>
-									<option value="1">Afganistan</option><option value="2">Afrika Selatan</option><option value="3">Afrika Tengah</option><option value="4">Albania</option>
-									<option value="5">Aljazair</option><option value="6">Amerika Serikat</option><option value="7">Andorra</option><option value="8">Angola</option>
-									<option value="9">Antigua dan Barbuda</option><option value="10">Arab Saudi</option><option value="11">Argentina</option><option value="12">Armenia</option>
-									<option value="13">Australia</option><option value="14">Austria</option><option value="15">Azerbaijan</option><option value="16">Bahama</option>
-									<option value="17">Bahrain</option><option value="18">Bangladesh</option><option value="19">Barbados</option><option value="20">Belanda</option>
-									<option value="21">Belarus</option><option value="22">Belgia</option><option value="23">Belize</option><option value="24">Benin</option>
-									<option value="25">Bhutan</option><option value="26">Bolivia</option><option value="27">Bosnia dan Herzegovina</option><option value="28">Botswana</option><option value="29">Brasil</option>
-									<option value="30">Britania Raya</option><option value="31">Brunei Darussalam</option><option value="32">Bulgaria</option><option value="33">Burkina Faso</option><option value="34">Burundi</option><option value="35">Ceko</option>
-									<option value="36">Chad</option><option value="37">Chili</option><option value="38">China</option><option value="39">Denmark</option><option value="40">Djibouti</option><option value="41">Dominika</option>
-									<option value="42">Ekuador</option><option value="43">El Salvador</option><option value="44">Eritrea</option><option value="45">Estonia</option><option value="46">Ethiopia</option><option value="47">Fiji</option>
-									<option value="48">Filipina</option>
-									<option value="49">Finlandia</option>
-									<option value="50">Gabon</option>
-									<option value="51">Gambia</option>
-									<option value="52">Georgia</option>
-									<option value="53">Ghana</option>
-									<option value="54">Grenada</option>
-									<option value="55">Guatemala</option>
-									<option value="56">Guinea</option>
-									<option value="57">Guinea Bissau</option>
-									<option value="58">Guinea Khatulistiwa</option>
-									<option value="59">Guyana</option>
-									<option value="60">Haiti</option>
-									<option value="61">Honduras</option>
-									<option value="62">Hongaria</option>
-									<option value="63">India</option>
-									<option value="64">Indonesia</option>
-									<option value="65">Irak</option>
-									<option value="66">Iran</option>
-									<option value="67">Irlandia</option>
-									<option value="68">Islandia</option>
-									<option value="69">Israel</option>
-									<option value="70">Italia</option>
-									<option value="71">Jamaika</option>
-									<option value="72">Jepang</option>
-									<option value="73">Jerman</option>
-									<option value="74">Kamboja</option>
-									<option value="75">Kamerun</option>
-									<option value="76">Kanada</option>
-									<option value="77">Kazakhstan</option>
-									<option value="78">Kenya</option>
-									<option value="79">Kirgizstan</option>
-									<option value="80">Kiribati</option>
-									<option value="81">Kolombia</option>
-									<option value="82">Komoro</option>
-									<option value="83">Republik Kongo</option>
-									<option value="84">Korea Selatan</option>
-									<option value="85">Korea Utara</option>
-									<option value="86">Kosta Rika</option>
-									<option value="87">Kroasia</option>
-									<option value="88">Kuba</option>
-									<option value="89">Kuwait</option>
-									<option value="90">Laos</option>
-									<option value="91">Latvia</option>
-									<option value="92">Lebanon</option>
-									<option value="93">Lesotho</option>
-									<option value="94">Liberia</option>
-									<option value="95">Libya</option>
-									<option value="96">Liechtenstein</option>
-									<option value="97">Lituania</option>
-									<option value="98">Luksemburg</option>
-									<option value="99">Madagaskar</option>
-									<option value="100">Makedonia</option>
-									<option value="101">Maladewa</option>
-									<option value="102">Malawi</option>
-									<option value="103">Malaysia</option>
-									<option value="104">Mali</option>
-									<option value="105">Malta</option>
-									<option value="106">Maroko</option>
-									<option value="107">Marshall</option>
-									<option value="108">Mauritania</option>
-									<option value="109">Mauritius</option>
-									<option value="110">Meksiko</option>
-									<option value="111">Mesir</option>
-									<option value="112">Mikronesia</option>
-									<option value="113">Moldova</option>
-									<option value="114">Monako</option>
-									<option value="115">Mongolia</option>
-									<option value="116">Montenegro</option>
-									<option value="117">Mozambik</option>
-									<option value="118">Myanmar</option>
-									<option value="119">Namibia</option>
-									<option value="120">Nauru</option>
-									<option value="121">Nepal</option>
-									<option value="122">Niger</option>
-									<option value="123">Nigeria</option>
-									<option value="124">Nikaragua</option>
-									<option value="125">Norwegia</option>
-									<option value="126">Oman</option>
-									<option value="127">Pakistan</option>
-									<option value="128">Palau</option>
-									<option value="129">Panama</option>
-									<option value="130">Pantai Gading</option>
-									<option value="131">Papua Nugini</option>
-									<option value="132">Paraguay</option>
-									<option value="133">Perancis</option>
-									<option value="134">Peru</option>
-									<option value="135">Polandia</option>
-									<option value="136">Portugal</option>
-									<option value="137">Qatar</option>
-									<option value="138">Republik Demokratik Kongo</option>
-									<option value="139">Republik Dominika</option>
-									<option value="140">Rumania</option>
-									<option value="141">Rusia</option>
-									<option value="142">Rwanda</option>
-									<option value="143">Saint Kitts and Nevis</option>
-									<option value="144">Saint Lucia</option>
-									<option value="145">Saint Vincent and the Grenadines</option>
-									<option value="146">Samoa</option>
-									<option value="147">San Marino</option>
-									<option value="148">Sao Tome and Principe</option>
-									<option value="149">Selandia Baru</option>
-									<option value="150">Senegal</option>
-									<option value="151">Serbia</option>
-									<option value="152">Seychelles</option>
-									<option value="153">Sierra Leone</option>
-									<option value="154">Singapura</option>
-									<option value="155">Siprus</option>
-									<option value="156">Slovenia</option>
-									<option value="157">Slowakia</option>
-									<option value="158">Solomon</option>
-									<option value="159">Somalia</option>
-									<option value="160">Spanyol</option>
-									<option value="161">Sri Lanka</option>
-									<option value="162">Sudan</option>
-									<option value="163">Sudan Selatan</option>
-									<option value="164">Suriah</option>
-									<option value="165">Suriname</option>
-									<option value="166">Swaziland</option>
-									<option value="167">Swedia</option>
-									<option value="168">Swiss</option>
-									<option value="169">Tajikistan</option>
-									<option value="170">Tanjung Verde</option>
-									<option value="171">Tanzania</option>
-									<option value="172">Thailand</option>
-									<option value="173">Timor Leste</option>
-									<option value="174">Togo</option>
-									<option value="175">Tonga</option>
-									<option value="176">Trinidad and Tobago</option>
-									<option value="177">Tunisia</option>
-									<option value="178">Turki</option>
-									<option value="179">Turkmenistan</option>
-									<option value="180">Tuvalu</option>
-									<option value="181">Uganda</option>
-									<option value="182">Ukraina</option>
-									<option value="183">Uni Emirat Arab</option>
-									<option value="184">Uruguay</option>
-									<option value="185">Uzbekistan</option>
-									<option value="186">Vanuatu</option>
-									<option value="187">Venezuela</option>
-									<option value="188">Vietnam</option>
-									<option value="189">Yaman</option>
-									<option value="190">Yordania</option>
-									<option value="191">Yunani</option>
-									<option value="192">Zambia</option>
-									<option value="193">Zimbabwe</option>
-									<option value="206">Taiwan</option>
+								<select class="form-control selectpicker" name="id_negara_mitra" id="list_univ" data-live-search="true">
+								<option value="" selected disabled hidden>--Pilih Negara--</option>
+										@foreach($negara as $row)
+                                		<option value="{{ $row->id }}" {{ isset($bab1) ? ($bab1->id_negara_mitra == $row->id ? 'selected' : '') :'' }}>{{$row->nicename}}</option>
+                            			@endforeach
+									</select>
 								</select>
 							</td>
 						</tr>
@@ -329,22 +187,37 @@
 							<td class="block" width="60%">
 								<span>Izin Operasional</span><br>
 								<!--<div class="char_count" style="text-align:right">1/1000</div> -->
-								<textarea name="" class=" form-control field " placeholder="Izin Operasional" maxlength="1000" id="mce_5" aria-hidden="true"></textarea>
+								<textarea name="ijin_operasional_pt_mitra" class=" form-control field " placeholder="Izin Operasional" maxlength="1000" id="mce_5" aria-hidden="true">{{$bab1->ijin_operasional_pt_mitra}}</textarea>
 								<br>
 								<span>Scan Izin Operasional</span><br>
-								<input type="file" name="" value="" class="form-control" data-size="2 MB">
+								<input type="file" name="scan_ijin_operasional_pt_mitra" value="" class="form-control" data-size="2 MB">
+								<input type="hidden" name="scan_ijin_operasional_pt_mitra_hidden" value="{{$bab1->scan_ijin_operasional_pt}}">
 								<small class="keterangan" style="color:red;">Maks. 2 MB</small>
+								<br>
+								@if($bab1->scan_ijin_operasional_pt_mitra)
+								<span><a href="{{url('').$bab1->scan_ijin_operasional_pt_mitra}}" target="_blank">File yang sudah diupload</a></span>
+								@endif
 							</td>
 						</tr>
 						<tr class="topborder done" style="background: rgb(163, 255, 188);">
 							<td class="item block">Status Akreditasi Institusi</td>
 							<td class="block" width="60%">
 								<span>Status Akreditasi Institusi</span>
-								<!--<div class="char_count" style="text-align:right">1/1000</div>-->
-								<textarea name="" class=" form-control field " placeholder="Status Akreditasi Institusi" maxlength="1000" id="mce_6" aria-hidden="true"></textarea>
+								<select class="form-control" name="id_status_akreditasi_institusi_mitra" data-select2-id="10" tabindex="-1" aria-hidden="true">
+									<option value="" selected disabled hidden>--Pilih Status Akreditasi--</option>
+										@foreach($statusAkreditasi as $row)
+                                		<option value="{{ $row->id }}" {{ isset($bab1) ? ($bab1->id_status_akreditasi_institusi_mitra == $row->id ? 'selected' : '') :'' }}>{{$row->status}}</option>
+                            			@endforeach
+									</select>
 								<br>
 								<span>Scan SK Akreditasi Institusi</span><br>
-								<input type="file" name="" value="" class="form-control" data-size="2 MB"><small class="keterangan" style="color:red;">Maks. 2 MB</small>
+								<input type="file" name="scan_status_akreditasi_institusi_mitra" value="" class="form-control" data-size="2 MB">
+								<input type="hidden" name="scan_status_akreditasi_institusi_mitra_hidden" value="{{$bab1->scan_status_akreditasi_institusi_mitra}}">
+								<small class="keterangan" style="color:red;">Maks. 2 MB</small>
+								<br>
+								@if($bab1->scan_status_akreditasi_institusi_mitra)
+								<span><a href="{{url('').$bab1->scan_status_akreditasi_institusi_mitra}}" target="_blank">File yang sudah diupload</a></span>
+								@endif
 							</td>
 						</tr>
 						<tr class="topborder done" style="background: rgb(163, 255, 188);">
@@ -353,7 +226,7 @@
 							</td>
 							<td class="block" width="60%">
 								<!--<div class="char_count" style="text-align:right">1/1000</div>-->
-								<textarea name="" class=" form-control field " placeholder="" maxlength="1000" id="mce_7" aria-hidden="true"></textarea>
+								<textarea name="peringkat_internasional_mitra" class=" form-control field " placeholder="" maxlength="1000" id="mce_7" aria-hidden="true">{{$bab1->peringkat_internasional_mitra}}</textarea>
 							</td>
 						</tr>
 						</tbody>
@@ -375,7 +248,8 @@
 						<tr class="bottomborder done" style="background: rgb(163, 255, 188);">
 							<td class="item block"></td>
 							<td class="block" width="30%">
-								<select class="form-control" data-live-search="true" name="field_10">
+								<!--{{$bab1->nama_prodi}}-->
+								<select class="form-control" data-live-search="true" name="nama_prodi">
 									<option value="">--Pilih Nama Prodi--</option>
 									<option value="47201_S1 Kimia">S1 Kimia</option>
 									<option value="22104_S1 Teknik Rekayasa Infrastruktur dan Lingkungan">S1 Teknik Rekayasa Infrastruktur dan Lingkungan</option>
@@ -386,7 +260,7 @@
 								</select>
 								<td class="block" width="30%">
 									<!--<div class="char_count" style="text-align:right">1/1000</div> -->
-									<textarea name="" class="form-control" placeholder="" maxlength="1000" id="mce_8" aria-hidden="true"></textarea>
+									<textarea name="nama_prodi_mitra" class="form-control" placeholder="" maxlength="1000" id="mce_8" aria-hidden="true">{{$bab1->nama_prodi_mitra}}</textarea>
 								</td>
 							</tr>
 							<tr class="topborder done" style="background: rgb(163, 255, 188);">
@@ -399,21 +273,19 @@
 							<tr class="bottomborder done" style="background: rgb(163, 255, 188);">
 								<td class="item block"></td>
 								<td class="block" width="30%">
-									<select class="form-control" name="" data-select2-id="10" tabindex="-1" aria-hidden="true">
-										<option value="" data-select2-id="12">--Pilih--</option>
-										<option value="197" >Unggul</option>
-										<option value="198" >Baik Sekali</option>
-										<option value="207" >Baik</option>
-										<option value="208" >A</option>
-										<option value="209" >B</option>
+									<select class="form-control" name="id_akreditasi_prodi" data-select2-id="10" tabindex="-1" aria-hidden="true">
+									<option value="" selected disabled hidden>--Pilih Status Akreditasi--</option>
+										@foreach($statusAkreditasi as $row)
+                                		<option value="{{ $row->id }}" {{ isset($bab1) ? ($bab1->id_akreditasi_prodi == $row->id ? 'selected' : '') :'' }}>{{$row->status}}</option>
+                            			@endforeach
 									</select>
-									<!--
-                                    <span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="11" style="width: 326.475px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-field_17-16-container"><span class="select2-selection__rendered" id="select2-field_17-16-container" role="textbox" aria-readonly="true" title="Pilih ">Pilih</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span><br>
-									<small id="message17"></small><input type="hidden" name="text17" id="text17"></td>
-                                    -->
 								<td class="block" width="30%">
-									<!--<div class="char_count" style="text-align:right">1/1000</div>-->
-									<textarea name="" class=" form-control field " placeholder="" maxlength="1000" id="mce_9" aria-hidden="true"></textarea>
+								<select class="form-control" name="id_akreditasi_prodi_mitra" data-select2-id="10" tabindex="-1" aria-hidden="true">
+									<option value="" selected disabled hidden>--Pilih Status Akreditasi--</option>
+										@foreach($statusAkreditasi as $row)
+                                		<option value="{{ $row->id }}" {{ isset($bab1) ? ($bab1->id_akreditasi_prodi_mitra == $row->id ? 'selected' : '') :'' }}>{{$row->status}}</option>
+                            			@endforeach
+									</select>
 								</td>
 							</tr>
 							<tr class="topborder done" style="background: rgb(163, 255, 188);">
@@ -427,10 +299,22 @@
 								<td class="item block"></td>
 								<td class="block" width="30%">
 									<span>Scan SK Akreditasi Prodi</span><br>
-									<input type="file" name="" value="" class="form-control" data-size=""></td>
+									<input type="file" name="scan_sk_akreditasi_prodi" value="" class="form-control" data-size="">
+									<input type="hidden" name="scan_sk_akreditasi_prodi_hidden" value="{{$bab1->scan_sk_akreditasi_prodi}}">
+									<br>
+									@if($bab1->scan_sk_akreditasi_prodi)
+									<span><a href="{{url('').$bab1->scan_sk_akreditasi_prodi}}" target="_blank">File yang sudah diupload</a></span>
+									@endif
+								</td>
 								<td class="block" width="30%">
 									<span>Scan SK Akreditasi Prodi</span><br>
-									<input type="file" name="" value="" class="form-control" data-size=""></td>
+									<input type="file" name="scan_sk_akreditasi_prodi_mitra" value="" class="form-control" data-size="">
+									<input type="hidden" name="scan_sk_akreditasi_prodi_mitra_hidden" value="{{$bab1->scan_sk_akreditasi_prodi_mitra}}">
+									<br>
+									@if($bab1->scan_sk_akreditasi_prodi_mitra)
+									<span><a href="{{url('').$bab1->scan_sk_akreditasi_prodi_mitra}}" target="_blank">File yang sudah diupload</a></span>
+									@endif
+								</td>
 							</tr>
 							<tr class="topborder done" style="background: rgb(163, 255, 188);">
 								<td class="item block">
@@ -443,10 +327,20 @@
 								<td class="item block"></td>
 								<td class="block" width="30%">
 									<span>Scan Izin Operasional Prodi</span><br>
-									<input type="file" name="" value="" class="form-control" data-size=""></td>
+									<input type="file" name="scan_ijin_operasional_prodi" value="" class="form-control" data-size="">
+									<br>
+									@if($bab1->scan_ijin_operasional_prodi)
+									<span><a href="{{url('').$bab1->scan_ijin_operasional_prodi}}" target="_blank">File yang sudah diupload</a></span>
+									@endif
+								</td>
 								<td class="block" width="30%">
 									<span>Scan Izin Operasional Prodi</span><br>
-									<input type="file" name="" value="" class="form-control" data-size=""></td>
+									<input type="file" name="" value="scan_ijin_operasional_prodi_mitra" class="form-control" data-size="">
+									<br>
+									@if($bab1->scan_ijin_operasional_prodi_mitra)
+									<span><a href="{{url('').$bab1->scan_ijin_operasional_prodi_mitra}}" target="_blank">File yang sudah diupload</a></span>
+									@endif
+								</td>
 							</tr>
 							</tbody>
 							</table>
@@ -463,7 +357,11 @@
 									Perguruan Tinggi<em style="color:red;">*</em>
 								</td>
 								<td class="block" width="60%">
-									<input type="file" name="" value="" class="form-control" data-size="20 MB"><small class="keterangan" style="color:red;">Maks. 20 MB</small>
+									<input type="file" name="proposal_usulan_kerjsama" value="" class="form-control" data-size="20 MB"><small class="keterangan" style="color:red;">Maks. 20 MB</small>
+									<br>
+									@if($bab1->proposal_usulan_kerjsama)
+									<span><a href="{{url('').$bab1->proposal_usulan_kerjsama}}" target="_blank">File yang sudah diupload</a></span>
+									@endif
 								</td>
 							</tr>
 							</tbody>
@@ -471,7 +369,7 @@
 							<div class="row">
 								<div class="form-group col-md-6"></div>
 								<div class="form-group col-md-6">
-									<button type="submit" class="btn btn-success mt-4 float-right mx-2" name="submit" id="submit_form">SIMPAN &amp; LANJUTKAN</button>
+									<button type="submit" class="btn btn-success mt-4 float-right mx-2" id="submit_form">SIMPAN &amp; LANJUTKAN</button>
                                     <a href="" type="button" class="btn btn-default mt-4 float-right text-white" name="submit">KEMBALI KE MENU</a>
 								</div>
 							</div>

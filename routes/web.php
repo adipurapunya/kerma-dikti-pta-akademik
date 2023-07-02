@@ -60,8 +60,9 @@ Route::middleware('auth')->group(function(){
         Route::get('','index')->name('proposal');
         Route::post('tambah','simpan')->name('proposal.tambah.simpan');
         Route::get('viewBab1','viewBab1')->name('proposal.viewBab1');
-        Route::get('editBab1','editBab1')->name('proposal.editBab1');
-        Route::get('editBab2','editBab2')->name('proposal.editBab2');
+        Route::get('editBab1/{id}','editBab1')->name('proposal.editBab1');
+        Route::post('editBab1/{id}','updateBab1')->name('proposal.editBab1.tambah.update');
+        Route::get('editBab2/{id}','editBab2')->name('proposal.editBab2');
         Route::get('editBab3','editBab3')->name('proposal.editBab3');
         Route::get('editBab4','editBab4')->name('proposal.editBab4');
     });

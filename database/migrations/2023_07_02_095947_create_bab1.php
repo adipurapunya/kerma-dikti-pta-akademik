@@ -19,16 +19,31 @@ return new class extends Migration
             $table->string('alamat_pt')->nullable();
             $table->string('ijin_operasional_pt')->nullable();
             $table->string('scan_ijin_operasional_pt')->nullable();
+
             $table->string('status_akreditasi_institusi')->nullable();
+            $table->string('status_akreditasi_institusi_mitra')->nullable();
+            $table->string('akreditasi_prodi')->nullable();
+            $table->string('akreditasi_prodi_mitra')->nullable();
+            $table->string('negara_mitra')->nullable();
+
             $table->string('scan_status_akreditasi_institusi')->nullable();
             $table->string('nama_pt_mitra')->nullable();
             $table->string('alamat_pt_mitra')->nullable();
             $table->string('ijin_operasional_pt_mitra')->nullable();
             $table->string('scan_ijin_operasional_pt_mitra')->nullable();
-            $table->string('status_akreditasi_institusi_mitra')->nullable();
+            
             $table->string('scan_status_akreditasi_institusi_mitra')->nullable();
-            $table->string('negara_mitra')->nullable();
+            
             $table->string('peringkat_internasional_mitra')->nullable();
+            $table->string('nama_prodi')->nullable();
+            $table->string('nama_prodi_mitra')->nullable();
+            
+            $table->string('scan_sk_akreditasi_prodi')->nullable();
+            $table->string('scan_sk_akreditasi_prodi_mitra')->nullable();
+            $table->string('scan_ijin_operasional_prodi')->nullable();
+            $table->string('scan_ijin_operasional_prodi_mitra')->nullable();
+            $table->string('proposal_usulan_kerjsama')->nullable();
+
             $table->timestamps();
         });
 
