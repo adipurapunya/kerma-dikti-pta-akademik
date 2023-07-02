@@ -58,7 +58,7 @@ Route::middleware('auth')->group(function(){
 
     Route::controller(ProposalController::class)->prefix('proposal')->group(function(){
         Route::get('','index')->name('proposal');
-        Route::get('tambah','tambah')->name('proposal.tambah');
+        Route::post('tambah','simpan')->name('proposal.tambah.simpan');
         Route::get('viewBab1','viewBab1')->name('proposal.viewBab1');
         Route::get('editBab1','editBab1')->name('proposal.editBab1');
         Route::get('editBab2','editBab2')->name('proposal.editBab2');

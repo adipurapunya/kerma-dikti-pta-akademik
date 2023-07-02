@@ -18,12 +18,13 @@ class AuthController extends Controller
     }
 
     public function registerSimpan(Request $request){
+  /*      
         Validator::make($request->all(),[
             'nama' => 'required',
             'email' => 'required|email',
             'password' => 'required|confirmed'
         ])->validate();
-
+*/
         User::create([
             'nama' => $request->nama,
             'email' => $request->email,

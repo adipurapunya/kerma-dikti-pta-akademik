@@ -9,13 +9,17 @@ class proposal extends Model
 {
     use HasFactory;
 
-    protected $table = 'barang';
+    protected $table = 'proposal';
 
     protected $fillable = ['judul', 'tanggal_pengajuan', 'status_pengisian', 
     'status_berkas', 'pt_mitra_negeri', 'prodi_pt_mitra_negeri', 
-    'judul', 'id_jenis_kerja_sama', 'prodi_pt_dalam_negeri'];
+     'prodi_pt_dalam_negeri', 'id_jenis_kerjasama','id_bab1'];
 
     public function kerjasama(){
-        return $this->belongsTo(kerjasama::class, 'id_jenis_kerja_sama');
+        return $this->belongsTo(kerjasama::class, 'id_jenis_kerjasama');
+    }
+
+    public function bab1(){
+        return $this->belongsTo(bab1::class, 'id_bab1');
     }
 }

@@ -21,8 +21,13 @@ class User extends Authenticatable
         'nama',
         'email',
         'password',
-        'level'
+        'level',
+        'id_universitas'
     ];
+
+    public function universitas(){
+        return $this->belongsTo(Universitas::class, 'id_universitas');
+    }
 
     /**
      * The attributes that should be hidden for serialization.

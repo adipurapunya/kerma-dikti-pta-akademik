@@ -24,6 +24,7 @@ return new class extends Migration
             //---
             $table->string('jenis_kerjasama')->nullable();
             $table->string('prodi_pt_dalam_negeri')->nullable();
+            $table->string('nama_universitas')->nullable();
             $table->string('bab1')->nullable();
             $table->string('bab2')->nullable();
             $table->string('bab3')->nullable();

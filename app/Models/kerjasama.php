@@ -14,6 +14,6 @@ class kerjasama extends Model
     protected $fillable = ['jenis_kerjasama'];
 
     public function proposal(){
-        return $this->hasMany(proposal::class,'id_jenis_kerja_sama');
+        return $this->hasMany(proposal::class,'id_jenis_kerjasama');
     }
 }

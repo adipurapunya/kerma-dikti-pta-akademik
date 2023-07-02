@@ -27,6 +27,10 @@ return new class extends Migration
             $table->string('propinsi')->nullable();
             $table->timestamps();
         });
+        Schema::table('users', function(Blueprint $table){
+            $table->dropColumn('universitas');
+            $table->foreignId('id_universitas')->nullable() ->references('id')->on('universitas');
+        });
     }
 
     /**

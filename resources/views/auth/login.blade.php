@@ -149,7 +149,7 @@
           </div>
           <div class="row mt-3">
             <div class="col-6">
-              <a class="text-white" href="https://izinkerma.kemdikbud.go.id/akademik/index.php/MainMenu/forgotPassword"><small style="font-size: 90%">Lupa password?</small></a>
+              <a class="text-white" href=""><small style="font-size: 90%">Lupa password?</small></a>
             </div>
             <div class="col-6 text-right">
               <a href="{{ route('register') }}" class="text-white"><small style="font-size: 90%">Buat Akun Baru</small></a>

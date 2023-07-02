@@ -98,8 +98,9 @@
                 <div class="text-center text-muted mb-4">
                   <large class="h3">Silahkan isi data di bawah ini untuk membuat akun</large>
                 </div>
-                <form role="form" id="regis_form" method="post" action="" enctype="multipart/form-data">
-                  <div class="form-group">
+                <form role="form" id="regis_form" method="post" action="{{ route('register.simpan') }}" enctype="multipart/form-data">
+                @csrf  
+                <div class="form-group">
                     <small class="h4"> Kode Universitas<em style="color:red;">*</em></small>
                     <div class="input-group input-group-alternative mb-3">
                       <div class="input-group-prepend mt-2 mb-1">
@@ -18448,7 +18449,7 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="ni ni-single-02"></i></span>
                       </div>
-                      <input class="form-control isian" placeholder="Saya" type="text" name="username">
+                      <input class="form-control isian" placeholder="Saya" type="text" name="nama">
                     </div>
                   </div>
                   <div class="form-group">
@@ -18457,7 +18458,7 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="ni ni-single-02"></i></span>
                       </div>
-                      <input class="form-control isian" placeholder="Penanggungjawab" type="text" name="pj">
+                      <input class="form-control isian" placeholder="Penanggungjawab" type="text" name="namapj">
                     </div>
                   </div>
                   <div class="form-group">
@@ -18541,7 +18542,7 @@
                     </div>
                   </div>
                   <div class="text-center">
-                    <button type="submit" class="btn btn-primary mt-4" id="submit_form" disabled="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Isi semua field terlebih dahulu">Buat Akun</button>
+                    <button type="submit" class="btn btn-primary mt-4" id="submit_form"  data-toggle="tooltip" data-placement="top" title="" data-original-title="Isi semua field terlebih dahulu">Buat Akun</button>
                   </div>
                 </form>
             </div>
