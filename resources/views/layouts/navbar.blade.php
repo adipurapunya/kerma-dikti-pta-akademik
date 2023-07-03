@@ -28,12 +28,17 @@
                 
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
                     {{ auth()->user()->nama }}
-                   <!--
+                   
+                    @if((auth()->user()->level) == 'Universitas' || (auth()->user()->level) == 'Admin')
                     <br>
                     <small>{{ auth()->user()->level }}</small>
-                    -->
+                    @endif
+
+                    @if(auth()->user()->level == 'Universitas')
                     <br>
                     <small>{{ auth()->user()->universitas->nama_universitas }}</small>
+                    @endif
+                    
                 </span>
                 
                 <img class="img-profile rounded-circle"
