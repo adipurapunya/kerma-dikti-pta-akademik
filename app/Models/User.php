@@ -25,7 +25,7 @@ class User extends Authenticatable
         'id_universitas'
     ];
 
-    public function universitas(){
+    public function Universitas(){
         return $this->belongsTo(Universitas::class, 'id_universitas');
     }
 

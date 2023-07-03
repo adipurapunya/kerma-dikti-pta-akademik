@@ -11,7 +11,7 @@ class Universitas extends Model
 
     protected $table = 'universitas';
     
-    protected $fillable = ['nama'];
+    protected $fillable = ['nama_universitas'];
 
     public function User(){
         return $this->hasMany(User::class,'id_universitas');

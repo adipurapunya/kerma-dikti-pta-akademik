@@ -28,8 +28,12 @@
                 
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
                     {{ auth()->user()->nama }}
+                   <!--
                     <br>
                     <small>{{ auth()->user()->level }}</small>
+                    -->
+                    <br>
+                    <small>{{ auth()->user()->universitas->nama_universitas }}</small>
                 </span>
                 
                 <img class="img-profile rounded-circle"

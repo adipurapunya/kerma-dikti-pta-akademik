@@ -17,17 +17,17 @@
 			<input type="hidden" id="statusView" value="N">
 			<ul class="nav nav-pills nav-fill flex-column flex-sm-row" id="tabs-text" role="tablist">
 				<li class="nav-item tab_up">
-					<a style="font-size: 1rem;" class="nav-link tab_up mb-sm-3 mb-md-0 " id="tabs-text-1-tab" href="{{ route('proposal.editBab1')}}">BAB 1<br>
+					<a style="font-size: 1rem;" class="nav-link tab_up mb-sm-3 mb-md-0 " id="tabs-text-1-tab" href="{{ route('proposal.editBab1', $proposal->id) }}">BAB 1<br>
 					PROFIL PERGURUAN<br>TINGGI</a>
 				</li>
 				<li class="nav-item tab_up">
-					<a style="font-size: 1rem;" class="nav-link tab_up mb-sm-3 mb-md-0 " id="tabs-text-1-tab" href="{{ route('proposal.editBab2')}}">BAB 2<br>DOKUMEN KERJA SAMA</a>
+					<a style="font-size: 1rem;" class="nav-link tab_up mb-sm-3 mb-md-0 " id="tabs-text-1-tab" href="{{ route('proposal.editBab2', $proposal->id) }}">BAB 2<br>DOKUMEN KERJA SAMA</a>
 				</li>
 				<li class="nav-item tab_up">
-					<a style="font-size: 1rem;" class="nav-link tab_up mb-sm-3 mb-md-0 " id="tabs-text-1-tab" href="{{ route('proposal.editBab3')}}">BAB 3<br>KESIAPAN SUMBER DAYA</a>
+					<a style="font-size: 1rem;" class="nav-link tab_up mb-sm-3 mb-md-0 " id="tabs-text-1-tab" href="{{ route('proposal.editBab3', $proposal->id) }}">BAB 3<br>KESIAPAN SUMBER DAYA</a>
 				</li>
 				<li class="nav-item tab_up">
-					<a style="font-size: 1rem;" class="nav-link tab_up mb-sm-3 mb-md-0 active" id="tabs-text-1-tab" href="{{ route('proposal.editBab4')}}">BAB 4<br>
+					<a style="font-size: 1rem;" class="nav-link tab_up mb-sm-3 mb-md-0 active" id="tabs-text-1-tab" href="{{ route('proposal.editBab4', $proposal->id) }}">BAB 4<br>
 					RENCANA PELAKSANAAN<br>KERJA SAMA</a>
 				</li>
 			</ul>
@@ -47,7 +47,7 @@
 						<h4>No Berkas</h4>
 					</td>
 					<td style="padding-bottom: 0; padding-top: 0.5;" width="5%">:</td>
-					<td style="padding-bottom: 0; padding-top: 0.5;" width="75%">2305140001.1</td>
+					<td style="padding-bottom: 0; padding-top: 0.5;" width="75%">{{$proposal->id}}</td>
 				</tr>
 				<tr>
 					<td style="padding-bottom: 0; padding-top: 0;" width="20%">
@@ -55,7 +55,7 @@
 					</td>
 					<td style="padding-bottom: 0; padding-top: 0;" width="5%">:</td>
 					<td style="padding-bottom: 0; padding-top: 0;" width="75%">
-						 Gelar Ganda (Double Degree) Universitas Halu Oleo S1 Teknik Rekayasa Infrastruktur dan Lingkungan dengan ddd ssss
+						 {{$proposal->judul}}
 					</td>
 				</tr>
 				</tbody>
@@ -195,8 +195,8 @@
 					</tr>
 					<tr class="topborder done" style="background: rgb(163, 255, 188);">
 						<td class="item block">
-							 KEBERLANJUTAN UNTUK STUDI LANJUT (<br>
-							 DESKRIPSI)<em style="color:red;">*</em>
+							 KEBERLANJUTAN UNTUK STUDI LANJUT <br>
+							 (DESKRIPSI)<em style="color:red;">*</em>
 						</td>
 						<td class="block" width="60%" colspan="3">
 							<textarea rows="4" cols="70" class=" tiny form-control field" name="field_67" placeholder="" maxlength="1800" id="mce_9" style="display: true;" aria-hidden="true"></textarea>

@@ -29,16 +29,16 @@
 			<input type="hidden" id="statusView" value="N">
 			<ul class="nav nav-pills nav-fill flex-column flex-sm-row" id="tabs-text" role="tablist">
 				<li class="nav-item tab_up">
-					<a style="font-size: 1rem;" class="nav-link tab_up mb-sm-3 mb-md-0 active" id="tabs-text-1-tab" href="{{ route('proposal.editBab1',$proposal->id)}}">BAB 1<br>PROFIL PERGURUAN<br>TINGGI</a>
+					<a style="font-size: 1rem;" class="nav-link tab_up mb-sm-3 mb-md-0 active" id="tabs-text-1-tab" href="{{ route('proposal.editBab1',$proposal->id) }}">BAB 1<br>PROFIL PERGURUAN<br>TINGGI</a>
 				</li>
 				<li class="nav-item tab_up">
-					<a style="font-size: 1rem;" class="nav-link tab_up mb-sm-3 mb-md-0 " id="tabs-text-1-tab" href="{{ route('proposal.editBab2',$proposal->id)}}">BAB 2<br>DOKUMEN KERJA SAMA</a>
+					<a style="font-size: 1rem;" class="nav-link tab_up mb-sm-3 mb-md-0 " id="tabs-text-1-tab" href="{{ route('proposal.editBab2',$proposal->id) }}">BAB 2<br>DOKUMEN KERJA SAMA</a>
 				</li>
 				<li class="nav-item tab_up">
-					<a style="font-size: 1rem;" class="nav-link tab_up mb-sm-3 mb-md-0 " id="tabs-text-1-tab" href="{{ route('proposal.editBab3')}}">BAB 3<br>KESIAPAN SUMBER DAYA</a>
+					<a style="font-size: 1rem;" class="nav-link tab_up mb-sm-3 mb-md-0 " id="tabs-text-1-tab" href="{{ route('proposal.editBab3', $proposal->id) }}">BAB 3<br>KESIAPAN SUMBER DAYA</a>
 				</li>
 				<li class="nav-item tab_up">
-					<a style="font-size: 1rem;" class="nav-link tab_up mb-sm-3 mb-md-0 " id="tabs-text-1-tab" href="{{ route('proposal.editBab4')}}">BAB 4<br>RENCANA PELAKSANAAN<br>KERJA SAMA</a>
+					<a style="font-size: 1rem;" class="nav-link tab_up mb-sm-3 mb-md-0 " id="tabs-text-1-tab" href="{{ route('proposal.editBab4', $proposal->id) }}">BAB 4<br>RENCANA PELAKSANAAN<br>KERJA SAMA</a>
 				</li>
 			</ul>
 		</div>
@@ -127,7 +127,7 @@
 							</td>
 							<td class="block" width="60%">
 								<span>Status Akreditasi Institusi</span><br>
-								<select class="form-control" name="status_akreditasi_institusi" data-select2-id="1" tabindex="-1" aria-hidden="true">
+								<select class="form-control" name="id_status_akreditasi_institusi" data-select2-id="1" tabindex="-1" aria-hidden="true">
 									<option value="" selected disabled hidden>--Pilih Status Akreditasi Institusi--</option>
 									@foreach($statusAkreditasi as $row)
                                 		<option value="{{ $row->id }}" {{ isset($bab1) ? ($bab1->id_status_akreditasi_institusi == $row->id ? 'selected' : '') :'' }}>{{$row->status}}</option>
@@ -249,6 +249,7 @@
 							<td class="item block"></td>
 							<td class="block" width="30%">
 								<!--{{$bab1->nama_prodi}}-->
+								<!--
 								<select class="form-control" data-live-search="true" name="nama_prodi">
 									<option value="">--Pilih Nama Prodi--</option>
 									<option value="47201_S1 Kimia">S1 Kimia</option>
@@ -258,8 +259,10 @@
 									<option value="13201_S1 Kesehatan Masyarakat">S1 Kesehatan Masyarakat</option>
 									<option value="85209_S1 Pendidikan Vokasional Teknik">S1 Pendidikan Vokasional Teknik</option>
 								</select>
+								-->
+								<textarea name="nama_prodi" class="form-control" placeholder="" maxlength="1000" id="mce_8" aria-hidden="true">{{$bab1->nama_prodi}}</textarea>
+								
 								<td class="block" width="30%">
-									<!--<div class="char_count" style="text-align:right">1/1000</div> -->
 									<textarea name="nama_prodi_mitra" class="form-control" placeholder="" maxlength="1000" id="mce_8" aria-hidden="true">{{$bab1->nama_prodi_mitra}}</textarea>
 								</td>
 							</tr>
@@ -328,6 +331,7 @@
 								<td class="block" width="30%">
 									<span>Scan Izin Operasional Prodi</span><br>
 									<input type="file" name="scan_ijin_operasional_prodi" value="" class="form-control" data-size="">
+									<input type="hidden" name="scan_ijin_operasional_prodi_hidden" value="{{$bab1->scan_ijin_operasional_prodi}}">
 									<br>
 									@if($bab1->scan_ijin_operasional_prodi)
 									<span><a href="{{url('').$bab1->scan_ijin_operasional_prodi}}" target="_blank">File yang sudah diupload</a></span>
@@ -335,7 +339,8 @@
 								</td>
 								<td class="block" width="30%">
 									<span>Scan Izin Operasional Prodi</span><br>
-									<input type="file" name="" value="scan_ijin_operasional_prodi_mitra" class="form-control" data-size="">
+									<input type="file" name="scan_ijin_operasional_prodi_mitra" value="" class="form-control" data-size="">
+									<input type="hidden" name="scan_ijin_operasional_prodi_mitra_hidden" value="{{$bab1->scan_ijin_operasional_prodi_mitra}}">
 									<br>
 									@if($bab1->scan_ijin_operasional_prodi_mitra)
 									<span><a href="{{url('').$bab1->scan_ijin_operasional_prodi_mitra}}" target="_blank">File yang sudah diupload</a></span>
@@ -358,6 +363,7 @@
 								</td>
 								<td class="block" width="60%">
 									<input type="file" name="proposal_usulan_kerjsama" value="" class="form-control" data-size="20 MB"><small class="keterangan" style="color:red;">Maks. 20 MB</small>
+									<input type="hidden" name="proposal_usulan_kerjsama_hidden" value="{{$bab1->proposal_usulan_kerjsama}}">
 									<br>
 									@if($bab1->proposal_usulan_kerjsama)
 									<span><a href="{{url('').$bab1->proposal_usulan_kerjsama}}" target="_blank">File yang sudah diupload</a></span>

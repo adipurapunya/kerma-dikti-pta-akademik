@@ -88,6 +88,18 @@ class ProposalController extends Controller
         $file_scan_sk_akreditasi_prodi = $request->hasFile('scan_sk_akreditasi_prodi');
         $filename_scan_sk_akreditasi_prodi = $request->scan_sk_akreditasi_prodi_hidden;
 
+        $file_scan_sk_akreditasi_prodi_mitra = $request->hasFile('scan_sk_akreditasi_prodi_mitra');
+        $filename_scan_sk_akreditasi_prodi_mitra = $request->scan_sk_akreditasi_prodi_mitra_hidden;
+
+        $file_scan_ijin_operasional_prodi = $request->hasFile('scan_ijin_operasional_prodi');
+        $filename_scan_ijin_operasional_prodi = $request->scan_ijin_operasional_prodi_hidden;
+
+        $file_scan_ijin_operasional_prodi_mitra = $request->hasFile('scan_ijin_operasional_prodi_mitra');
+        $filename_scan_ijin_operasional_prodi_mitra = $request->scan_ijin_operasional_prodi_mitra_hidden;
+
+        $file_proposal_usulan_kerjsama = $request->hasFile('proposal_usulan_kerjsama');
+        $filename_proposal_usulan_kerjsama = $request->proposal_usulan_kerjsama_hidden;
+
         if($file_scan_ijin_operasional_pt){
             $filename_scan_ijin_operasional_pt = '/file/' . time() . '_scan_ijin_operasional_pt.' . $request->scan_ijin_operasional_pt->extension(); 
             $request->scan_ijin_operasional_pt->move(public_path('/file/'),$filename_scan_ijin_operasional_pt);
@@ -108,12 +120,47 @@ class ProposalController extends Controller
             $filename_scan_sk_akreditasi_prodi = '/file/' . time() . '_scan_sk_akreditasi_prodi.' . $request->scan_sk_akreditasi_prodi->extension(); 
             $request->scan_sk_akreditasi_prodi->move(public_path('/file/'),$filename_scan_sk_akreditasi_prodi);
         }
+        if($file_scan_sk_akreditasi_prodi_mitra){
+            $filename_scan_sk_akreditasi_prodi_mitra = '/file/' . time() . '_scan_sk_akreditasi_prodi_mitra.' . $request->scan_sk_akreditasi_prodi_mitra->extension(); 
+            $request->scan_sk_akreditasi_prodi_mitra->move(public_path('/file/'),$filename_scan_sk_akreditasi_prodi_mitra);
+        }
+        if($file_scan_ijin_operasional_prodi){
+            $filename_scan_ijin_operasional_prodi = '/file/' . time() . '_scan_ijin_operasional_prodi.' . $request->scan_ijin_operasional_prodi->extension(); 
+            $request->scan_ijin_operasional_prodi->move(public_path('/file/'),$filename_scan_ijin_operasional_prodi);
+        }
+        if($file_scan_ijin_operasional_prodi_mitra){
+            $filename_scan_ijin_operasional_prodi_mitra = '/file/' . time() . '_scan_ijin_operasional_prodi_mitra.' . $request->scan_ijin_operasional_prodi_mitra->extension(); 
+            $request->scan_ijin_operasional_prodi_mitra->move(public_path('/file/'),$filename_scan_ijin_operasional_prodi_mitra);
+        }
+        if($file_proposal_usulan_kerjsama){
+            $filename_proposal_usulan_kerjsama = '/file/' . time() . '_proposal_usulan_kerjsama.' . $request->proposal_usulan_kerjsama->extension(); 
+            $request->proposal_usulan_kerjsama->move(public_path('/file/'),$filename_proposal_usulan_kerjsama);
+        }
 
-        $data = ['scan_ijin_operasional_pt' => $filename_scan_ijin_operasional_pt, 
+        $data = [
+        'alamat_pt' => $request->alamat_pt,
+        'nama_pt_mitra' =>$request->nama_pt_mitra,
+        'alamat_pt_mitra' =>$request->alamat_pt_mitra,
+        'id_negara_mitra' =>$request->id_negara_mitra,
+        'id_status_akreditasi_institusi' => $request->id_status_akreditasi_institusi,
+        'id_status_akreditasi_institusi_mitra' => $request->id_status_akreditasi_institusi_mitra,
+        'id_akreditasi_prodi' => $request->id_akreditasi_prodi,
+        'id_akreditasi_prodi_mitra' => $request->id_akreditasi_prodi_mitra,
+        'ijin_operasional_pt_mitra' => $request->ijin_operasional_pt_mitra,
+        'ijin_operasional_pt' => $request->ijin_operasional_pt,
+        'peringkat_internasional_mitra' => $request->peringkat_internasional_mitra,
+        'nama_prodi' => $request->nama_prodi,
+        'nama_prodi_mitra' => $request->nama_prodi_mitra,
+
+        'scan_ijin_operasional_pt' => $filename_scan_ijin_operasional_pt, 
         'scan_status_akreditasi_institusi' => $filename_scan_status_akreditasi_institusi,
         'scan_ijin_operasional_pt_mitra' => $filename_scan_ijin_operasional_pt_mitra,
         'scan_status_akreditasi_institusi_mitra' => $filename_scan_status_akreditasi_institusi_mitra,
-        'scan_sk_akreditasi_prodi' => $filename_scan_sk_akreditasi_prodi] ;
+        'scan_sk_akreditasi_prodi' => $filename_scan_sk_akreditasi_prodi,
+        'scan_sk_akreditasi_prodi_mitra' => $filename_scan_sk_akreditasi_prodi_mitra,
+        'scan_ijin_operasional_prodi' => $filename_scan_ijin_operasional_prodi,
+        'scan_ijin_operasional_prodi_mitra' => $filename_scan_ijin_operasional_prodi_mitra,
+        'proposal_usulan_kerjsama' => $filename_proposal_usulan_kerjsama] ;
 
         bab1::find($id_bab1)->update($data);
         //dd($request->all());
@@ -130,21 +177,24 @@ class ProposalController extends Controller
     }
     */
 
-    public function editbab2(){
+    
 
-        //$proposal = proposal::get();
-        return view('proposal.edit.bab2');
+    public function editbab2($id){
+
+        $proposal = proposal::find($id);
+        //echo $proposal->id;
+        return view('proposal.edit.bab2', ['proposal' => $proposal]);
     }
 
-    public function editbab3(){
-
-        //$proposal = proposal::get();
-        return view('proposal.edit.bab3');
+    public function editbab3($id){
+        $proposal = proposal::find($id);
+        //echo $proposal->id;
+        return view('proposal.edit.bab3', ['proposal' => $proposal]);
     }
 
-    public function editbab4(){
-
-        //$proposal = proposal::get();
-        return view('proposal.edit.bab4');
+    public function editbab4($id){
+        $proposal = proposal::find($id);
+        //echo $proposal->id;
+        return view('proposal.edit.bab4', ['proposal' => $proposal]);
     }
 }

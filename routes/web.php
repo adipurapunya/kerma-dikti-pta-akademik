@@ -63,8 +63,8 @@ Route::middleware('auth')->group(function(){
         Route::get('editBab1/{id}','editBab1')->name('proposal.editBab1');
         Route::post('editBab1/{id}','updateBab1')->name('proposal.editBab1.tambah.update');
         Route::get('editBab2/{id}','editBab2')->name('proposal.editBab2');
-        Route::get('editBab3','editBab3')->name('proposal.editBab3');
-        Route::get('editBab4','editBab4')->name('proposal.editBab4');
+        Route::get('editBab3/{id}','editBab3')->name('proposal.editBab3');
+        Route::get('editBab4/{id}','editBab4')->name('proposal.editBab4');
     });
 });
 
