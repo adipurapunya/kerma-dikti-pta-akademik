@@ -137,10 +137,12 @@
     <script type="text/javascript">
             $(function() {
                 $('#datepicker').datepicker({
-                    inline: true
+                    inline: true,
+                    format: 'yyyy-mm-dd'
                 });
                 $('#datepickerAkhir').datepicker({
-                    inline: true
+                    inline: true,
+                    format: 'yyyy-mm-dd'
                 });
             });
     </script>

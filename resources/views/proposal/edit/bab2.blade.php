@@ -72,9 +72,11 @@
 						</table>
 					</div>
 					<div class="card-body border-bottom-info ">
-                    <form role="form" method="post" id="edit_bab_form" enctype="multipart/form-data" action="" onkeydown="return event.key != &#39;Enter&#39;;">
-							<input type="hidden" name="idkerma" value="2305140001.1">
-							<input type="hidden" id="kodeuniv" value="001029">
+                    <form role="form" method="post" enctype="multipart/form-data" action="{{route('proposal.editBab2.tambah.update',$proposal->id)}}" onkeydown="return event.key != &#39;Enter&#39;;">
+						@csrf	
+							<input type="hidden" name="idProposal" value="{{$proposal->id}}">
+							<input type="hidden" name="idBab2" value="{{$bab2->id}}">
+
 							<table width="100%" class="table">
 							<thead class="bg-info">
 							<tr>
@@ -88,14 +90,20 @@
 								</td>
 								<td class="block" width="60%" colspan="2">
 									<!--<div class="char_count" style="text-align:right">1/1800</div>-->
-									<textarea class="tiny form-control field" name="" placeholder="Ringkasan MoU" maxlength="1800" ></textarea>
+									<textarea class="tiny form-control field" name="ringkasan_mou" placeholder="Ringkasan MoU" maxlength="1800" >{{$bab2->ringkasan_mou}}</textarea>
 									<small class="keterangan" style="color:red;">Maks. 1800 Karakter</small>
 								</td>
 							</tr>
                             <tr class="topborder done" style="background: rgb(163, 255, 188);">
 								<td class="item block">UNGGAH FILE MOU</td>
 								<td class="block" width="60%" colspan="2">
-									<input type="file" name="file_25" value="" class="form-control field " data-size="2 MB"><small class="keterangan" style="color:red;">Maks. 2 MB</small>
+									<input type="file" name="file_mou" value="" class="form-control field " data-size="2 MB">
+									<small class="keterangan" style="color:red;">Maks. 2 MB</small>
+									<input type="hidden" name="file_mou_hidden" value="{{$bab2->file_mou}}">
+									<br>
+									@if($bab2->file_mou)
+									<span><a href="{{url('').$bab2->file_mou}}" target="_blank">File yang sudah diupload</a></span>
+									@endif
 								</td>
 							</tr>
                             <tr class="topborder done" style="background: rgb(163, 255, 188);">
@@ -104,7 +112,7 @@
 								</td>
 								<td class="block" width="60%" colspan="2">
 									<!--<div class="char_count" style="text-align:right">1/1000</div>-->
-									<textarea name="field_26" class=" form-control field " placeholder="No MoA" maxlength="1000" id="mce_0" style="display: true;" aria-hidden="true"></textarea>
+									<textarea name="no_moa" class=" form-control field " placeholder="No MoA" maxlength="1000" id="mce_0" style="display: true;" aria-hidden="true">{{$bab2->no_moa}}</textarea>
 								</td>
 							</tr>
                             <tr class="topborder done" style="background: rgb(163, 255, 188);">
@@ -112,7 +120,7 @@
 									DESKRIPSI SINGKAT MOA<em style="color:red;">*</em>
 								</td>
 								<td class="block" width="60%" colspan="2">
-									<textarea class = "form-control tinymce" rows="5" id="" name="" ></textarea>
+									<textarea class = "form-control tinymce" rows="5" id="" name="deskripsi_singkat_moa" >{{$bab2->deskripsi_singkat_moa}}</textarea>
 									<small class="keterangan" style="color:red;">Maks. 1800 Karakter</small>
 								</td>
 							</tr>
@@ -121,14 +129,14 @@
 								<td class="block" width="35%">
 									<span>Tanggal Dimulai MOA</span><br>
                                     <div class="input-group date" id="datepicker">
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" name="tanggal_dimulai_moa" value="{{$bab2->tanggal_dimulai_moa}}">
                                         <span class="input-group-append"><span class="input-group-text bg-white"><i class="fa fa-calendar"></i></span></span>
                                     </div>
 									</td>
 								<td class="block" width="35%">
 									<span>Tanggal Berakhir MOA</span><br>
                                     <div class="input-group date" id="datepickerAkhir">
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" name="tanggal_berakhir_moa" value="{{$bab2->tanggal_berakhir_moa}}">
                                         <span class="input-group-append"><span class="input-group-text bg-white"><i class="fa fa-calendar"></i></span></span>
                                     </div>
                                 </td>
@@ -136,7 +144,13 @@
 							<tr class="topborder done" style="background: rgb(163, 255, 188);">
 								<td class="item block">UNGGAH FILE MOA</td>
 								<td class="block" colspan="2">
-									<input type="file" name="" value="" class="form-control field " data-size="2 MB"><small class="keterangan" style="color:red;">Maks. 2 MB</small>
+									<input type="file" name="file_moa" value="" class="form-control field " data-size="2 MB">
+									<small class="keterangan" style="color:red;">Maks. 2 MB</small>
+									<input type="hidden" name="file_moa_hidden" value="{{$bab2->file_moa}}">
+									<br>
+									@if($bab2->file_moa)
+									<span><a href="{{url('').$bab2->file_moa}}" target="_blank">File yang sudah diupload</a></span>
+									@endif
 								</td>
 							</tr>
                             <tr class="topborder done" style="background: rgb(163, 255, 188);">
@@ -145,7 +159,7 @@
 								</td>
 								<td class="block" width="60%" colspan="2">
 									<!--<div class="char_count" style="text-align:right">1/1800</div> -->
-									<textarea rows="4" cols="70" class="tiny form-control field" name="field_31" placeholder="" maxlength="1800" id="mce_4" style="display: true;" aria-hidden="true"></textarea>
+									<textarea rows="4" cols="70" class="tiny form-control field" name="misi_program_kerjasama" placeholder="" maxlength="1800" id="mce_4" style="display: true;" aria-hidden="true">{{$bab2->misi_program_kerjasama}}</textarea>
 									<small class="keterangan" style="color:red;">Maks. 1800 Karakter</small>
 								</td>
 							</tr>
@@ -155,7 +169,7 @@
 								</td>
 								<td class="block" width="60%" colspan="2">
 									<!--<div class="char_count" style="text-align:right">1/1800</div>-->
-									<textarea rows="4" cols="70" class=" tiny form-control field" name="" placeholder="" maxlength="1800" id="mce_5" style="display: true;" aria-hidden="true"></textarea>
+									<textarea rows="4" cols="70" class=" tiny form-control field" name="target_program_kerjasama" placeholder="" maxlength="1800" id="mce_5" style="display: true;" aria-hidden="true">{{$bab2->target_program_kerjasama}}</textarea>
 									<small class="keterangan" style="color:red;">Maks. 1800 Karakter</small>
 								</td>
 							</tr>
@@ -164,7 +178,7 @@
 									ALASAN PEMILIHAN MITRA<em style="color:red;">*</em>
 								</td>
 								<td class="block" width="60%" colspan="2">
-									<textarea rows="4" cols="70" class=" tiny form-control field" name="field_33" placeholder="" maxlength="1800" id="mce_6" style="display: true;" aria-hidden="true"></textarea>
+									<textarea rows="4" cols="70" class=" tiny form-control field" name="alasan_pemilihan_mitra" placeholder="" maxlength="1800" id="mce_6" style="display: true;" aria-hidden="true">{{$bab2->alasan_pemilihan_mitra}}</textarea>
 									<small class="keterangan" style="color:red;">Maks. 1800 Karakter</small>
 								</td>
 							</tr>
@@ -173,7 +187,7 @@
 									PRINSIP KERJA SAMA<em style="color:red;">*</em>
 								</td>
 								<td class="block" width="60%" colspan="2">
-									<textarea rows="4" cols="70" class=" tiny form-control field" name="field_34" placeholder="" maxlength="1800" id="mce_7" style="display: true;" aria-hidden="true"></textarea>
+									<textarea rows="4" cols="70" class=" tiny form-control field" name="prinsip_kerjasama" placeholder="" maxlength="1800" id="mce_7" style="display: true;" aria-hidden="true">{{$bab2->prinsip_kerjasama}}</textarea>
 									<small class="keterangan" style="color:red;">Maks. 1800 Karakter</small>
 								</td>
 							</tr>
@@ -182,7 +196,7 @@
 									MANFAAT KERJA SAMA<em style="color:red;">*</em>
 								</td>
 								<td class="block" width="60%" colspan="2">
-									<textarea rows="4" cols="70" class=" tiny form-control field" name="field_35" placeholder="" maxlength="1800" id="mce_8" style="display: true;" aria-hidden="true"></textarea>
+									<textarea rows="4" cols="70" class=" tiny form-control field" name="manfaat_kerjasama" placeholder="" maxlength="1800" id="mce_8" style="display: true;" aria-hidden="true">{{$bab2->manfaat_kerjasama}}</textarea>
 									<small class="keterangan" style="color:red;">Maks. 1800 Karakter</small>
 								</td>
 							</tr>
@@ -191,7 +205,7 @@
 									TANTANGAN PELAKSANAAN KERJA SAMA<em style="color:red;">*</em>
 								</td>
 								<td class="block" width="60%" colspan="2">
-									<textarea rows="4" cols="70" class=" tiny form-control field" name="field_36" placeholder="" maxlength="1800" id="mce_9" style="display: true;" aria-hidden="true"></textarea>
+									<textarea rows="4" cols="70" class=" tiny form-control field" name="tantangan_pelaksanaan_kerjasama" placeholder="" maxlength="1800" id="mce_9" style="display: true;" aria-hidden="true">{{$bab2->tantangan_pelaksanaan_kerjasama}}</textarea>
 									<small class="keterangan" style="color:red;">Maks. 1800 Karakter</small>
 								</td>
 							</tr>
@@ -201,7 +215,7 @@
 									 PATEN<em style="color:red;">*</em>
 								</td>
 								<td class="block" width="60%" colspan="2">
-									<textarea rows="4" cols="70" class=" tiny form-control field" name="field_37" placeholder="" maxlength="1800" id="mce_10" style="display: true;" aria-hidden="true"></textarea>
+									<textarea rows="4" cols="70" class=" tiny form-control field" name="kepemilikan_hak_cipta_paten" placeholder="" maxlength="1800" id="mce_10" style="display: true;" aria-hidden="true">{{$bab2->kepemilikan_hak_cipta_paten}}</textarea>
 									<small class="keterangan" style="color:red;">Maks. 1800 Karakter</small>
 								</td>
 							</tr>
@@ -210,7 +224,7 @@
 									MEKANISME RESIPROKAL<em style="color:red;">*</em>
 								</td>
 								<td class="block" width="60%" colspan="2">
-									<textarea rows="4" cols="70" class=" tiny form-control field" name="field_38" placeholder="" maxlength="1800" id="mce_11" style="display: true;" aria-hidden="true"></textarea>
+									<textarea rows="4" cols="70" class=" tiny form-control field" name="mekanisme_resiprokal" placeholder="" maxlength="1800" id="mce_11" style="display: true;" aria-hidden="true">{{$bab2->mekanisme_resiprokal}}</textarea>
 									<small class="keterangan" style="color:red;">Maks. 1800 Karakter</small>
 								</td>
 							</tr>
@@ -219,7 +233,7 @@
 									KEBERLANJUTAN KERJA SAMA<em style="color:red;">*</em>
 								</td>
 								<td class="block" width="60%" colspan="2">
-									<textarea rows="4" cols="70" class=" tiny form-control field" name="field_39" placeholder="" maxlength="1800" id="mce_12" style="display: true;" aria-hidden="true"></textarea>
+									<textarea rows="4" cols="70" class=" tiny form-control field" name="keberlanjutan_kerjsama" placeholder="" maxlength="1800" id="mce_12" style="display: true;" aria-hidden="true">{{$bab2->keberlanjutan_kerjsama}}</textarea>
 									<small class="keterangan" style="color:red;">Maks. 1800 Karakter</small>
 								</td>
 							</tr>
@@ -228,7 +242,7 @@
 									HAK DAN KEWAJIBAN<em style="color:red;">*</em>
 								</td>
 								<td class="block" width="60%" colspan="2">
-									<textarea rows="4" cols="70" class=" tiny form-control field" name="field_40" placeholder="" maxlength="1800" id="mce_13" style="display: true;" aria-hidden="true"></textarea>
+									<textarea rows="4" cols="70" class=" tiny form-control field" name="hak_dan_kewajiban" placeholder="" maxlength="1800" id="mce_13" style="display: true;" aria-hidden="true">{{$bab2->hak_dan_kewajiban}}</textarea>
 									<small class="keterangan" style="color:red;">Maks. 1800 Karakter</small>
 								</td>
 							</tr>
@@ -236,15 +250,15 @@
 								<td class="item block">Hak Tercantum</td>
 								<td class="block" width="60%" colspan="2">
 									Apakah hal tersebut tercantum dalam MOA? <br>
-									<input type="radio" class="field " name="field_71" value="Ya"> Ya<br>
-									<input type="radio" class="field " name="field_71" value="Tidak">Tidak</td>
+									<input type="radio" class="field" name="hak_tercantum" value="1" @if($bab2->hak_tercantum == 1) checked @endif>Ya<br>
+									<input type="radio" class="field" name="hak_tercantum" value="0" @if($bab2->hak_tercantum == 0) checked @endif>Tidak</td>
 							</tr>
                             </tbody>
                             </table>
                             <div class="row">
 								<div class="form-group col-md-6"></div>
 								<div class="form-group col-md-6">
-									<button type="submit" class="btn btn-success mt-4 float-right mx-2" name="submit" id="submit_form">SIMPAN &amp; LANJUTKAN</button><a href="https://izinkerma.kemdikbud.go.id/akademik/index.php/Univ/editBab/1/2305140001.1" type="button" class="btn btn-default mt-4 float-right text-white" name="submit">KEMBALI</a>
+									<button type="submit" class="btn btn-success mt-4 float-right mx-2" name="submit" id="submit_form">SIMPAN &amp; LANJUTKAN</button><a href="" type="button" class="btn btn-default mt-4 float-right text-white" name="submit">KEMBALI</a>
 								</div>
 							</div>
                     </form>
