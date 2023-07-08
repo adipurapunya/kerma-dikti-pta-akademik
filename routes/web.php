@@ -61,11 +61,13 @@ Route::middleware('auth')->group(function(){
         Route::post('tambah','simpan')->name('proposal.tambah.simpan');
         Route::get('viewBab1','viewBab1')->name('proposal.viewBab1');
         Route::get('editBab1/{id}','editBab1')->name('proposal.editBab1');
-        Route::post('editBab1/{id}','updateBab1')->name('proposal.editBab1.tambah.update');
+        Route::post('editBab1','updateBab1')->name('proposal.editBab1.tambah.update');
         Route::get('editBab2/{id}','editBab2')->name('proposal.editBab2');
-        Route::post('editBab2/{id}','updateBab2')->name('proposal.editBab2.tambah.update');
+        Route::post('editBab2','updateBab2')->name('proposal.editBab2.tambah.update');
         Route::get('editBab3/{id}','editBab3')->name('proposal.editBab3');
+        Route::post('editBab3','updateBab3')->name('proposal.editBab3.tambah.update');
         Route::get('editBab4/{id}','editBab4')->name('proposal.editBab4');
+        Route::post('editBab4','updateBab4')->name('proposal.editBab4.tambah.update');
     });
 });
 

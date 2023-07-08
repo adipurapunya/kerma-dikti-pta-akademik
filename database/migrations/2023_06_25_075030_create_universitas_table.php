@@ -31,6 +31,10 @@ return new class extends Migration
             $table->dropColumn('universitas');
             $table->foreignId('id_universitas')->nullable() ->references('id')->on('universitas');
         });
+        Schema::table('proposal', function(Blueprint $table){
+            $table->dropColumn('nama_universitas');
+            $table->foreignId('id_universitas')->nullable() ->references('id')->on('universitas');
+        });
     }
 
     /**

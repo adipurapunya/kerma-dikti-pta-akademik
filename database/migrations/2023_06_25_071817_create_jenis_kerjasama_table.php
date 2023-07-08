@@ -23,6 +23,11 @@ return new class extends Migration
             $table->dropColumn('jenis_kerjasama');
             $table->foreignId('id_jenis_kerjasama')->nullable() ->references('id')->on('jenis_kerjasama');
         });
+
+        Schema::table('bab4', function(Blueprint $table){
+            $table->dropColumn('jenis_kerjasama');
+            $table->foreignId('id_jenis_kerjasama')->nullable() ->references('id')->on('jenis_kerjasama');
+        });
     }
 
     /**

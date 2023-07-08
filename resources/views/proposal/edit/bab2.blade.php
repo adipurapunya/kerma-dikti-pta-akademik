@@ -11,7 +11,7 @@
 						<a href=""><i class="fas fa-home"></i></a>
 					</li>
 					<li class="breadcrumb-item">
-						<a href="">Pengajuan Izin Kerja Sama</a>
+						<a href="{{ route('proposal')}}">Pengajuan Izin Kerja Sama</a>
 					</li>
 					<li class="breadcrumb-item">Edit Proposal BAB 2</li>
 				</ul>
@@ -25,16 +25,16 @@
 				<input type="hidden" id="statusView" value="N">
 				<ul class="nav nav-pills nav-fill flex-column flex-sm-row" id="tabs-text" role="tablist">
 					<li class="nav-item tab_up">
-						<a style="font-size: 1rem;" class="nav-link tab_up mb-sm-3 mb-md-0 " id="tabs-text-1-tab" href="{{ route('proposal.editBab1', $proposal->id) }}">BAB 1<br>PROFIL PERGURUAN<br>TINGGI</a>
+						<a style="font-size: 1rem;" class="nav-link tab_up mb-sm-3 mb-md-0 " id="tabs-text-1-tab" href="{{ route('proposal.editBab1', encrypt($proposal->id)) }}">BAB 1<br>PROFIL PERGURUAN<br>TINGGI</a>
 					</li>
 					<li class="nav-item tab_up">
-						<a style="font-size: 1rem;" class="nav-link tab_up mb-sm-3 mb-md-0 active" id="tabs-text-1-tab" href="{{ route('proposal.editBab2', $proposal->id) }}">BAB 2<br>DOKUMEN KERJA SAMA</a>
+						<a style="font-size: 1rem;" class="nav-link tab_up mb-sm-3 mb-md-0 active" id="tabs-text-1-tab" href="{{ route('proposal.editBab2', encrypt($proposal->id)) }}">BAB 2<br>DOKUMEN KERJA SAMA</a>
 					</li>
 					<li class="nav-item tab_up">
-						<a style="font-size: 1rem;" class="nav-link tab_up mb-sm-3 mb-md-0 " id="tabs-text-1-tab" href="{{ route('proposal.editBab3', $proposal->id) }}">BAB 3<br>KESIAPAN SUMBER DAYA</a>
+						<a style="font-size: 1rem;" class="nav-link tab_up mb-sm-3 mb-md-0 " id="tabs-text-1-tab" href="{{ route('proposal.editBab3', encrypt($proposal->id)) }}">BAB 3<br>KESIAPAN SUMBER DAYA</a>
 					</li>
 					<li class="nav-item tab_up">
-						<a style="font-size: 1rem;" class="nav-link tab_up mb-sm-3 mb-md-0 " id="tabs-text-1-tab" href="{{ route('proposal.editBab4', $proposal->id) }}">BAB 4<br>RENCANA PELAKSANAAN<br>KERJA SAMA</a>
+						<a style="font-size: 1rem;" class="nav-link tab_up mb-sm-3 mb-md-0 " id="tabs-text-1-tab" href="{{ route('proposal.editBab4', encrypt($proposal->id)) }}">BAB 4<br>RENCANA PELAKSANAAN<br>KERJA SAMA</a>
 					</li>
 				</ul>
 			</div>
@@ -72,10 +72,10 @@
 						</table>
 					</div>
 					<div class="card-body border-bottom-info ">
-                    <form role="form" method="post" enctype="multipart/form-data" action="{{route('proposal.editBab2.tambah.update',$proposal->id)}}" onkeydown="return event.key != &#39;Enter&#39;;">
+                    <form role="form" method="post" enctype="multipart/form-data" action="{{route('proposal.editBab2.tambah.update')}}" onkeydown="return event.key != &#39;Enter&#39;;">
 						@csrf	
-							<input type="hidden" name="idProposal" value="{{$proposal->id}}">
-							<input type="hidden" name="idBab2" value="{{$bab2->id}}">
+							<input type="hidden" name="idProposal" value="{{encrypt($proposal->id)}}">
+							<input type="hidden" name="idBab2" value="{{encrypt($bab2->id)}}">
 
 							<table width="100%" class="table">
 							<thead class="bg-info">

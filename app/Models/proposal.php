@@ -11,9 +11,9 @@ class proposal extends Model
 
     protected $table = 'proposal';
 
-    protected $fillable = ['judul', 'tanggal_pengajuan', 'status_pengisian', 
+    protected $fillable = ['judul', 'id_universitas' ,'tanggal_pengajuan', 'status_pengisian', 
     'status_berkas', 'pt_mitra_negeri', 'prodi_pt_mitra_negeri', 
-     'prodi_pt_dalam_negeri', 'id_jenis_kerjasama','id_bab1'];
+     'prodi_pt_dalam_negeri', 'id_jenis_kerjasama','id_bab1', 'id_bab2', 'id_bab3', 'id_bab4'];
 
     public function kerjasama(){
         return $this->belongsTo(kerjasama::class, 'id_jenis_kerjasama');

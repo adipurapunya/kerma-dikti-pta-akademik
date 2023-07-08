@@ -5,7 +5,7 @@
 			<a href=""><i class="fas fa-home"></i></a>
 		</li>
 		<li class="breadcrumb-item">
-			<a href="">Pengajuan Izin Kerja Sama</a>
+			<a href="{{ route('proposal')}}">Pengajuan Izin Kerja Sama</a>
 		</li>
 		<li class="breadcrumb-item">Edit Proposal BAB 3</li>
 	</ul>
@@ -17,17 +17,17 @@
 			<input type="hidden" id="statusView" value="N">
 			<ul class="nav nav-pills nav-fill flex-column flex-sm-row" id="tabs-text" role="tablist">
 				<li class="nav-item tab_up">
-					<a style="font-size: 1rem;" class="nav-link tab_up mb-sm-3 mb-md-0" id="tabs-text-1-tab" href="{{ route('proposal.editBab1', $proposal->id) }}">BAB 1<br>
+					<a style="font-size: 1rem;" class="nav-link tab_up mb-sm-3 mb-md-0" id="tabs-text-1-tab" href="{{ route('proposal.editBab1', encrypt($proposal->id)) }}">BAB 1<br>
 					PROFIL PERGURUAN<br>TINGGI</a>
 				</li>
 				<li class="nav-item tab_up">
-					<a style="font-size: 1rem;" class="nav-link tab_up mb-sm-3 mb-md-0 " id="tabs-text-1-tab" href="{{ route('proposal.editBab2', $proposal->id) }}">BAB 2<br>DOKUMEN KERJA SAMA</a>
+					<a style="font-size: 1rem;" class="nav-link tab_up mb-sm-3 mb-md-0 " id="tabs-text-1-tab" href="{{ route('proposal.editBab2', encrypt($proposal->id)) }}">BAB 2<br>DOKUMEN KERJA SAMA</a>
 				</li>
 				<li class="nav-item tab_up">
-					<a style="font-size: 1rem;" class="nav-link tab_up mb-sm-3 mb-md-0 active" id="tabs-text-1-tab" href="{{ route('proposal.editBab3', $proposal->id) }}">BAB 3<br>KESIAPAN SUMBER DAYA</a>
+					<a style="font-size: 1rem;" class="nav-link tab_up mb-sm-3 mb-md-0 active" id="tabs-text-1-tab" href="{{ route('proposal.editBab3', encrypt($proposal->id)) }}">BAB 3<br>KESIAPAN SUMBER DAYA</a>
 				</li>
 				<li class="nav-item tab_up">
-					<a style="font-size: 1rem;" class="nav-link tab_up mb-sm-3 mb-md-0 " id="tabs-text-1-tab" href="{{ route('proposal.editBab4', $proposal->id) }}">BAB 4<br>
+					<a style="font-size: 1rem;" class="nav-link tab_up mb-sm-3 mb-md-0 " id="tabs-text-1-tab" href="{{ route('proposal.editBab4', encrypt($proposal->id)) }}">BAB 4<br>
 					RENCANA PELAKSANAAN<br>KERJA SAMA</a>
 				</li>
 			</ul>
@@ -62,9 +62,10 @@
 				</table>
 			</div>
 			<div class="card-body border-bottom-info ">
-				<form role="form" method="post" id="edit_bab_form" enctype="multipart/form-data" action="" onkeydown="return event.key != &#39;Enter&#39;;">
-					<input type="hidden" name="idkerma" value="2305140001.1">
-					<input type="hidden" id="kodeuniv" value="001029">
+				<form role="form" method="post" id="edit_bab_form" enctype="multipart/form-data" action="{{route('proposal.editBab3.tambah.update')}}" onkeydown="return event.key != &#39;Enter&#39;;">
+					@csrf
+					<input type="hidden" name="idProposal" value="{{encrypt($proposal->id)}}">
+					<input type="hidden" name="idBab3" value="{{encrypt($bab3->id)}}">
 					<table width="100%" class="table">
 					<thead class="bg-info">
 					<tr>
@@ -82,11 +83,11 @@
 					<tr class="bottomborder done" style="background: rgb(163, 255, 188);">
 						<td class="item block"></td>
 						<td class="block" width="30%">
-							<textarea rows="4" cols="40" class=" tiny form-control field" name="field_42" placeholder="" maxlength="1800" id="mce_3" style="display: true;" aria-hidden="true"></textarea>
+							<textarea rows="4" cols="40" class=" tiny form-control field" name="deskripsi_singkat_kesiapan_sdm_pt" placeholder="" maxlength="1800" id="mce_3" style="display: true;" aria-hidden="true">{{$bab3->deskripsi_singkat_kesiapan_sdm_pt}}</textarea>
 							<small class="keterangan" style="color:red;">Maks. 1800 Karakter</small>
 						</td>
 						<td class="block" width="30%">
-							<textarea rows="4" cols="40" class=" tiny form-control field" name="field_43" placeholder="" maxlength="1800" id="mce_4" style="display: true;" aria-hidden="true"></textarea>
+							<textarea rows="4" cols="40" class=" tiny form-control field" name="deskripsi_singkat_kesiapan_sdm_mitra" placeholder="" maxlength="1800" id="mce_4" style="display: true;" aria-hidden="true">{{$bab3->deskripsi_singkat_kesiapan_sdm_mitra}}</textarea>
 							<small class="keterangan" style="color:red;">Maks. 1800 Karakter</small>
 						</td>
 					</tr>
@@ -100,10 +101,10 @@
 					<tr class="bottomborder done" style="background: rgb(163, 255, 188);">
 						<td class="item block"></td>
 						<td class="block" width="30%">
-							<textarea name="field_44" class=" form-control field " placeholder="" maxlength="1000" id="mce_0" style="display: true;" aria-hidden="true"></textarea>
+							<textarea name="jumlah_dosen_terlibat_pt" class=" form-control field " placeholder="" maxlength="1000" id="mce_0" style="display: true;" aria-hidden="true">{{$bab3->jumlah_dosen_terlibat_pt}}</textarea>
 						</td>
 						<td class="block" width="30%">
-							<textarea name="field_45" class=" form-control field " placeholder="" maxlength="1000" id="mce_2" style="display: true;" aria-hidden="true"></textarea>
+							<textarea name="jumlah_dosen_terlibat_mitra" class=" form-control field " placeholder="" maxlength="1000" id="mce_2" style="display: true;" aria-hidden="true">{{$bab3->jumlah_dosen_terlibat_mitra}}</textarea>
 						</td>
 					</tr>
 					<tr class="topborder done" style="background: rgb(163, 255, 188);">
@@ -117,10 +118,22 @@
 					<tr class="bottomborder done" style="background: rgb(163, 255, 188);">
 						<td class="item block"></td>
 						<td class="block" width="30%">
-							<input type="file" name="file_46" value="" class="form-control field " data-size="2 MB"><small class="keterangan" style="color:red;">Maks. 2 MB</small>
+							<input type="file" name="file_data_dosen_terlibat_pt" value="" class="form-control field " data-size="2 MB">
+							<small class="keterangan" style="color:red;">Maks. 2 MB</small>
+							<input type="hidden" name="file_data_dosen_terlibat_pt_hidden" value="{{$bab3->file_data_dosen_terlibat_pt}}">
+							<br>
+							@if($bab3->file_data_dosen_terlibat_pt)
+							<span><a href="{{url('').$bab3->file_data_dosen_terlibat_pt}}" target="_blank">File yang sudah diupload</a></span>
+							@endif
 						</td>
 						<td class="block" width="30%">
-							<input type="file" name="file_68" value="" class="form-control field " data-size="2 MB"><small class="keterangan" style="color:red;">Maks. 2 MB</small>
+							<input type="file" name="file_data_dosen_terlibat_mitra" value="" class="form-control field " data-size="2 MB">
+							<small class="keterangan" style="color:red;">Maks. 2 MB</small>
+							<input type="hidden" name="file_data_dosen_terlibat_mitra_hidden" value="{{$bab3->file_data_dosen_terlibat_mitra}}">
+							<br>
+							@if($bab3->file_data_dosen_terlibat_mitra)
+							<span><a href="{{url('').$bab3->file_data_dosen_terlibat_mitra}}" target="_blank">File yang sudah diupload</a></span>
+							@endif
 						</td>
 					</tr>
 					</tbody>
@@ -141,11 +154,11 @@
 					</tr>
 					<tr class="bottomborder done" style="background: rgb(163, 255, 188);">
 						<td class="item block"></td>
-						<td class="block" width="30%"><textarea rows="4" cols="40" class=" tiny form-control field" name="field_49" placeholder="" maxlength="1800" id="mce_5" style="display: true;" aria-hidden="true"></textarea>
+						<td class="block" width="30%"><textarea rows="4" cols="40" class=" tiny form-control field" name="deskripsi_singkat_pt" placeholder="" maxlength="1800" id="mce_5" style="display: true;" aria-hidden="true">{{$bab3->deskripsi_singkat_pt}}</textarea>
 							<small class="keterangan" style="color:red;">Maks. 1800 Karakter</small>
 						</td>
 						<td class="block" width="30%">
-							<textarea rows="4" cols="40" class=" tiny form-control field" name="field_50" placeholder="" maxlength="1800" id="mce_6" style="display: true;" aria-hidden="true"></textarea>
+							<textarea rows="4" cols="40" class=" tiny form-control field" name="deskripsi_singkat_mitra" placeholder="" maxlength="1800" id="mce_6" style="display: true;" aria-hidden="true">{{$bab3->deskripsi_singkat_mitra}}</textarea>
 							<small class="keterangan" style="color:red;">Maks. 1800 Karakter</small>
 						</td>
 					</tr>
@@ -160,10 +173,22 @@
 					<tr class="bottomborder done" style="border-bottom: 0.1px solid rgb(173, 181, 189); background: rgb(163, 255, 188);">
 						<td class="item block"></td>
 						<td class="block" width="30%">
-							<input type="file" name="file_51" value="" class="form-control field " data-size="2 MB"><small class="keterangan" style="color:red;">Maks. 2 MB</small>
+							<input type="file" name="file_lampiran_sarana_prasarana_pt" value="" class="form-control field " data-size="2 MB">
+							<small class="keterangan" style="color:red;">Maks. 2 MB</small>
+							<input type="hidden" name="file_lampiran_sarana_prasarana_pt_hidden" value="{{$bab3->file_lampiran_sarana_prasarana_pt}}">
+							<br>
+							@if($bab3->file_lampiran_sarana_prasarana_pt)
+							<span><a href="{{url('').$bab3->file_lampiran_sarana_prasarana_pt}}" target="_blank">File yang sudah diupload</a></span>
+							@endif
 						</td>
 						<td class="block" width="30%">
-							<input type="file" name="file_52" value="" class="form-control field " data-size="2 MB"><small class="keterangan" style="color:red;">Maks. 2 MB</small>
+							<input type="file" name="file_lampiran_sarana_prasarana_mitra" value="" class="form-control field " data-size="2 MB">
+							<small class="keterangan" style="color:red;">Maks. 2 MB</small>
+							<input type="hidden" name="file_lampiran_sarana_prasarana_mitra_hidden" value="{{$bab3->file_lampiran_sarana_prasarana_mitra}}">
+							<br>
+							@if($bab3->file_lampiran_sarana_prasarana_mitra)
+							<span><a href="{{url('').$bab3->file_lampiran_sarana_prasarana_mitra}}" target="_blank">File yang sudah diupload</a></span>
+							@endif
 						</td>
 					</tr>
 					</tbody>
@@ -171,7 +196,7 @@
 					<div class="row">
 						<div class="form-group col-md-6"></div>
 						<div class="form-group col-md-6">
-							<button type="submit" class="btn btn-success mt-4 float-right mx-2" name="submit" id="submit_form">SIMPAN &amp; LANJUTKAN</button><a href="https://izinkerma.kemdikbud.go.id/akademik/index.php/Univ/editBab/2/2305140001.1" type="button" class="btn btn-default mt-4 float-right text-white" name="submit">KEMBALI</a>
+							<button type="submit" class="btn btn-success mt-4 float-right mx-2" name="submit" id="submit_form">SIMPAN &amp; LANJUTKAN</button><a href="" type="button" class="btn btn-default mt-4 float-right text-white" name="submit">KEMBALI</a>
 						</div>
 					</div>
 				</form>

@@ -51,31 +51,35 @@
           </div>
           <!-- Navbar items -->
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="" href="">
-                <i class="fas fa-fw fa-folder"></i>
+            
+          <li class="nav-item">
+              <a class="nav-link nav-link-icon" href="">
+                <i class="fas fa-folder"></i>
                 <span class="nav-link-inner--text">Pelaksanaan Kerma</span>
               </a>
             </li>
             
             <li class="nav-item">
               <a class="nav-link nav-link-icon" href="">
-                <i class="ni ni-bullet-list-67"></i>
+                <i class="fas fa-th-list"></i>
                 <span class="nav-link-inner--text">Daftar Izin Kerma</span>
               </a>
             </li>
+
             <li class="nav-item">
               <a class="nav-link nav-link-icon" href="{{ route('register') }}">
-                <i class="ni ni-circle-08"></i>
+                <i class="fas fa-user"></i>
                 <span class="nav-link-inner--text">Buat Akun Baru</span>
               </a>
             </li>
+
             <li class="nav-item">
               <a class="nav-link nav-link-icon" href="{{ route('login') }}">
-                <i class="ni ni-key-25"></i>
+                <i class="fas fa-key"></i>
                 <span class="nav-link-inner--text text-yellow">Login</span>
               </a>
             </li>
+
           </ul>
         </div>
       </div>
@@ -109,7 +113,7 @@
                   <small class="h4"> Email<em style="color:red;">*</em></small>
                   <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                      <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                     </div>
                     <input class="form-control isian" style="text-transform: lowercase" placeholder="universitas@mail.com" name="email" type="text">
                   </div>
@@ -118,7 +122,7 @@
                   <small class="h4"> Password<em style="color:red;">*</em></small>
                   <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                      <span class="input-group-text"><i class="fas fa-unlock-alt"></i></span>
                     </div>
                     <input class="form-control isian" placeholder="*****" name="password" id="password" type="password">
                     <div class="input-group-prepend">
@@ -132,7 +136,7 @@
                 <small class="h4"> Berapa jumlah <span class="text-danger font-weight-700" style="font-size:200%;" id="ask_captcha">3 + 2</span>  ?<em style="color:red;">*</em></small>
                     <div class="input-group input-group-alternative">
                       <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="ni ni-check-bold"></i></span>
+                        <span class="input-group-text"><i class="fas fa-check"></i></span>
                       </div>
                       <input class="form-control" placeholder="Masukkan jawaban anda" type="text" name="answer_captcha" id="answer_captcha" oninput="validate_number(this)">
                       <input type="button" class="btn btn-success" id="submit_captcha" name="submit_captcha" value="Send" data-toggle="tooltip" data-placement="top" title="" data-original-title="Kirim jawaban captcha">

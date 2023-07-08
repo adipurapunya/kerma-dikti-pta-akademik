@@ -31,6 +31,8 @@ return array(
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Models\\bab1' => $baseDir . '/app/Models/bab1.php',
     'App\\Models\\bab2' => $baseDir . '/app/Models/bab2.php',
+    'App\\Models\\bab3' => $baseDir . '/app/Models/bab3.php',
+    'App\\Models\\bab4' => $baseDir . '/app/Models/bab4.php',
     'App\\Models\\kategori' => $baseDir . '/app/Models/kategori.php',
     'App\\Models\\kerjasama' => $baseDir . '/app/Models/kerjasama.php',
     'App\\Models\\negara' => $baseDir . '/app/Models/negara.php',

@@ -30,9 +30,7 @@ return new class extends Migration
             $table->string('bab3')->nullable();
             $table->string('bab4')->nullable();
             $table->timestamps();
-
-            //['judul', 'tanggal_pengajuan', 'status_pengisian', 'status_berkas', 'pt_mitra_negeri', 'prodi_pt_mitra_negeri', 'jenis_kerja_sama', 'prodi_pt_dalam_negeri'];
-        });
+         });
     }
 
     /**

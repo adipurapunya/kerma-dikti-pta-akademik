@@ -3,22 +3,29 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 use App\Models\proposal;
+use App\Models\User;
 use App\Models\bab1;
 use App\Models\bab2;
+use App\Models\bab3;
+use App\Models\bab4;
 use App\Models\statusAkreditasi;
+use App\Models\kerjasama;
 use App\Models\negara;
 use Carbon\Carbon;
+//use RealRashid\SweetAlert\Facades\Alert;
 
 class ProposalController extends Controller
 {
     public function index(){
-        $proposal = proposal::get();
-        return view('proposal.index', ['proposal' => $proposal]);
-        //return view('proposal.index');
-
-        //$barang = Barang::get();
-        //return view('barang.index', ['barang' => $barang]);
+        //$proposal = proposal::get();
+        $idUniv = auth()->user()->id_universitas;
+        $proposal = proposal::where('id_universitas', $idUniv)->get();
+        //User::where('username', 'bobbyiliev')->get();
+        //dd($proposal);
+        $kerjasama = kerjasama::get();
+        return view('proposal.index', ['proposal' => $proposal, 'kerjasama' => $kerjasama]);
     }
 
     public function tambah(){
@@ -33,13 +40,19 @@ class ProposalController extends Controller
         $dataBab2 =[];
         $dataBab3 =[];
         $dataBab4 =[];
+
         $LastidBab1 = bab1::create($dataBab1);
-        $LastidBab2 = bab2::create($dataBab1);
+        $LastidBab2 = bab2::create($dataBab2);
+        $LastidBab3 = bab3::create($dataBab3);
+        $LastidBab4 = bab4::create($dataBab4);
+
         $LastidBab1Id = $LastidBab1->id;
         $LastidBab2Id = $LastidBab2->id;
+        $LastidBab3Id = $LastidBab3->id;
+        $LastidBab4Id = $LastidBab4->id;
         
         $data = [
-            'nama_universitas' => $request->nama_universitas,
+            'id_universitas' => auth()->user()->id_universitas,
             'pt_mitra_negeri' => $request->pt_mitra_negeri,
             'prodi_pt_dalam_negeri' => $request->prodi_pt_dalam_negeri,
             'prodi_pt_mitra_negeri' => $request->prodi_pt_mitra_negeri,
@@ -50,7 +63,11 @@ class ProposalController extends Controller
             'status_berkas' => 'Draf',
             'id_bab1' => $LastidBab1Id,
             'id_bab2' => $LastidBab2Id,
+            'id_bab3' => $LastidBab3Id,
+            'id_bab4' => $LastidBab4Id
         ];
+
+        //dd($data);
 
         proposal::create($data);
         
@@ -65,7 +82,7 @@ class ProposalController extends Controller
 
     public function editbab1($id){
 
-        $proposal = proposal::find($id);
+        $proposal = proposal::find(decrypt($id));
         $statusAkreditasi = statusAkreditasi::get();
         $negara = negara::get();
         $bab1 = bab1::find($proposal->id_bab1);
@@ -73,10 +90,10 @@ class ProposalController extends Controller
         return view('proposal.edit.bab1', ['proposal' => $proposal, 'bab1' => $bab1, 'statusAkreditasi' => $statusAkreditasi, 'negara' => $negara]);
     }
 
-    public function updateBab1($id, Request $request){
+    public function updateBab1(Request $request){
         
-        $id_proposal = $request->idProposal;
-        $id_bab1 = $request->idBab1;
+        $id_proposal = decrypt($request->idProposal);
+        $id_bab1 = decrypt($request->idBab1);
        
         //$filename_scan_ijin_operasional_pt = $request->getSchemeAndHttpHost().'/file/' . time() . '.' . $request->scan_ijin_operasional_pt->extension(); 
             
@@ -172,21 +189,23 @@ class ProposalController extends Controller
         bab1::find($id_bab1)->update($data);
         //dd($request->all());
 
-        return redirect()->route('proposal');
+        //Alert::success('Data Telah diupdate', 'Data aman mas bro');
+
+        return redirect()->route('proposal.editBab2', encrypt($id_proposal));
     }
 
     public function editbab2($id){
 
-        $proposal = proposal::find($id);
+        $proposal = proposal::find(decrypt($id));
         $bab2 = bab2::find($proposal->id_bab2);
 
 
         return view('proposal.edit.bab2', ['proposal' => $proposal, 'bab2' => $bab2]);
     }
-    public function updateBab2($id, Request $request){
+    public function updateBab2(Request $request){
 
-        $id_proposal = $request->idProposal;
-        $id_bab2 = $request->idBab2;
+        $id_proposal = decrypt($request->idProposal);
+        $id_bab2 = decrypt($request->idBab2);
 
         $file_file_mou = $request->hasFile('file_mou');
         $filename_file_mou = $request->file_mou_hidden;
@@ -215,18 +234,136 @@ class ProposalController extends Controller
 
         bab2::find($id_bab2)->update($data);
     
-        return redirect()->route('proposal');
+        return redirect()->route('proposal.editBab3', encrypt($id_proposal));
     }
 
     public function editbab3($id){
-        $proposal = proposal::find($id);
-        //echo $proposal->id;
-        return view('proposal.edit.bab3', ['proposal' => $proposal]);
+        $proposal = proposal::find(decrypt($id));
+        $bab3 = bab3::find($proposal->id_bab3);
+        
+        return view('proposal.edit.bab3', ['proposal' => $proposal, 'bab3' => $bab3]);
+    }
+    
+    public function updateBab3(Request $request){
+
+        $id_proposal = decrypt($request->idProposal);
+        $id_bab3 = decrypt($request->idBab3);
+
+        $file_data_dosen_terlibat_pt = $request->hasFile('file_data_dosen_terlibat_pt');
+        $filename_file_data_dosen_terlibat_pt = $request->file_data_dosen_terlibat_pt_hidden;
+
+        $file_data_dosen_terlibat_mitra = $request->hasFile('file_data_dosen_terlibat_mitra');
+        $filename_file_data_dosen_terlibat_mitra = $request->file_data_dosen_terlibat_mitra_hidden;
+
+        $file_lampiran_sarana_prasarana_pt = $request->hasFile('file_lampiran_sarana_prasarana_pt');
+        $filename_file_lampiran_sarana_prasarana_pt = $request->file_lampiran_sarana_prasarana_pt_hidden;
+
+        $file_lampiran_sarana_prasarana_mitra = $request->hasFile('file_lampiran_sarana_prasarana_mitra');
+        $filename_file_lampiran_sarana_prasarana_mitra = $request->file_lampiran_sarana_prasarana_mitra_hidden;
+
+        if($file_data_dosen_terlibat_pt){
+            $filename_file_data_dosen_terlibat_pt = '/file/' . time() . '_file_data_dosen_terlibat_pt.' . $request->file_data_dosen_terlibat_pt->extension(); 
+            $request->file_data_dosen_terlibat_pt->move(public_path('/file/'),$filename_file_data_dosen_terlibat_pt);
+        }
+
+        if($file_data_dosen_terlibat_mitra){
+            $filename_file_data_dosen_terlibat_mitra = '/file/' . time() . '_file_data_dosen_terlibat_mitra.' . $request->file_data_dosen_terlibat_mitra->extension(); 
+            $request->file_data_dosen_terlibat_mitra->move(public_path('/file/'),$filename_file_data_dosen_terlibat_mitra);
+        }
+
+        if($file_lampiran_sarana_prasarana_pt){
+            $filename_file_lampiran_sarana_prasarana_pt = '/file/' . time() . '_file_lampiran_sarana_prasarana_pt.' . $request->file_lampiran_sarana_prasarana_pt->extension(); 
+            $request->file_lampiran_sarana_prasarana_pt->move(public_path('/file/'),$filename_file_lampiran_sarana_prasarana_pt);
+        }
+
+        if($file_lampiran_sarana_prasarana_mitra){
+            $filename_file_lampiran_sarana_prasarana_mitra = '/file/' . time() . '_file_lampiran_sarana_prasarana_mitra.' . $request->file_lampiran_sarana_prasarana_mitra->extension(); 
+            $request->file_lampiran_sarana_prasarana_mitra->move(public_path('/file/'),$filename_file_lampiran_sarana_prasarana_mitra);
+        }
+        
+        $data = ['deskripsi_singkat_kesiapan_sdm_pt' => $request->deskripsi_singkat_kesiapan_sdm_pt, 
+        'deskripsi_singkat_kesiapan_sdm_mitra' => $request->deskripsi_singkat_kesiapan_sdm_mitra,
+        'jumlah_dosen_terlibat_pt' => $request->jumlah_dosen_terlibat_pt, 'jumlah_dosen_terlibat_mitra' => $request->jumlah_dosen_terlibat_mitra,
+        'deskripsi_singkat_pt' => $request->deskripsi_singkat_pt, 'deskripsi_singkat_mitra' => $request->deskripsi_singkat_mitra,
+        
+        'file_data_dosen_terlibat_pt' => $filename_file_data_dosen_terlibat_pt, 
+        'file_data_dosen_terlibat_mitra' => $filename_file_data_dosen_terlibat_mitra,
+        'file_lampiran_sarana_prasarana_pt' => $filename_file_lampiran_sarana_prasarana_pt, 
+        'file_lampiran_sarana_prasarana_mitra' => $filename_file_lampiran_sarana_prasarana_mitra
+        ];
+
+        bab3::find($id_bab3)->update($data);
+    
+        return redirect()->route('proposal.editBab4', encrypt($id_proposal));
     }
 
     public function editbab4($id){
-        $proposal = proposal::find($id);
-        //echo $proposal->id;
-        return view('proposal.edit.bab4', ['proposal' => $proposal]);
+        $proposal = proposal::find(decrypt($id));
+        $bab4 = bab4::find($proposal->id_bab4);
+        $kerjasama = kerjasama::get();
+
+        return view('proposal.edit.bab4', ['proposal' => $proposal, 'bab4' => $bab4, 'kerjasama' => $kerjasama]);
+    }
+
+    public function updateBab4(Request $request){
+        $id_proposal = decrypt($request->idProposal);
+        $id_bab4 = decrypt($request->idBab4);
+
+        $scan_desain_kurikulum_pt = $request->hasFile('scan_desain_kurikulum_pt');
+        $filename_scan_desain_kurikulum_pt = $request->scan_desain_kurikulum_pt_hidden;
+
+        $scan_desain_kurikulum_mitra = $request->hasFile('scan_desain_kurikulum_mitra');
+        $filename_scan_desain_kurikulum_mitra = $request->scan_desain_kurikulum_mitra_hidden;
+
+        $scan_desain_kurikulum_gabungan = $request->hasFile('scan_desain_kurikulum_gabungan');
+        $filename_scan_desain_kurikulum_gabungan = $request->scan_desain_kurikulum_gabungan_hidden;
+
+        $file_penjadwalan_kerjasama = $request->hasFile('file_penjadwalan_kerjasama');
+        $filename_file_penjadwalan_kerjasama = $request->file_penjadwalan_kerjasama_hidden;
+
+        $file_skpi = $request->hasFile('file_skpi');
+        $filename_file_skpi = $request->file_skpi_hidden;
+
+        if($scan_desain_kurikulum_pt){
+            $filename_scan_desain_kurikulum_pt = '/file/' . time() . '_scan_desain_kurikulum_pt.' . $request->scan_desain_kurikulum_pt->extension(); 
+            $request->scan_desain_kurikulum_pt->move(public_path('/file/'),$filename_scan_desain_kurikulum_pt);
+        }
+
+        if($scan_desain_kurikulum_mitra){
+            $filename_scan_desain_kurikulum_mitra = '/file/' . time() . '_scan_desain_kurikulum_mitra.' . $request->scan_desain_kurikulum_mitra->extension(); 
+            $request->scan_desain_kurikulum_mitra->move(public_path('/file/'),$filename_scan_desain_kurikulum_mitra);
+        }
+
+        if($scan_desain_kurikulum_gabungan){
+            $filename_scan_desain_kurikulum_gabungan = '/file/' . time() . '_scan_desain_kurikulum_gabungan.' . $request->scan_desain_kurikulum_gabungan->extension(); 
+            $request->scan_desain_kurikulum_gabungan->move(public_path('/file/'),$filename_scan_desain_kurikulum_gabungan);
+        }
+
+        if($file_penjadwalan_kerjasama){
+            $filename_file_penjadwalan_kerjasama = '/file/' . time() . '_file_penjadwalan_kerjasama.' . $request->file_penjadwalan_kerjasama->extension(); 
+            $request->file_penjadwalan_kerjasama->move(public_path('/file/'),$filename_file_penjadwalan_kerjasama);
+        }
+
+        if($file_skpi){
+            $filename_file_skpi = '/file/' . time() . '_file_skpi.' . $request->file_skpi->extension(); 
+            $request->file_skpi->move(public_path('/file/'),$filename_file_skpi);
+        }
+
+        $data = ['rencana_pelaksanaan_pembelajaran' => $request->rencana_pelaksanaan_pembelajaran, 
+                 'id_jenis_kerjasama' => $request->id_jenis_kerjasama, 'jumlah_ijazah_terbit' => $request->jumlah_ijazah_terbit,
+                 'nama_ttd_ijazah_pt' => $request->nama_ttd_ijazah_pt, 'jabatan_ttd_ijazah_pt'=> $request->jabatan_ttd_ijazah_pt,
+                 'nama_ttd_ijazah_mitra'=> $request->nama_ttd_ijazah_mitra, 'jabatan_ttd_ijazah_mitra' => $request->jabatan_ttd_ijazah_mitra,
+                 'kriteria_calon_mahasiswa' => $request->kriteria_calon_mahasiswa, 'proses_seleksi' => $request->proses_seleksi,
+                 'skema_pembiayaan' => $request->skema_pembiayaan, 'keberlanjutan_studi_lanjut' => $request->keberlanjutan_studi_lanjut,
+                 'studi_lanjut_moa' => $request->studi_lanjut_moa, 
+                 'scan_desain_kurikulum_pt' => $filename_scan_desain_kurikulum_pt, 
+                 'scan_desain_kurikulum_mitra' => $filename_scan_desain_kurikulum_mitra,
+                 'scan_desain_kurikulum_gabungan' => $filename_scan_desain_kurikulum_gabungan, 
+                 'file_penjadwalan_kerjasama' => $filename_file_penjadwalan_kerjasama, 
+                 'file_skpi'=> $filename_file_skpi];
+
+        bab4::find($id_bab4)->update($data);
+
+        return redirect()->route('proposal');
     }
 }

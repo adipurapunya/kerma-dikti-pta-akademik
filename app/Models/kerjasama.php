@@ -16,4 +16,8 @@ class kerjasama extends Model
     public function proposal(){
         return $this->hasMany(proposal::class,'id_jenis_kerjasama');
     }
+
+    public function bab4(){
+        return $this->hasMany(bab4::class,'id_jenis_kerjasama');
+    }
 }

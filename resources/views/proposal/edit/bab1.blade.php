@@ -10,13 +10,14 @@
 -->
 <!-- Top navbar -->
 
+
 <div class="header-body">
 	<ul class="breadcrumb col-lg-5 col-md-4 col-4">
 		<li class="breadcrumb-item">
 			<a href=""><i class="fas fa-home"></i></a>
 		</li>
 		<li class="breadcrumb-item">
-			<a href="">Pengajuan Izin Kerja Sama</a>
+			<a href="{{ route('proposal')}}">Pengajuan Izin Kerja Sama</a>
 		</li>
 		<li class="breadcrumb-item">Edit Proposal BAB 1</li>
 	</ul>
@@ -29,16 +30,16 @@
 			<input type="hidden" id="statusView" value="N">
 			<ul class="nav nav-pills nav-fill flex-column flex-sm-row" id="tabs-text" role="tablist">
 				<li class="nav-item tab_up">
-					<a style="font-size: 1rem;" class="nav-link tab_up mb-sm-3 mb-md-0 active" id="tabs-text-1-tab" href="{{ route('proposal.editBab1',$proposal->id) }}">BAB 1<br>PROFIL PERGURUAN<br>TINGGI</a>
+					<a style="font-size: 1rem;" class="nav-link tab_up mb-sm-3 mb-md-0 active" id="tabs-text-1-tab" href="{{ route('proposal.editBab1',encrypt($proposal->id)) }}">BAB 1<br>PROFIL PERGURUAN<br>TINGGI</a>
 				</li>
 				<li class="nav-item tab_up">
-					<a style="font-size: 1rem;" class="nav-link tab_up mb-sm-3 mb-md-0 " id="tabs-text-1-tab" href="{{ route('proposal.editBab2',$proposal->id) }}">BAB 2<br>DOKUMEN KERJA SAMA</a>
+					<a style="font-size: 1rem;" class="nav-link tab_up mb-sm-3 mb-md-0 " id="tabs-text-1-tab" href="{{ route('proposal.editBab2',encrypt($proposal->id)) }}">BAB 2<br>DOKUMEN KERJA SAMA</a>
 				</li>
 				<li class="nav-item tab_up">
-					<a style="font-size: 1rem;" class="nav-link tab_up mb-sm-3 mb-md-0 " id="tabs-text-1-tab" href="{{ route('proposal.editBab3', $proposal->id) }}">BAB 3<br>KESIAPAN SUMBER DAYA</a>
+					<a style="font-size: 1rem;" class="nav-link tab_up mb-sm-3 mb-md-0 " id="tabs-text-1-tab" href="{{ route('proposal.editBab3', encrypt($proposal->id)) }}">BAB 3<br>KESIAPAN SUMBER DAYA</a>
 				</li>
 				<li class="nav-item tab_up">
-					<a style="font-size: 1rem;" class="nav-link tab_up mb-sm-3 mb-md-0 " id="tabs-text-1-tab" href="{{ route('proposal.editBab4', $proposal->id) }}">BAB 4<br>RENCANA PELAKSANAAN<br>KERJA SAMA</a>
+					<a style="font-size: 1rem;" class="nav-link tab_up mb-sm-3 mb-md-0 " id="tabs-text-1-tab" href="{{ route('proposal.editBab4', encrypt($proposal->id)) }}">BAB 4<br>RENCANA PELAKSANAAN<br>KERJA SAMA</a>
 				</li>
 			</ul>
 		</div>
@@ -75,10 +76,10 @@
 					</table>
 				</div>
 				<div class="card-body border-bottom-info">
-					<form role="form" method="post" id="edit_bab_form" enctype="multipart/form-data" action="{{route('proposal.editBab1.tambah.update',$proposal->id)}}" onkeydown="return event.key != &#39;Enter&#39;;">
+					<form role="form" method="post" id="edit_bab_form" enctype="multipart/form-data" action="{{route('proposal.editBab1.tambah.update')}}" onkeydown="return event.key != &#39;Enter&#39;;">
 						@csrf
-						<input type="hidden" name="idProposal" value="{{$proposal->id}}">
-						<input type="hidden" name="idBab1" value="{{$bab1->id}}">
+						<input type="hidden" name="idProposal" value="{{ encrypt($proposal->id)}}">
+						<input type="hidden" name="idBab1" value="{{encrypt($bab1->id)}}">
 						
 						<table width="100%" class="table">
 						<thead class="bg-info">
@@ -92,7 +93,7 @@
 								Nama PT<em style="color:red;">*</em>
 							</td>
 							<td class="block" width="60%">
-								<textarea name="nama_pt" value="" class="readonly form-control field " placeholder="" readonly="" maxlength="1000">{{ $bab1->nama_pt }}</textarea>
+								<textarea name="nama_pt" value="{{auth()->user()->universitas->nama_universitas}}" class="readonly form-control field " placeholder="" readonly="true" maxlength="1000">{{auth()->user()->universitas->nama_universitas}}</textarea>
 							</td>
 						</tr>
 						<tr class="topborder done" style="background: rgb(163, 255, 188);">
@@ -303,8 +304,8 @@
 								<td class="item block"></td>
 								<td class="block" width="30%">
 									<span>Scan SK Akreditasi Prodi</span><br>
-									<input type="file" name="scan_sk_akreditasi_prodi" value="" class="form-control" data-size="20 MB">
-									<small class="keterangan" style="color:red;">Maks. 20 MB</small>
+									<input type="file" name="scan_sk_akreditasi_prodi" value="" class="form-control" data-size="2 MB">
+									<small class="keterangan" style="color:red;">Maks. 2 MB</small>
 									<input type="hidden" name="scan_sk_akreditasi_prodi_hidden" value="{{$bab1->scan_sk_akreditasi_prodi}}">
 									<br>
 									@if($bab1->scan_sk_akreditasi_prodi)
@@ -313,8 +314,8 @@
 								</td>
 								<td class="block" width="30%">
 									<span>Scan SK Akreditasi Prodi</span><br>
-									<input type="file" name="scan_sk_akreditasi_prodi_mitra" value="" class="form-control" data-size="20 MB">
-									<small class="keterangan" style="color:red;">Maks. 20 MB</small>
+									<input type="file" name="scan_sk_akreditasi_prodi_mitra" value="" class="form-control" data-size="2 MB">
+									<small class="keterangan" style="color:red;">Maks. 2 MB</small>
 									<input type="hidden" name="scan_sk_akreditasi_prodi_mitra_hidden" value="{{$bab1->scan_sk_akreditasi_prodi_mitra}}">
 									<br>
 									@if($bab1->scan_sk_akreditasi_prodi_mitra)
@@ -333,8 +334,8 @@
 								<td class="item block"></td>
 								<td class="block" width="30%">
 									<span>Scan Izin Operasional Prodi</span><br>
-									<input type="file" name="scan_ijin_operasional_prodi" value="" class="form-control" data-size="20 MB">
-									<small class="keterangan" style="color:red;">Maks. 20 MB</small>
+									<input type="file" name="scan_ijin_operasional_prodi" value="" class="form-control" data-size="2 MB">
+									<small class="keterangan" style="color:red;">Maks. 2 MB</small>
 									<input type="hidden" name="scan_ijin_operasional_prodi_hidden" value="{{$bab1->scan_ijin_operasional_prodi}}">
 									<br>
 									@if($bab1->scan_ijin_operasional_prodi)
@@ -343,8 +344,8 @@
 								</td>
 								<td class="block" width="30%">
 									<span>Scan Izin Operasional Prodi</span><br>
-									<input type="file" name="scan_ijin_operasional_prodi_mitra" value="" class="form-control" data-size="20 MB">
-									<small class="keterangan" style="color:red;">Maks. 20 MB</small>
+									<input type="file" name="scan_ijin_operasional_prodi_mitra" value="" class="form-control" data-size="2 MB">
+									<small class="keterangan" style="color:red;">Maks. 2 MB</small>
 									<input type="hidden" name="scan_ijin_operasional_prodi_mitra_hidden" value="{{$bab1->scan_ijin_operasional_prodi_mitra}}">
 									<br>
 									@if($bab1->scan_ijin_operasional_prodi_mitra)

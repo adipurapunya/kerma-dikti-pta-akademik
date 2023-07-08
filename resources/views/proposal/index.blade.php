@@ -46,7 +46,7 @@
                         <td>{{ $row->status_berkas }}</td>
                         <td>
                             <a href="{{ route('proposal.viewBab1')}}" class="btn btn-success">View</a>
-                            <a href="{{ route('proposal.editBab1', $row->id)}}" class="btn btn-warning">Edit</a>
+                            <a href="{{ route('proposal.editBab1', encrypt($row->id))}}" class="btn btn-warning">Edit</a>
                             <a href="" class="btn btn-danger">Hapus</a>
                         </td>
                     </tr>
@@ -72,28 +72,28 @@
             <div class="modal-body">
                 
                   <div class="form-group">
-                    <label for="nama_universitas">Nama Universitas</label>
-                      <input type="text" name="nama_universitas" class="form-control"/>
+                    <label for="nama_universitas">Nama Universitas Asal</label>
+                      <input type="text" name="nama_universitas" value="{{auth()->user()->universitas->nama_universitas}}" class="form-control" disabled/>
                   </div>
                   <div class="form-group">
                     <label for="jenis_kerja_sama">Jenis Kerja Sama</label>
                         <select class="form-control" name="id_jenis_kerjasama" data-select2-id="1" tabindex="-1" aria-hidden="true">
-							<option value="">--Pilih--</option>
-							<option value="1">Gelar Ganda (Double Degree)</option>
-							<option value="2">Gelar Bersama (Joint Degree)</option>
-							<option value="3">Gelar Ganda Percepatan (Acceleration)</option>
+                            <option value="" selected disabled hidden>--Pilih Skema Kerja Sama--</option>
+							@foreach($kerjasama as $row)
+                                <option value="{{ $row->id }}">{{$row->jenis_kerjasama}}</option>
+                            @endforeach
 					    </select>  
                   </div>
                   <div class="form-group">
-                    <label for="nama_prodi_PT_dalam_negeri">Nama Prodi PT Dalam Negeri</label>
+                    <label for="nama_prodi_PT_dalam_negeri">Nama Prodi PT Asal</label>
                       <input type="text" name="prodi_pt_dalam_negeri" class="form-control"/>
                   </div>
                   <div class="form-group">
-                    <label for="jenis_kerja_sama">Nama PT Mitra Negeri</label>
+                    <label for="jenis_kerja_sama">Nama PT Mitra</label>
                       <input type="text" name="pt_mitra_negeri" class="form-control"/>
                   </div>
                   <div class="form-group">
-                    <label for="jenis_kerja_sama">Nama Prodi PT Mitra Negeri</label>
+                    <label for="jenis_kerja_sama">Nama Prodi PT Mitra</label>
                       <input type="text" name="prodi_pt_mitra_negeri" class="form-control"/>
                   </div>
                   <div class="form-group">

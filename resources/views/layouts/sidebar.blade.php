@@ -35,9 +35,41 @@
 
     @if(auth()->user()->level == 'Universitas')
     <li class="nav-item active">
+        <a class="nav-link" href="#warningModal" data-toggle="modal" data-target="#warningModal">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Penanggung Jawab PT</span></a>
+    </li>
+    @endif
+
+    @if(auth()->user()->level == 'Universitas')
+    <li class="nav-item active">
+        <a class="nav-link" href="#warningModal" data-toggle="modal" data-target="#warningModal">
+            <i class="fas fa-database"></i>
+            <span>Pelaporan Kerja Sama</span></a>
+    </li>
+    @endif
+
+    @if(auth()->user()->level == 'Universitas')
+    <li class="nav-item active">
         <a class="nav-link" href="{{ route('proposal') }}">
-            <i class="fas fa-fw fa-wrench"></i>
+            <i class="fas fa-plus-circle"></i>
             <span>Pengajuan Ijin Kerja Sama</span></a>
+    </li>
+    @endif
+
+    @if(auth()->user()->level == 'Universitas')
+    <li class="nav-item active">
+        <a class="nav-link" href="#warningModal" data-toggle="modal" data-target="#warningModal">
+            <i class="fas fa-cog"></i>
+            <span>Pengaturan</span></a>
+    </li>
+    @endif
+
+    @if(auth()->user()->level == 'Universitas')
+    <li class="nav-item active">
+        <a class="nav-link" href="{{  route('logout') }}">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span></a>
     </li>
     @endif
        <!-- Divider -->
@@ -49,3 +81,4 @@
     </div>
 
 </ul>
+

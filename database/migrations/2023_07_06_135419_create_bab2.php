@@ -32,7 +32,7 @@ return new class extends Migration
             $table->string('mekanisme_resiprokal')->nullable();
             $table->string('keberlanjutan_kerjsama')->nullable();
             $table->string('hak_dan_kewajiban')->nullable();
-            $table->boolean('hak_tercantum')->nullable();
+            $table->enum('hak_tercantum', ['0', '1'])->nullable();
             $table->timestamps();
         });
 
