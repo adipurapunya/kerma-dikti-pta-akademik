@@ -47,7 +47,7 @@
                         <td>
                             <a href="{{ route('proposal.viewBab1')}}" class="btn btn-success">View</a>
                             <a href="{{ route('proposal.editBab1', encrypt($row->id))}}" class="btn btn-warning">Edit</a>
-                            <a href="" class="btn btn-danger">Hapus</a>
+                            <a href="" id="hapus" class="btn btn-danger">Hapus</a>
                         </td>
                     </tr>
                 @endforeach   

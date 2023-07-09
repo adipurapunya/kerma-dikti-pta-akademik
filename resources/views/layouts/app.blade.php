@@ -22,6 +22,8 @@
 
     <link rel="stylesheet" href="{{ asset('vendor/bootstrap.min.css') }}" >
     <link rel="stylesheet" href="{{ asset('vendor/bootstrap-datepicker.min.css') }}" >
+
+    
     
     <!--
     <link href="{{ asset('Login_Dikti_files/all.min.css') }}" rel="stylesheet">
@@ -147,7 +149,28 @@
             });
     </script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js" integrity="sha512-7VTiy9AhpazBeKQAlhaLRUk+kAMAb8oczljuyJHPsVPWox/QIXDFOnT9DUk1UC8EbnHKRdQowT7sOBe7LAjajQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="{{ asset('Login_Dikti_files/sweetalert2@11') }}"></script>
+
+    <script type="text/javascript">
+        $(function(){
+            $(document).on('click','#hapus', function(e){
+                e.preventDefault();
+                var link = $(this).attr("href");
+                Swal.fire({
+                        title: 'Apakah anda yakin untuk menghapus data ini ?',
+                        text: "data yang sudah dihapus tidak dapat kembali !",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Ya, Hapus'
+                        }).then((result) => {
+                        if (result.isConfirmed) {
+                            Swal.fire('Terhapus !','Proposal anda telah kami hapus.','success')}
+                        })
+            });
+        });
+    </script>
 
     <div class="modal fade" id="warningModal" tabindex="-1" role="dialog"  aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -156,8 +179,6 @@
                 <div class="modal-header">
                     <h4 class="modal-title" id="myModalLabel">Masih Proses Pengerjaan, sedikit lagi beres !</h4>
                 </div>
-
-                
             </div>
         </div>
     </div>
