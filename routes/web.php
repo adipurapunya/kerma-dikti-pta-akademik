@@ -68,6 +68,8 @@ Route::middleware('auth')->group(function(){
         Route::post('editBab3','updateBab3')->name('proposal.editBab3.tambah.update');
         Route::get('editBab4/{id}','editBab4')->name('proposal.editBab4');
         Route::post('editBab4','updateBab4')->name('proposal.editBab4.tambah.update');
+
+        Route::get('hapus/{id}','hapusProposal')->name('proposal.hapus');
     });
 });
 

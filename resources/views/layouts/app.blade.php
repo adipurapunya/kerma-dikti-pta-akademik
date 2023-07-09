@@ -154,8 +154,8 @@
     <script type="text/javascript">
         $(function(){
             $(document).on('click','#hapus', function(e){
-                e.preventDefault();
-                var link = $(this).attr("href");
+                //e.preventDefault();
+                var link = $(this).attr("data-id");
                 Swal.fire({
                         title: 'Apakah anda yakin untuk menghapus data ini ?',
                         text: "data yang sudah dihapus tidak dapat kembali !",
@@ -165,9 +165,11 @@
                         cancelButtonColor: '#d33',
                         confirmButtonText: 'Ya, Hapus'
                         }).then((result) => {
-                        if (result.isConfirmed) {
-                            Swal.fire('Terhapus !','Proposal anda telah kami hapus.','success')}
-                        })
+                            if (result.isConfirmed) {
+                            //Swal.fire('Terhapus !','Proposal anda telah kami hapus.','success')}
+                            window.location = link
+                            }
+                        });
             });
         });
     </script>
@@ -182,6 +184,8 @@
             </div>
         </div>
     </div>
+
+    @include('sweetalert::alert')
 </body>
 
 </html>

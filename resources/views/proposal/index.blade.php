@@ -47,7 +47,7 @@
                         <td>
                             <a href="{{ route('proposal.viewBab1')}}" class="btn btn-success">View</a>
                             <a href="{{ route('proposal.editBab1', encrypt($row->id))}}" class="btn btn-warning">Edit</a>
-                            <a href="" id="hapus" class="btn btn-danger">Hapus</a>
+                            <a href="#" id="hapus" data-id = "{{ route('proposal.hapus', encrypt($row->id))}}" class="btn btn-danger">Hapus</a>
                         </td>
                     </tr>
                 @endforeach   
@@ -85,15 +85,15 @@
 					    </select>  
                   </div>
                   <div class="form-group">
-                    <label for="nama_prodi_PT_dalam_negeri">Nama Prodi PT Asal</label>
+                    <label for="nama_prodi_PT_dalam_negeri">Nama Prodi Perguruan Tinggi Asal</label>
                       <input type="text" name="prodi_pt_dalam_negeri" class="form-control"/>
                   </div>
                   <div class="form-group">
-                    <label for="jenis_kerja_sama">Nama PT Mitra</label>
+                    <label for="jenis_kerja_sama">Nama Perguruan Tinggi Mitra</label>
                       <input type="text" name="pt_mitra_negeri" class="form-control"/>
                   </div>
                   <div class="form-group">
-                    <label for="jenis_kerja_sama">Nama Prodi PT Mitra</label>
+                    <label for="jenis_kerja_sama">Nama Prodi Perguruan Tinggi Mitra</label>
                       <input type="text" name="prodi_pt_mitra_negeri" class="form-control"/>
                   </div>
                   <div class="form-group">

@@ -14,6 +14,7 @@ use App\Models\statusAkreditasi;
 use App\Models\kerjasama;
 use App\Models\negara;
 use Carbon\Carbon;
+use RealRashid\SweetAlert\Facades\Alert;
 //use RealRashid\SweetAlert\Facades\Alert;
 
 class ProposalController extends Controller
@@ -70,6 +71,8 @@ class ProposalController extends Controller
         //dd($data);
 
         proposal::create($data);
+
+        Alert::success('Proposal baru telah berhasil ditambahkan', 'silahkan diisi datanya dengan mengklik menu edit');
         
         return redirect()->route('proposal');
     }
@@ -189,8 +192,8 @@ class ProposalController extends Controller
         bab1::find($id_bab1)->update($data);
         //dd($request->all());
 
-        //Alert::success('Data Telah diupdate', 'Data aman mas bro');
-
+        Alert::success('Data telah berhasil diubah', 'silahkan lanjut ke BAB 2');
+    
         return redirect()->route('proposal.editBab2', encrypt($id_proposal));
     }
 
@@ -233,6 +236,7 @@ class ProposalController extends Controller
         
 
         bab2::find($id_bab2)->update($data);
+        Alert::success('Data telah berhasil diubah', 'silahkan lanjut ke BAB 3');
     
         return redirect()->route('proposal.editBab3', encrypt($id_proposal));
     }
@@ -293,6 +297,8 @@ class ProposalController extends Controller
         ];
 
         bab3::find($id_bab3)->update($data);
+
+        Alert::success('Data telah berhasil diubah', 'silahkan lanjut ke BAB 4');
     
         return redirect()->route('proposal.editBab4', encrypt($id_proposal));
     }
@@ -364,6 +370,29 @@ class ProposalController extends Controller
 
         bab4::find($id_bab4)->update($data);
 
+        Alert::success('Data BAB 4 telah berhasil diubah', 'silahkan lanjut ke pengajuan proposal');
+
         return redirect()->route('proposal');
     }
+
+    public function hapusProposal($id){
+       
+        $proposal = proposal::find(decrypt($id));
+        $idBab1 = $proposal->id_bab1;
+        $idBab2 = $proposal->id_bab2;
+        $idBab3 = $proposal->id_bab3;
+        $idBab4 = $proposal->id_bab4;
+
+        proposal::find($proposal->id)->delete();
+        
+        bab1::find($idBab1)->delete();
+        bab2::find($idBab2)->delete();
+        bab3::find($idBab3)->delete();
+        bab4::find($idBab4)->delete();
+
+        Alert::success('Data proposal telah berhasil dihapus', 'silahkan lakukan pengajuan proposal kembali');
+
+        return redirect()->route('proposal');
+    }
+    
 }

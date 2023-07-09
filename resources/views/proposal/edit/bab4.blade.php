@@ -5,7 +5,7 @@
 			<a href=""><i class="fas fa-home"></i></a>
 		</li>
 		<li class="breadcrumb-item">
-			<a href="">Pengajuan Izin Kerja Sama</a>
+			<a href="{{ route('proposal')}}">Pengajuan Izin Kerja Sama</a>
 		</li>
 		<li class="breadcrumb-item">Edit Proposal BAB 4</li>
 	</ul>
