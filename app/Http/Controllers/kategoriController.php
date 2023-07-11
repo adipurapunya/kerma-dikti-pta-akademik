@@ -30,4 +30,9 @@ class kategoriController extends Controller
         Kategori::find($id)->update(['nama' => $request->nama]);
         return redirect()->route('kategori');
     }
+
+    public function hapus($id){
+        Kategori::find($id)->delete();
+        return redirect()->route('kategori');
+    }
 }

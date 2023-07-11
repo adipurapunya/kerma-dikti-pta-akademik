@@ -33,6 +33,14 @@
     </li>
     @endif
 
+    @if(auth()->user()->level == 'Admin')
+    <li class="nav-item active">
+        <a class="nav-link" href="{{ route('user') }}">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>User</span></a>
+    </li>
+    @endif
+
     @if(auth()->user()->level == 'Universitas')
     <li class="nav-item active">
         <a class="nav-link" href="#warningModal" data-toggle="modal" data-target="#warningModal">

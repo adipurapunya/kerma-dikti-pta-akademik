@@ -23,15 +23,19 @@ Route::controller(AuthController::class)->group( function(){
     Route::post('register','registerSimpan')->name('register.simpan');
     Route::get('login','login')->name('login');
     Route::post('login','loginAksi')->name('login.aksi');
-
     Route::get('logout', 'logout')->middleware('auth')->name('logout');
+    Route::get('indexUser','indexUser')->name('user');
+    Route::get('addUser','addUser')->name('addUser');
+    Route::post('addUser','simpan')->name('addUser.simpan');
+    Route::get('editUser/{id}','editUser')->name('editUser');
+    Route::post('editUser/{id}','updateUser')->name('addUser.updateUser');
+    Route::get('hapusUser/{id}','hapusUser')->name('hapusUser');
+    
 });
 
 Route::get('/', function () {
     return view('welcome');
 });
-
-
 
 Route::middleware('auth')->group(function(){
     Route::get('dashboard', function(){

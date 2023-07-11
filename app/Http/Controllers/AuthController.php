@@ -32,16 +32,62 @@ class AuthController extends Controller
             'nama' => $request->nama,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'level' => 'Universitas'
+            'level' => 'Admin'
         ]);
 
         return redirect()->
         route('login');
     }
 
+    public function indexUser(){
+        $user = User::get();
+
+        return view('auth.indexuser', ['user'=>$user]);
+    }
+
+    public function addUser(Request $request){
+        $user = User::get();
+        return view('auth.formuser');
+    }
+
+    public function simpan(Request $request){
+        $data = [
+            'nama' => $request->nama,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'level' => $request->level
+        ];
+
+        User::create($data);
+        return redirect()->route('user');
+    }
+
+    public function editUser($id){
+        $user = User::find($id);
+        return view('auth.formuser', ['user'=>$user]);
+    }
+
+    public function updateUser($id, Request $request){
+        $data = [
+            'nama' => $request->nama,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'level' => $request->level
+        ];
+        $user = User::find($id)->update($data);
+        return redirect()->route('user');
+    }
+
+    public function hapusUser($id){
+        User::find($id)->delete();
+        return redirect()->route('user');
+    }
+
+
     public function login(){
         return view('auth/login');
     }
+
 
     public function loginAksi(Request $request){
         Validator::make($request->all(),[
