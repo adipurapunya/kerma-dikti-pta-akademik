@@ -193,7 +193,7 @@
                             <!--end::Menu wrapper-->
                             <!--begin::Toolbar-->
                             <div class="flex-equal text-end ms-1">
-                                                                <a href="login.html" class="btn btn-success">Sign In</a>
+                                                                <a href="{{ route('login') }}" class="btn btn-success">Sign In</a>
                                     
                                                             </div>
                             <!--end::Toolbar-->
