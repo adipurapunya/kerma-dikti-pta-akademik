@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\kategoriController;
 use App\Http\Controllers\ProposalController;
+use App\Http\Controllers\UniversitasController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -47,6 +48,11 @@ Route::middleware('auth')->group(function(){
         Route::get('hapus/{id}','hapus')->name('barang.hapus');
     });
 
+    Route::controller(UniversitasController::class)->prefix('universitas')->group(function(){
+        Route::get('','index')->name('universitas');
+        Route::get('/{id}','showPaginationAjax')->name('universitas.showAjax');
+    });
+
     Route::controller(kategoriController::class)->prefix('kategori')->group(function(){
         Route::get('','index')->name('kategori');
         Route::get('tambah','tambah')->name('kategori.tambah');
@@ -58,8 +64,14 @@ Route::middleware('auth')->group(function(){
 
     Route::controller(ProposalController::class)->prefix('proposal')->group(function(){
         Route::get('','index')->name('proposal');
+        Route::get('/{id}','showPaginationAjax')->name('proposal.showAjax');
         Route::post('tambah','simpan')->name('proposal.tambah.simpan');
-        Route::get('viewBab1','viewBab1')->name('proposal.viewBab1');
+
+        Route::get('viewBab1/{id}','viewbab1')->name('proposal.viewBab1');
+        Route::get('viewBab2/{id}','viewbab2')->name('proposal.viewBab2');
+        Route::get('viewBab3/{id}','viewbab3')->name('proposal.viewBab3');
+        Route::get('viewBab4/{id}','viewbab4')->name('proposal.viewBab4');
+
         Route::get('editBab1/{id}','editBab1')->name('proposal.editBab1');
         Route::post('editBab1','updateBab1')->name('proposal.editBab1.tambah.update');
         Route::get('editBab2/{id}','editBab2')->name('proposal.editBab2');
@@ -70,6 +82,12 @@ Route::middleware('auth')->group(function(){
         Route::post('editBab4','updateBab4')->name('proposal.editBab4.tambah.update');
 
         Route::get('hapus/{id}','hapusProposal')->name('proposal.hapus');
+        Route::get('ajukan/{id}','ajukanProposal')->name('proposal.ajukan');
+
+        
+        Route::post('editJudul','updateJudul')->name('proposal.tambah.updateJudul');
+
+        Route::post('cariProposal','cariProposal')->name('proposal.cari');
     });
 });
 

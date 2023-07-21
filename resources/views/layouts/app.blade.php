@@ -20,8 +20,11 @@
     <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/sb-admin-2.css') }}" rel="stylesheet"> 
 
-    <link rel="stylesheet" href="{{ asset('vendor/bootstrap.min.css') }}" >
     <link rel="stylesheet" href="{{ asset('vendor/bootstrap-datepicker.min.css') }}" >
+
+    <link rel="stylesheet" href="{{ asset('vendor/datatables/dataTables.bootstrap4.min.css') }}" >
+
+    
 
     
     
@@ -121,6 +124,21 @@
     <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
     <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
     <script src="{{ asset('vendor/bootstrap-datepicker.min.js') }}"></script>
+
+    <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+
+    <!--
+    <script>
+    $(document).ready(function () {
+        $('#dataTable').DataTable({
+            //"info": false,
+            //"paging": false,
+            //"dom": 'rtip'
+        });
+    });
+    </script>
+    -->
     
     
     <!-- Core plugin JavaScript-->
@@ -128,8 +146,7 @@
     
 
     <!-- Page level plugins 
-    <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+    
     -->
     <!--
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -171,7 +188,55 @@
                             }
                         });
             });
+
+            $(document).on('click','#ajukanProposal', function(e){
+                //e.preventDefault();
+                var link = $(this).attr("data-id");
+                Swal.fire({
+                        title: 'Apakah anda sudah yakin untuk mengajukan proposal ini ?',
+                        text: "proposal yang sudah diajukan, tidak dapat diubah kembali !",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Ya, Ajukan'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                            //Swal.fire('Terhapus !','Proposal anda telah kami hapus.','success')}
+                            window.location = link
+                            }
+                        });
+            });
         });
+    </script>
+
+    <script type="text/javascript">
+        $("#showData").change(function(){
+            //console.log(); 
+            var id = $(this).val();
+            var url = '{{ route("proposal.showAjax", ":id") }}';
+            url = url.replace(':id', id);
+
+            location.href = url;
+        
+        });
+
+        $("#showDataUniversitas").change(function(){
+            //console.log(); 
+            var id = $(this).val();
+            var url = '{{ route("universitas.showAjax", ":id") }}';
+            url = url.replace(':id', id);
+            location.href = url;
+        
+        });
+
+        $(document).on("click", ".open-AddBookDialog", function () {
+        var judul = $(this).data('id');
+        var idProposal = $(this).data('id2');
+        $(".modal-body #judul").val( judul );       
+        $(".modal-body #idProposal").val( idProposal );
+        });
+
     </script>
 
     <div class="modal fade" id="warningModal" tabindex="-1" role="dialog"  aria-labelledby="myModalLabel" aria-hidden="true">
@@ -185,7 +250,7 @@
         </div>
     </div>
 
-    @include('sweetalert::alert')
+@include('sweetalert::alert')
 </body>
 
 </html>

@@ -5,7 +5,7 @@
         <div class="sidebar-brand-icon">
             <img alt="Image placeholder" width="36" height="36" src="{{ asset('Login_Dikti_files/logo_ristekdikti.png') }}">
         </div>
-        <div class="sidebar-brand-text mx-3"> @if(auth()->user()->level == 'Admin') Admin @endif  @if(auth()->user()->level == 'Universitas') Universitas @endif  <sup></sup></div>
+        <div class="sidebar-brand-text mx-3"> @if(auth()->user()->id_level == '1') Admin @endif  @if(auth()->user()->id_level == '2') Universitas @endif  <sup></sup></div>
     </a>
 
     <!-- Divider -->
@@ -17,23 +17,25 @@
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
-    @if(auth()->user()->level == 'Admin')
+    @if(auth()->user()->id_level == 1)
     <li class="nav-item active">
-        <a class="nav-link" href="{{ route('barang') }}">
+        <a class="nav-link" href="{{ route('universitas') }}">
         <i class="fas fa-fw fa-cog"></i>
-            <span>List Universitas</span></a>
+            <span>Data Universitas</span></a>
     </li>
     @endif
     
-    @if(auth()->user()->level == 'Admin')
+    <!--
+    @if(auth()->user()->id_level == 1)
     <li class="nav-item active">
         <a class="nav-link" href="{{ route('kategori') }}">
             <i class="fas fa-fw fa-folder"></i>
             <span>kategori Universitas</span></a>
     </li>
     @endif
+    -->
 
-    @if(auth()->user()->level == 'Universitas')
+    @if(auth()->user()->id_level == 2)
     <li class="nav-item active">
         <a class="nav-link" href="#warningModal" data-toggle="modal" data-target="#warningModal">
             <i class="fas fa-fw fa-folder"></i>
@@ -41,7 +43,7 @@
     </li>
     @endif
 
-    @if(auth()->user()->level == 'Universitas')
+    @if(auth()->user()->id_level == '2')
     <li class="nav-item active">
         <a class="nav-link" href="#warningModal" data-toggle="modal" data-target="#warningModal">
             <i class="fas fa-database"></i>
@@ -49,7 +51,7 @@
     </li>
     @endif
 
-    @if(auth()->user()->level == 'Universitas')
+    @if(auth()->user()->id_level == '2')
     <li class="nav-item active">
         <a class="nav-link" href="{{ route('proposal') }}">
             <i class="fas fa-plus-circle"></i>
@@ -57,7 +59,7 @@
     </li>
     @endif
 
-    @if(auth()->user()->level == 'Universitas')
+    @if(auth()->user()->id_level == '2')
     <li class="nav-item active">
         <a class="nav-link" href="#warningModal" data-toggle="modal" data-target="#warningModal">
             <i class="fas fa-cog"></i>
@@ -65,7 +67,7 @@
     </li>
     @endif
 
-    @if(auth()->user()->level == 'Universitas')
+    @if(auth()->user()->id_level == '2')
     <li class="nav-item active">
         <a class="nav-link" href="{{  route('logout') }}">
             <i class="fas fa-sign-out-alt"></i>

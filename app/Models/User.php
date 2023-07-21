@@ -21,12 +21,16 @@ class User extends Authenticatable
         'nama',
         'email',
         'password',
-        'level',
+        'id_level',
         'id_universitas'
     ];
 
     public function Universitas(){
         return $this->belongsTo(Universitas::class, 'id_universitas');
+    }
+
+    public function Level(){
+        return $this->belongsTo(Level::class, 'id_level');
     }
 
     /**

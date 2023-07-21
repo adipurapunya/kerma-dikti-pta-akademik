@@ -13,16 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('status_berkas', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->string('email');
-            $table->string('password');
-            $table->string('level');
-            $table->string('universitas');
-            $table->string('reviewer');
-            $table->enum('status', ['0', '1'])->nullable();
+            $table->string('status');
             $table->timestamps();
+        });
+
+        Schema::table('proposal', function(Blueprint $table){
+            $table->dropColumn('status_berkas');
+            $table->foreignId('id_status_berkas')->nullable() ->references('id')->on('status_berkas');
         });
     }
 
@@ -33,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('status_berkas');
     }
 };

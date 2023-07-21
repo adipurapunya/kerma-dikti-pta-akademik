@@ -22,11 +22,21 @@ class ProposalController extends Controller
     public function index(){
         //$proposal = proposal::get();
         $idUniv = auth()->user()->id_universitas;
-        $proposal = proposal::where('id_universitas', $idUniv)->get();
+        $proposal = proposal::where('id_universitas', $idUniv)->orderBy('id','DESC')->paginate(5);
         //User::where('username', 'bobbyiliev')->get();
-        //dd($proposal);
+        //dd(compact('proposal'));
         $kerjasama = kerjasama::get();
-        return view('proposal.index', ['proposal' => $proposal, 'kerjasama' => $kerjasama]);
+        
+        return view('proposal.index', ['proposal' => $proposal, 'kerjasama' => $kerjasama, 'lastPagination' => 5]);
+    }
+
+    public function showPaginationAjax($id){
+
+        $idUniv = auth()->user()->id_universitas;
+        $proposal = proposal::where('id_universitas', $idUniv)->orderBy('id','DESC')->paginate($id);
+        $kerjasama = kerjasama::get();
+        
+        return view('proposal.index', ['proposal' => $proposal, 'kerjasama' => $kerjasama, 'lastPagination' => $id]);
     }
 
     public function tambah(){
@@ -61,7 +71,7 @@ class ProposalController extends Controller
             'judul' => $request->judul,
             'tanggal_pengajuan' => Carbon::now(),
             'status_pengisian' => 'Belum Lengkap',
-            'status_berkas' => 'Draf',
+            'id_status_berkas' => 5,
             'id_bab1' => $LastidBab1Id,
             'id_bab2' => $LastidBab2Id,
             'id_bab3' => $LastidBab3Id,
@@ -77,11 +87,39 @@ class ProposalController extends Controller
         return redirect()->route('proposal');
     }
 
-    public function viewbab1(){
-
-        //$proposal = proposal::get();
-        return view('proposal.view.viewBab1');
+    public function viewbab1($id){
+        $proposal = proposal::find(decrypt($id));
+        $statusAkreditasi = statusAkreditasi::get();
+        $negara = negara::get();
+        $bab1 = bab1::find($proposal->id_bab1);
+        
+        return view('proposal.view.viewBab1', ['proposal' => $proposal, 'bab1' => $bab1, 'statusAkreditasi' => $statusAkreditasi, 'negara' => $negara]);
     }
+
+    public function viewbab2($id){
+        $proposal = proposal::find(decrypt($id));
+        $bab2 = bab2::find($proposal->id_bab2);
+       
+
+        return view('proposal.view.viewBab2', ['proposal' => $proposal, 'bab2' => $bab2]);
+    }
+
+    public function viewbab3($id){
+        $proposal = proposal::find(decrypt($id));
+        $bab3 = bab3::find($proposal->id_bab3);
+        
+        return view('proposal.view.viewBab3', ['proposal' => $proposal, 'bab3' => $bab3]);
+    }
+
+    public function viewbab4($id){
+        $proposal = proposal::find(decrypt($id));
+        $bab4 = bab4::find($proposal->id_bab4);
+        $kerjasama = kerjasama::get();
+
+        return view('proposal.view.viewBab4', ['proposal' => $proposal, 'bab4' => $bab4, 'kerjasama' => $kerjasama]);
+    }
+
+    
 
     public function editbab1($id){
 
@@ -202,9 +240,9 @@ class ProposalController extends Controller
         $proposal = proposal::find(decrypt($id));
         $bab2 = bab2::find($proposal->id_bab2);
 
-
         return view('proposal.edit.bab2', ['proposal' => $proposal, 'bab2' => $bab2]);
     }
+
     public function updateBab2(Request $request){
 
         $id_proposal = decrypt($request->idProposal);
@@ -393,6 +431,31 @@ class ProposalController extends Controller
         Alert::success('Data proposal telah berhasil dihapus', 'silahkan lakukan pengajuan proposal kembali');
 
         return redirect()->route('proposal');
+    }
+
+    public function ajukanProposal($id){
+        $data = ['id_status_berkas' => 6, 'status_pengisian' => 'Lengkap'];
+       
+        proposal::find(decrypt($id))->update($data);
+        
+        Alert::success('Proposal telah berhasil diajukan', 'Proposal anda akan diperiksa oleh admin terlebih dahulu');
+
+        return redirect()->route('proposal');
+    }
+
+    public function updateJudul(Request $request){
+            $data = ['judul' => $request->judul];
+            proposal::find(decrypt($request->idProposal))->update($data);
+            return redirect()->route('proposal');
+    }
+
+    
+    public function cariProposal(Request $request){
+        $idUniv = auth()->user()->id_universitas;
+        $proposal = proposal::where($request->kriteria, 'like' , '%'.$request->filterInput.'%')->where('id_universitas', $idUniv)->orderBy('id','DESC')->paginate(10);
+        $kerjasama = kerjasama::get();
+        
+        return view('proposal.index', ['proposal' => $proposal, 'kerjasama' => $kerjasama, 'lastPagination' => 10]);
     }
     
 }

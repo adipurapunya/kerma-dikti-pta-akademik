@@ -13,16 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('level_user', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->string('email');
-            $table->string('password');
             $table->string('level');
-            $table->string('universitas');
-            $table->string('reviewer');
-            $table->enum('status', ['0', '1'])->nullable();
             $table->timestamps();
+        });
+
+        Schema::table('users', function(Blueprint $table){
+            $table->dropColumn('level');
+            $table->foreignId('id_level')->nullable() ->references('id')->on('level_user');
         });
     }
 
@@ -33,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('level_user');
     }
 };

@@ -32,7 +32,7 @@ class AuthController extends Controller
             'nama' => $request->nama,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'level' => 'Universitas'
+            'id_level' => '2'
         ]);
 
         return redirect()->
@@ -49,7 +49,8 @@ class AuthController extends Controller
             'password' => 'required'
         ])->validate();
 
-        if(!Auth::attempt($request->only('email','password'),$request->boolean('remember'))){
+        if(!Auth::attempt((['email' => $request->email, 'password' => $request->password, 'status' => '1']), $request->boolean('remember'))){
+        //if(!Auth::attempt($request->only('email','password'), $request->boolean('remember'))){
             throw ValidationException::withMessages([
                 'email' => trans('auth.failed')
             ]);

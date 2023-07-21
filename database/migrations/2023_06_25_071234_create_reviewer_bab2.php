@@ -13,17 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('bab2', function (Blueprint $table) {
-            
+        Schema::create('reviewer_bab2', function (Blueprint $table) {
             $table->id();
 
             $table->longText('ringkasan_mou')->nullable();
-            $table->string('file_mou')->nullable();
-            $table->string('no_moa')->nullable();
+            $table->longText('file_mou')->nullable();
+            $table->longText('no_moa')->nullable();
             $table->longText('deskripsi_singkat_moa')->nullable();
-            $table->date('tanggal_dimulai_moa')->nullable();
-            $table->date('tanggal_berakhir_moa')->nullable();
-            $table->string('file_moa')->nullable();
+            $table->longText('tanggal_dimulai_moa')->nullable();
+            $table->longText('tanggal_berakhir_moa')->nullable();
+            $table->longText('file_moa')->nullable();
             $table->longText('misi_program_kerjasama')->nullable();
             $table->longText('target_program_kerjasama')->nullable();
             $table->longText('alasan_pemilihan_mitra')->nullable();
@@ -34,14 +33,12 @@ return new class extends Migration
             $table->longText('mekanisme_resiprokal')->nullable();
             $table->longText('keberlanjutan_kerjsama')->nullable();
             $table->longText('hak_dan_kewajiban')->nullable();
-            $table->enum('hak_tercantum', ['0', '1'])->nullable();
-            
-            $table->timestamps();
-        });
+            $table->longText('hak_tercantum')->nullable();
 
-        Schema::table('proposal', function(Blueprint $table){
-            $table->dropColumn('bab2');
-            $table->foreignId('id_bab2')->nullable() ->references('id')->on('bab2');
+            $table->longText('status_proposal')->nullable();
+            $table->longText('komentar_bab2')->nullable();
+
+            $table->timestamps();
         });
     }
 
@@ -52,6 +49,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bab2');
+        Schema::dropIfExists('reviewer_bab2');
     }
 };
