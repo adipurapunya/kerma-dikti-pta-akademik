@@ -108,7 +108,7 @@
 								<br>
 								<span>Scan Izin Operasional</span><br>
 								<input type="file" name="scan_ijin_operasional_pt"  class="form-control" data-size="2 MB">
-								<small class="keterangan" style="color:red;">Maks. 2 MB</small>
+								<small class="keterangan" style="color:red;">Maks. 2 MB dan harus .pdf</small>
 								<input type="hidden" name="scan_ijin_operasional_pt_hidden" value="{{$bab1->scan_ijin_operasional_pt}}">
 								<br>
 								@if($bab1->scan_ijin_operasional_pt)
@@ -130,7 +130,8 @@
 								</select>
 								<br>
 								<span>Scan SK Akreditasi Institusi</span><br>
-								<input type="file" name="scan_status_akreditasi_institusi" class="form-control" data-size="2 MB"><small class="keterangan" style="color:red;">Maks. 2 MB</small>
+								<input type="file" name="scan_status_akreditasi_institusi" class="form-control" data-size="2 MB">
+								<small class="keterangan" style="color:red;">Maks. 2 MB dan harus .pdf</small>
 								<input type="hidden" name="scan_status_akreditasi_institusi_hidden" value="{{$bab1->scan_status_akreditasi_institusi}}">
 								<br>
 								@if($bab1->scan_status_akreditasi_institusi)
@@ -187,7 +188,7 @@
 								<span>Scan Izin Operasional</span><br>
 								<input type="file" name="scan_ijin_operasional_pt_mitra" value="" class="form-control" data-size="2 MB">
 								<input type="hidden" name="scan_ijin_operasional_pt_mitra_hidden" value="{{$bab1->scan_ijin_operasional_pt}}">
-								<small class="keterangan" style="color:red;">Maks. 2 MB</small>
+								<small class="keterangan" style="color:red;">Maks. 2 MB dan harus .pdf</small>
 								<br>
 								@if($bab1->scan_ijin_operasional_pt_mitra)
 								<span><a href="{{url('').$bab1->scan_ijin_operasional_pt_mitra}}" target="_blank">File yang sudah diupload</a></span>
@@ -208,7 +209,7 @@
 								<span>Scan SK Akreditasi Institusi</span><br>
 								<input type="file" name="scan_status_akreditasi_institusi_mitra" value="" class="form-control" data-size="2 MB">
 								<input type="hidden" name="scan_status_akreditasi_institusi_mitra_hidden" value="{{$bab1->scan_status_akreditasi_institusi_mitra}}">
-								<small class="keterangan" style="color:red;">Maks. 2 MB</small>
+								<small class="keterangan" style="color:red;">Maks. 2 MB dan harus .pdf</small>
 								<br>
 								@if($bab1->scan_status_akreditasi_institusi_mitra)
 								<span><a href="{{url('').$bab1->scan_status_akreditasi_institusi_mitra}}" target="_blank">File yang sudah diupload</a></span>
@@ -298,7 +299,7 @@
 								<td class="block" width="30%">
 									<span>Scan SK Akreditasi Prodi</span><br>
 									<input type="file" name="scan_sk_akreditasi_prodi" value="" class="form-control" data-size="2 MB">
-									<small class="keterangan" style="color:red;">Maks. 2 MB</small>
+									<small class="keterangan" style="color:red;">Maks. 2 MB dan harus .pdf</small>
 									<input type="hidden" name="scan_sk_akreditasi_prodi_hidden" value="{{$bab1->scan_sk_akreditasi_prodi}}">
 									<br>
 									@if($bab1->scan_sk_akreditasi_prodi)
@@ -308,7 +309,7 @@
 								<td class="block" width="30%">
 									<span>Scan SK Akreditasi Prodi</span><br>
 									<input type="file" name="scan_sk_akreditasi_prodi_mitra" value="" class="form-control" data-size="2 MB">
-									<small class="keterangan" style="color:red;">Maks. 2 MB</small>
+									<small class="keterangan" style="color:red;">Maks. 2 MB dan harus .pdf</small>
 									<input type="hidden" name="scan_sk_akreditasi_prodi_mitra_hidden" value="{{$bab1->scan_sk_akreditasi_prodi_mitra}}">
 									<br>
 									@if($bab1->scan_sk_akreditasi_prodi_mitra)
@@ -328,7 +329,7 @@
 								<td class="block" width="30%">
 									<span>Scan Izin Operasional Prodi</span><br>
 									<input type="file" name="scan_ijin_operasional_prodi" value="" class="form-control" data-size="2 MB">
-									<small class="keterangan" style="color:red;">Maks. 2 MB</small>
+									<small class="keterangan" style="color:red;">Maks. 2 MB dan harus .pdf</small>
 									<input type="hidden" name="scan_ijin_operasional_prodi_hidden" value="{{$bab1->scan_ijin_operasional_prodi}}">
 									<br>
 									@if($bab1->scan_ijin_operasional_prodi)
@@ -338,7 +339,7 @@
 								<td class="block" width="30%">
 									<span>Scan Izin Operasional Prodi</span><br>
 									<input type="file" name="scan_ijin_operasional_prodi_mitra" value="" class="form-control" data-size="2 MB">
-									<small class="keterangan" style="color:red;">Maks. 2 MB</small>
+									<small class="keterangan" style="color:red;">Maks. 2 MB dan harus .pdf</small>
 									<input type="hidden" name="scan_ijin_operasional_prodi_mitra_hidden" value="{{$bab1->scan_ijin_operasional_prodi_mitra}}">
 									<br>
 									@if($bab1->scan_ijin_operasional_prodi_mitra)
@@ -362,7 +363,7 @@
 								</td>
 								<td class="block" width="60%">
 									<input type="file" name="proposal_usulan_kerjsama" value="" class="form-control" data-size="20 MB">
-									<small class="keterangan" style="color:red;">Maks. 20 MB</small>
+									<small class="keterangan" style="color:red;">Maks. 20 MB dan harus .pdf</small>
 									<input type="hidden" name="proposal_usulan_kerjsama_hidden" value="{{$bab1->proposal_usulan_kerjsama}}">
 									<br>
 									@if($bab1->proposal_usulan_kerjsama)

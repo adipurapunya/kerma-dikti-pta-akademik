@@ -182,7 +182,7 @@
 						<div class="form-group col-md-6"></div>
 						<div class="form-group col-md-6">
                                 <a href="{{ route('proposal') }}" class="btn btn-warning mt-4 float-right">KEMBALI KE MENU UTAMA</a>
-                                <a href="{{ route('proposal.viewBab3', encrypt($proposal->id_bab4))}}" class="btn btn-success mt-4 float-right">LANJUTKAN BAB 4</a>
+                                <a href="{{ route('proposal.viewBab3', encrypt($proposal->id))}}" class="btn btn-success mt-4 float-right">LANJUTKAN BAB 4</a>
 						</div>
 					</div>
 				

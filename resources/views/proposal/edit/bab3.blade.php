@@ -119,7 +119,7 @@
 						<td class="item block"></td>
 						<td class="block" width="30%">
 							<input type="file" name="file_data_dosen_terlibat_pt" value="" class="form-control field " data-size="2 MB">
-							<small class="keterangan" style="color:red;">Maks. 2 MB</small>
+							<small class="keterangan" style="color:red;">Maks. 2 MB dan harus .pdf</small>
 							<input type="hidden" name="file_data_dosen_terlibat_pt_hidden" value="{{$bab3->file_data_dosen_terlibat_pt}}">
 							<br>
 							@if($bab3->file_data_dosen_terlibat_pt)
@@ -128,7 +128,7 @@
 						</td>
 						<td class="block" width="30%">
 							<input type="file" name="file_data_dosen_terlibat_mitra" value="" class="form-control field " data-size="2 MB">
-							<small class="keterangan" style="color:red;">Maks. 2 MB</small>
+							<small class="keterangan" style="color:red;">Maks. 2 MB dan harus .pdf</small>
 							<input type="hidden" name="file_data_dosen_terlibat_mitra_hidden" value="{{$bab3->file_data_dosen_terlibat_mitra}}">
 							<br>
 							@if($bab3->file_data_dosen_terlibat_mitra)
@@ -174,7 +174,7 @@
 						<td class="item block"></td>
 						<td class="block" width="30%">
 							<input type="file" name="file_lampiran_sarana_prasarana_pt" value="" class="form-control field " data-size="2 MB">
-							<small class="keterangan" style="color:red;">Maks. 2 MB</small>
+							<small class="keterangan" style="color:red;">Maks. 2 MB dan harus .pdf</small>
 							<input type="hidden" name="file_lampiran_sarana_prasarana_pt_hidden" value="{{$bab3->file_lampiran_sarana_prasarana_pt}}">
 							<br>
 							@if($bab3->file_lampiran_sarana_prasarana_pt)
@@ -183,7 +183,7 @@
 						</td>
 						<td class="block" width="30%">
 							<input type="file" name="file_lampiran_sarana_prasarana_mitra" value="" class="form-control field " data-size="2 MB">
-							<small class="keterangan" style="color:red;">Maks. 2 MB</small>
+							<small class="keterangan" style="color:red;">Maks. 2 MB dan harus .pdf</small>
 							<input type="hidden" name="file_lampiran_sarana_prasarana_mitra_hidden" value="{{$bab3->file_lampiran_sarana_prasarana_mitra}}">
 							<br>
 							@if($bab3->file_lampiran_sarana_prasarana_mitra)

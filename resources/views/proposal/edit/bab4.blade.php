@@ -95,7 +95,7 @@
 						<td class="item block" width="">
 							<span>Kurikulum Prodi</span><br>
 							<input type="file" name="scan_desain_kurikulum_pt" value="" class="form-control field " data-size="500 KB">
-							<small class="keterangan" style="color:red;">Maks. 500 KB</small>
+							<small class="keterangan" style="color:red;">Maks. 500 KB dan harus .pdf</small>
 							<input type="hidden" name="scan_desain_kurikulum_pt_hidden" value="{{$bab4->scan_desain_kurikulum_pt}}">
 							<br>
 							@if($bab4->scan_desain_kurikulum_pt)
@@ -105,7 +105,7 @@
 						<td class="item block" width="">
 							<span>Kurikulum Prodi</span><br>
 							<input type="file" name="scan_desain_kurikulum_mitra" value="" class="form-control field " data-size="500 KB">
-							<small class="keterangan" style="color:red;">Maks. 500 KB</small>
+							<small class="keterangan" style="color:red;">Maks. 500 KB dan harus .pdf</small>
 							<input type="hidden" name="scan_desain_kurikulum_mitra_hidden" value="{{$bab4->scan_desain_kurikulum_mitra}}">
 							<br>
 							@if($bab4->scan_desain_kurikulum_mitra)
@@ -115,7 +115,7 @@
 						<td class="item block" width="">
 							<span>Kurikulum Prodi</span><br>
 							<input type="file" name="scan_desain_kurikulum_gabungan" value="" class="form-control field " data-size="500 KB">
-							<small class="keterangan" style="color:red;">Maks. 500 KB</small>
+							<small class="keterangan" style="color:red;">Maks. 500 KB dan harus .pdf</small>
 							<input type="hidden" name="scan_desain_kurikulum_gabungan_hidden" value="{{$bab4->scan_desain_kurikulum_gabungan}}">
 							<br>
 							@if($bab4->scan_desain_kurikulum_gabungan)
@@ -201,7 +201,7 @@
 						</td>
 						<td class="block" width="60%" colspan="3">
 							<input type="file" name="file_penjadwalan_kerjasama" value="" class="form-control field " data-size="2 MB">
-							<small class="keterangan" style="color:red;">Maks. 2 MB</small>
+							<small class="keterangan" style="color:red;">Maks. 2 MB dan harus .pdf</small>
 							<input type="hidden" name="file_penjadwalan_kerjasama_hidden" value="{{$bab4->file_penjadwalan_kerjasama}}">
 							<br>
 							@if($bab4->file_penjadwalan_kerjasama)
@@ -216,7 +216,7 @@
 						</td>
 						<td class="block" width="60%" colspan="3">
 							<input type="file" name="file_skpi" value="" class="form-control field " data-size="2 MB">
-							<small class="keterangan" style="color:red;">Maks. 2 MB</small>
+							<small class="keterangan" style="color:red;">Maks. 2 MB dan harus .pdf</small>
 							<input type="hidden" name="file_skpi_hidden" value="{{$bab4->file_skpi}}">
 							<br>
 							@if($bab4->file_skpi)

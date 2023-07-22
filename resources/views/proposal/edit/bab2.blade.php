@@ -98,7 +98,7 @@
 								<td class="item block">UNGGAH FILE MOU</td>
 								<td class="block" width="60%" colspan="2">
 									<input type="file" name="file_mou" value="" class="form-control field " data-size="2 MB">
-									<small class="keterangan" style="color:red;">Maks. 2 MB</small>
+									<small class="keterangan" style="color:red;">Maks. 2 MB dan harus .pdf</small>
 									<input type="hidden" name="file_mou_hidden" value="{{$bab2->file_mou}}">
 									<br>
 									@if($bab2->file_mou)
@@ -145,7 +145,7 @@
 								<td class="item block">UNGGAH FILE MOA</td>
 								<td class="block" colspan="2">
 									<input type="file" name="file_moa" value="" class="form-control field " data-size="2 MB">
-									<small class="keterangan" style="color:red;">Maks. 2 MB</small>
+									<small class="keterangan" style="color:red;">Maks. 2 MB dan harus .pdf</small>
 									<input type="hidden" name="file_moa_hidden" value="{{$bab2->file_moa}}">
 									<br>
 									@if($bab2->file_moa)

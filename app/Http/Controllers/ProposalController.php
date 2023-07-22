@@ -15,7 +15,7 @@ use App\Models\kerjasama;
 use App\Models\negara;
 use Carbon\Carbon;
 use RealRashid\SweetAlert\Facades\Alert;
-//use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Validator;
 
 class ProposalController extends Controller
 {
@@ -99,8 +99,7 @@ class ProposalController extends Controller
     public function viewbab2($id){
         $proposal = proposal::find(decrypt($id));
         $bab2 = bab2::find($proposal->id_bab2);
-       
-
+    
         return view('proposal.view.viewBab2', ['proposal' => $proposal, 'bab2' => $bab2]);
     }
 
@@ -136,8 +135,18 @@ class ProposalController extends Controller
         $id_proposal = decrypt($request->idProposal);
         $id_bab1 = decrypt($request->idBab1);
        
-        //$filename_scan_ijin_operasional_pt = $request->getSchemeAndHttpHost().'/file/' . time() . '.' . $request->scan_ijin_operasional_pt->extension(); 
-            
+        $validator = $request->validate([
+            'scan_ijin_operasional_pt' => 'mimes:pdf|max:2048',
+            'scan_status_akreditasi_institusi' => 'mimes:pdf|max:2048',
+            'scan_ijin_operasional_pt_mitra' => 'mimes:pdf|max:2048',
+            'scan_status_akreditasi_institusi_mitra' => 'mimes:pdf|max:2048',
+            'scan_sk_akreditasi_prodi' => 'mimes:pdf|max:2048',
+            'scan_sk_akreditasi_prodi_mitra' => 'mimes:pdf|max:2048',
+            'scan_ijin_operasional_prodi' => 'mimes:pdf|max:2048',
+            'scan_ijin_operasional_prodi_mitra' => 'mimes:pdf|max:2048',
+            'proposal_usulan_kerjsama' => 'mimes:pdf|max:20480'
+        ]);
+     
         $file_scan_ijin_operasional_pt = $request->hasFile('scan_ijin_operasional_pt');
         $filename_scan_ijin_operasional_pt= $request->scan_ijin_operasional_pt_hidden;
         
@@ -227,6 +236,8 @@ class ProposalController extends Controller
         'scan_ijin_operasional_prodi_mitra' => $filename_scan_ijin_operasional_prodi_mitra,
         'proposal_usulan_kerjsama' => $filename_proposal_usulan_kerjsama] ;
 
+        
+
         bab1::find($id_bab1)->update($data);
         //dd($request->all());
 
@@ -247,6 +258,11 @@ class ProposalController extends Controller
 
         $id_proposal = decrypt($request->idProposal);
         $id_bab2 = decrypt($request->idBab2);
+
+        $validator = $request->validate([
+            'file_mou' => 'mimes:pdf|max:2048',
+            'file_moa' => 'mimes:pdf|max:2048'
+        ]);
 
         $file_file_mou = $request->hasFile('file_mou');
         $filename_file_mou = $request->file_mou_hidden;
@@ -290,6 +306,13 @@ class ProposalController extends Controller
 
         $id_proposal = decrypt($request->idProposal);
         $id_bab3 = decrypt($request->idBab3);
+
+        $validator = $request->validate([
+            'file_data_dosen_terlibat_pt' => 'mimes:pdf|max:2048',
+            'file_data_dosen_terlibat_mitra' => 'mimes:pdf|max:2048',
+            'file_lampiran_sarana_prasarana_pt' => 'mimes:pdf|max:2048',
+            'file_lampiran_sarana_prasarana_mitra' => 'mimes:pdf|max:2048'
+        ]);
 
         $file_data_dosen_terlibat_pt = $request->hasFile('file_data_dosen_terlibat_pt');
         $filename_file_data_dosen_terlibat_pt = $request->file_data_dosen_terlibat_pt_hidden;
@@ -352,6 +375,14 @@ class ProposalController extends Controller
     public function updateBab4(Request $request){
         $id_proposal = decrypt($request->idProposal);
         $id_bab4 = decrypt($request->idBab4);
+
+        $validator = $request->validate([
+            'scan_desain_kurikulum_pt' => 'mimes:pdf|max:500',
+            'scan_desain_kurikulum_mitra' => 'mimes:pdf|max:500',
+            'scan_desain_kurikulum_gabungan' => 'mimes:pdf|max:500',
+            'file_penjadwalan_kerjasama' => 'mimes:pdf|max:2048',
+            'file_skpi' => 'mimes:pdf|max:2048'
+        ]);
 
         $scan_desain_kurikulum_pt = $request->hasFile('scan_desain_kurikulum_pt');
         $filename_scan_desain_kurikulum_pt = $request->scan_desain_kurikulum_pt_hidden;
