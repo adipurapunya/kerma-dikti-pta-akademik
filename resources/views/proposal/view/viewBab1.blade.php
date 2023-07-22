@@ -335,7 +335,7 @@
                             <div class="row">
 								<div class="form-group col-md-6"></div>
 								<div class="form-group col-md-6">
-                                    <a href="{{ route('proposal') }}" class="btn btn-warning mt-4 float-right">KEMBALI KE MENU UTAMA</a> &amp;
+                                    <a href="{{ route('proposal') }}" class="btn btn-warning mt-4 float-right">KEMBALI KE MENU UTAMA</a> 
                                     <a href="{{ route('proposal.viewBab2', encrypt($proposal->id)) }}" class="btn btn-success mt-4 float-right">LANJUTKAN BAB 2</a>
                                 </div>
 							</div>

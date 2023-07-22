@@ -1460,7 +1460,7 @@
 
         function validate_user(email) {
             $.ajax({
-                url: "https://izinkerma.kemdikbud.go.id/akademik/index.php/MainMenu/validateUserEmail",
+                url: "",
                 type: "POST",
                 data: {
                     email: email

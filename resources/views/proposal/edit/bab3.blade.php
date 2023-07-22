@@ -118,7 +118,7 @@
 					<tr class="bottomborder done" style="background: rgb(163, 255, 188);">
 						<td class="item block"></td>
 						<td class="block" width="30%">
-							<input type="file" name="file_data_dosen_terlibat_pt" value="" class="form-control field " data-size="2 MB">
+							<input type="file" accept="application/pdf" name="file_data_dosen_terlibat_pt" value="" class="form-control field " data-size="2 MB">
 							<small class="keterangan" style="color:red;">Maks. 2 MB dan harus .pdf</small>
 							<input type="hidden" name="file_data_dosen_terlibat_pt_hidden" value="{{$bab3->file_data_dosen_terlibat_pt}}">
 							<br>
@@ -127,7 +127,7 @@
 							@endif
 						</td>
 						<td class="block" width="30%">
-							<input type="file" name="file_data_dosen_terlibat_mitra" value="" class="form-control field " data-size="2 MB">
+							<input type="file" accept="application/pdf" name="file_data_dosen_terlibat_mitra" value="" class="form-control field " data-size="2 MB">
 							<small class="keterangan" style="color:red;">Maks. 2 MB dan harus .pdf</small>
 							<input type="hidden" name="file_data_dosen_terlibat_mitra_hidden" value="{{$bab3->file_data_dosen_terlibat_mitra}}">
 							<br>
@@ -173,7 +173,7 @@
 					<tr class="bottomborder done" style="border-bottom: 0.1px solid rgb(173, 181, 189); background: rgb(163, 255, 188);">
 						<td class="item block"></td>
 						<td class="block" width="30%">
-							<input type="file" name="file_lampiran_sarana_prasarana_pt" value="" class="form-control field " data-size="2 MB">
+							<input type="file" accept="application/pdf" name="file_lampiran_sarana_prasarana_pt" value="" class="form-control field " data-size="2 MB">
 							<small class="keterangan" style="color:red;">Maks. 2 MB dan harus .pdf</small>
 							<input type="hidden" name="file_lampiran_sarana_prasarana_pt_hidden" value="{{$bab3->file_lampiran_sarana_prasarana_pt}}">
 							<br>
@@ -182,7 +182,7 @@
 							@endif
 						</td>
 						<td class="block" width="30%">
-							<input type="file" name="file_lampiran_sarana_prasarana_mitra" value="" class="form-control field " data-size="2 MB">
+							<input type="file" accept="application/pdf" name="file_lampiran_sarana_prasarana_mitra" value="" class="form-control field " data-size="2 MB">
 							<small class="keterangan" style="color:red;">Maks. 2 MB dan harus .pdf</small>
 							<input type="hidden" name="file_lampiran_sarana_prasarana_mitra_hidden" value="{{$bab3->file_lampiran_sarana_prasarana_mitra}}">
 							<br>

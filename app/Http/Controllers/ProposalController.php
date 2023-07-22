@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Validator;
 
 class ProposalController extends Controller
 {
+    
     public function index(){
         //$proposal = proposal::get();
         $idUniv = auth()->user()->id_universitas;
@@ -132,8 +133,13 @@ class ProposalController extends Controller
 
     public function updateBab1(Request $request){
         
+        $path_global = public_path('/file/');
+        //$path_global = '/home/athifa01/public_html/ijinkerma/file/';
+        
         $id_proposal = decrypt($request->idProposal);
         $id_bab1 = decrypt($request->idBab1);
+
+        //dd(public_path());
        
         $validator = $request->validate([
             'scan_ijin_operasional_pt' => 'mimes:pdf|max:2048',
@@ -176,39 +182,39 @@ class ProposalController extends Controller
 
         if($file_scan_ijin_operasional_pt){
             $filename_scan_ijin_operasional_pt = '/file/' . time() . '_scan_ijin_operasional_pt.' . $request->scan_ijin_operasional_pt->extension(); 
-            $request->scan_ijin_operasional_pt->move(public_path('/file/'),$filename_scan_ijin_operasional_pt);
+            $request->scan_ijin_operasional_pt->move($path_global, $filename_scan_ijin_operasional_pt);
         }
         if($file_scan_status_akreditasi_institusi){
             $filename_scan_status_akreditasi_institusi = '/file/' . time() . '_scan_status_akreditasi_institusi.' . $request->scan_status_akreditasi_institusi->extension(); 
-            $request->scan_status_akreditasi_institusi->move(public_path('/file/'),$filename_scan_status_akreditasi_institusi);
+            $request->scan_status_akreditasi_institusi->move($path_global, $filename_scan_status_akreditasi_institusi);
         }
         if($file_scan_ijin_operasional_pt_mitra){
             $filename_scan_ijin_operasional_pt_mitra = '/file/' . time() . '_scan_ijin_operasional_pt_mitra.' . $request->scan_ijin_operasional_pt_mitra->extension(); 
-            $request->scan_ijin_operasional_pt_mitra->move(public_path('/file/'),$filename_scan_ijin_operasional_pt_mitra);
+            $request->scan_ijin_operasional_pt_mitra->move($path_global, $filename_scan_ijin_operasional_pt_mitra);
         }
         if($file_scan_status_akreditasi_institusi_mitra){
             $filename_scan_status_akreditasi_institusi_mitra = '/file/' . time() . '_scan_status_akreditasi_institusi_mitra.' . $request->scan_status_akreditasi_institusi_mitra->extension(); 
-            $request->scan_status_akreditasi_institusi_mitra->move(public_path('/file/'),$filename_scan_status_akreditasi_institusi_mitra);
+            $request->scan_status_akreditasi_institusi_mitra->move($path_global, $filename_scan_status_akreditasi_institusi_mitra);
         }
         if($file_scan_sk_akreditasi_prodi){
             $filename_scan_sk_akreditasi_prodi = '/file/' . time() . '_scan_sk_akreditasi_prodi.' . $request->scan_sk_akreditasi_prodi->extension(); 
-            $request->scan_sk_akreditasi_prodi->move(public_path('/file/'),$filename_scan_sk_akreditasi_prodi);
+            $request->scan_sk_akreditasi_prodi->move($path_global, $filename_scan_sk_akreditasi_prodi);
         }
         if($file_scan_sk_akreditasi_prodi_mitra){
             $filename_scan_sk_akreditasi_prodi_mitra = '/file/' . time() . '_scan_sk_akreditasi_prodi_mitra.' . $request->scan_sk_akreditasi_prodi_mitra->extension(); 
-            $request->scan_sk_akreditasi_prodi_mitra->move(public_path('/file/'),$filename_scan_sk_akreditasi_prodi_mitra);
+            $request->scan_sk_akreditasi_prodi_mitra->move($path_global, $filename_scan_sk_akreditasi_prodi_mitra);
         }
         if($file_scan_ijin_operasional_prodi){
             $filename_scan_ijin_operasional_prodi = '/file/' . time() . '_scan_ijin_operasional_prodi.' . $request->scan_ijin_operasional_prodi->extension(); 
-            $request->scan_ijin_operasional_prodi->move(public_path('/file/'),$filename_scan_ijin_operasional_prodi);
+            $request->scan_ijin_operasional_prodi->move($path_global, $filename_scan_ijin_operasional_prodi);
         }
         if($file_scan_ijin_operasional_prodi_mitra){
             $filename_scan_ijin_operasional_prodi_mitra = '/file/' . time() . '_scan_ijin_operasional_prodi_mitra.' . $request->scan_ijin_operasional_prodi_mitra->extension(); 
-            $request->scan_ijin_operasional_prodi_mitra->move(public_path('/file/'),$filename_scan_ijin_operasional_prodi_mitra);
+            $request->scan_ijin_operasional_prodi_mitra->move($path_global, $filename_scan_ijin_operasional_prodi_mitra);
         }
         if($file_proposal_usulan_kerjsama){
             $filename_proposal_usulan_kerjsama = '/file/' . time() . '_proposal_usulan_kerjsama.' . $request->proposal_usulan_kerjsama->extension(); 
-            $request->proposal_usulan_kerjsama->move(public_path('/file/'),$filename_proposal_usulan_kerjsama);
+            $request->proposal_usulan_kerjsama->move($path_global, $filename_proposal_usulan_kerjsama);
         }
 
         $data = [
@@ -259,6 +265,9 @@ class ProposalController extends Controller
         $id_proposal = decrypt($request->idProposal);
         $id_bab2 = decrypt($request->idBab2);
 
+        $path_global = public_path('/file/');
+        //$path_global = '/home/athifa01/public_html/ijinkerma/file/';
+
         $validator = $request->validate([
             'file_mou' => 'mimes:pdf|max:2048',
             'file_moa' => 'mimes:pdf|max:2048'
@@ -272,11 +281,11 @@ class ProposalController extends Controller
 
         if($file_file_mou){
             $filename_file_mou = '/file/' . time() . '_file_mou.' . $request->file_mou->extension(); 
-            $request->file_mou->move(public_path('/file/'),$filename_file_mou);
+            $request->file_mou->move($path_global, $filename_file_mou);
         }
         if($file_file_moa){
             $filename_file_moa = '/file/' . time() . '_file_moa.' . $request->file_moa->extension(); 
-            $request->file_moa->move(public_path('/file/'),$filename_file_moa);
+            $request->file_moa->move($path_global, $filename_file_moa);
         }
 
         $data = ['ringkasan_mou' => $request->ringkasan_mou, 'file_mou' => $filename_file_mou , 'no_moa' => $request->no_moa,
@@ -307,6 +316,9 @@ class ProposalController extends Controller
         $id_proposal = decrypt($request->idProposal);
         $id_bab3 = decrypt($request->idBab3);
 
+        $path_global = public_path('/file/');
+        //$path_global = '/home/athifa01/public_html/ijinkerma/file/';
+
         $validator = $request->validate([
             'file_data_dosen_terlibat_pt' => 'mimes:pdf|max:2048',
             'file_data_dosen_terlibat_mitra' => 'mimes:pdf|max:2048',
@@ -328,22 +340,22 @@ class ProposalController extends Controller
 
         if($file_data_dosen_terlibat_pt){
             $filename_file_data_dosen_terlibat_pt = '/file/' . time() . '_file_data_dosen_terlibat_pt.' . $request->file_data_dosen_terlibat_pt->extension(); 
-            $request->file_data_dosen_terlibat_pt->move(public_path('/file/'),$filename_file_data_dosen_terlibat_pt);
+            $request->file_data_dosen_terlibat_pt->move($path_global, $filename_file_data_dosen_terlibat_pt);
         }
 
         if($file_data_dosen_terlibat_mitra){
             $filename_file_data_dosen_terlibat_mitra = '/file/' . time() . '_file_data_dosen_terlibat_mitra.' . $request->file_data_dosen_terlibat_mitra->extension(); 
-            $request->file_data_dosen_terlibat_mitra->move(public_path('/file/'),$filename_file_data_dosen_terlibat_mitra);
+            $request->file_data_dosen_terlibat_mitra->move($path_global, $filename_file_data_dosen_terlibat_mitra);
         }
 
         if($file_lampiran_sarana_prasarana_pt){
             $filename_file_lampiran_sarana_prasarana_pt = '/file/' . time() . '_file_lampiran_sarana_prasarana_pt.' . $request->file_lampiran_sarana_prasarana_pt->extension(); 
-            $request->file_lampiran_sarana_prasarana_pt->move(public_path('/file/'),$filename_file_lampiran_sarana_prasarana_pt);
+            $request->file_lampiran_sarana_prasarana_pt->move($path_global, $filename_file_lampiran_sarana_prasarana_pt);
         }
 
         if($file_lampiran_sarana_prasarana_mitra){
             $filename_file_lampiran_sarana_prasarana_mitra = '/file/' . time() . '_file_lampiran_sarana_prasarana_mitra.' . $request->file_lampiran_sarana_prasarana_mitra->extension(); 
-            $request->file_lampiran_sarana_prasarana_mitra->move(public_path('/file/'),$filename_file_lampiran_sarana_prasarana_mitra);
+            $request->file_lampiran_sarana_prasarana_mitra->move($path_global, $filename_file_lampiran_sarana_prasarana_mitra);
         }
         
         $data = ['deskripsi_singkat_kesiapan_sdm_pt' => $request->deskripsi_singkat_kesiapan_sdm_pt, 
@@ -375,6 +387,9 @@ class ProposalController extends Controller
     public function updateBab4(Request $request){
         $id_proposal = decrypt($request->idProposal);
         $id_bab4 = decrypt($request->idBab4);
+        
+        $path_global = public_path('/file/');
+        //$path_global = '/home/athifa01/public_html/ijinkerma/file/';
 
         $validator = $request->validate([
             'scan_desain_kurikulum_pt' => 'mimes:pdf|max:500',
@@ -401,27 +416,27 @@ class ProposalController extends Controller
 
         if($scan_desain_kurikulum_pt){
             $filename_scan_desain_kurikulum_pt = '/file/' . time() . '_scan_desain_kurikulum_pt.' . $request->scan_desain_kurikulum_pt->extension(); 
-            $request->scan_desain_kurikulum_pt->move(public_path('/file/'),$filename_scan_desain_kurikulum_pt);
+            $request->scan_desain_kurikulum_pt->move($path_global, $filename_scan_desain_kurikulum_pt);
         }
 
         if($scan_desain_kurikulum_mitra){
             $filename_scan_desain_kurikulum_mitra = '/file/' . time() . '_scan_desain_kurikulum_mitra.' . $request->scan_desain_kurikulum_mitra->extension(); 
-            $request->scan_desain_kurikulum_mitra->move(public_path('/file/'),$filename_scan_desain_kurikulum_mitra);
+            $request->scan_desain_kurikulum_mitra->move($path_global, $filename_scan_desain_kurikulum_mitra);
         }
 
         if($scan_desain_kurikulum_gabungan){
             $filename_scan_desain_kurikulum_gabungan = '/file/' . time() . '_scan_desain_kurikulum_gabungan.' . $request->scan_desain_kurikulum_gabungan->extension(); 
-            $request->scan_desain_kurikulum_gabungan->move(public_path('/file/'),$filename_scan_desain_kurikulum_gabungan);
+            $request->scan_desain_kurikulum_gabungan->move($path_global, $filename_scan_desain_kurikulum_gabungan);
         }
 
         if($file_penjadwalan_kerjasama){
             $filename_file_penjadwalan_kerjasama = '/file/' . time() . '_file_penjadwalan_kerjasama.' . $request->file_penjadwalan_kerjasama->extension(); 
-            $request->file_penjadwalan_kerjasama->move(public_path('/file/'),$filename_file_penjadwalan_kerjasama);
+            $request->file_penjadwalan_kerjasama->move($path_global, $filename_file_penjadwalan_kerjasama);
         }
 
         if($file_skpi){
             $filename_file_skpi = '/file/' . time() . '_file_skpi.' . $request->file_skpi->extension(); 
-            $request->file_skpi->move(public_path('/file/'),$filename_file_skpi);
+            $request->file_skpi->move($path_global, $filename_file_skpi);
         }
 
         $data = ['rencana_pelaksanaan_pembelajaran' => $request->rencana_pelaksanaan_pembelajaran, 

@@ -13,10 +13,13 @@ use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
-    public function register()
-    {
+    public function register(){
         $Universitas = Universitas::get();
         return view('auth.register', ['Universitas' => $Universitas]);
+    }
+
+    public function resetPassword(){
+        return view('auth.resetPassword');
     }
 
     public function registerSimpan(Request $request){

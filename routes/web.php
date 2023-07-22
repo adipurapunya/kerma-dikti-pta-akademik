@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::controller(AuthController::class)->group( function(){
     Route::get('register','register')->name('register');
-    
+    Route::get('reset','resetPassword')->name('resetPassword');
     Route::post('register','registerSimpan')->name('register.simpan');
     Route::get('login','login')->name('login');
     Route::post('login','loginAksi')->name('login.aksi');

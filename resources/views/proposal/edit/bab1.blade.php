@@ -107,7 +107,7 @@
 								<textarea name="ijin_operasional_pt" class=" form-control field " placeholder="Izin Operasional" maxlength="1000" id="mce_2" aria-hidden="true">{{ $bab1->ijin_operasional_pt }}</textarea>
 								<br>
 								<span>Scan Izin Operasional</span><br>
-								<input type="file" name="scan_ijin_operasional_pt"  class="form-control" data-size="2 MB">
+								<input type="file" accept="application/pdf" name="scan_ijin_operasional_pt"  class="form-control" data-size="2 MB">
 								<small class="keterangan" style="color:red;">Maks. 2 MB dan harus .pdf</small>
 								<input type="hidden" name="scan_ijin_operasional_pt_hidden" value="{{$bab1->scan_ijin_operasional_pt}}">
 								<br>
@@ -130,7 +130,7 @@
 								</select>
 								<br>
 								<span>Scan SK Akreditasi Institusi</span><br>
-								<input type="file" name="scan_status_akreditasi_institusi" class="form-control" data-size="2 MB">
+								<input type="file" accept="application/pdf" name="scan_status_akreditasi_institusi" class="form-control" data-size="2 MB">
 								<small class="keterangan" style="color:red;">Maks. 2 MB dan harus .pdf</small>
 								<input type="hidden" name="scan_status_akreditasi_institusi_hidden" value="{{$bab1->scan_status_akreditasi_institusi}}">
 								<br>
@@ -186,7 +186,7 @@
 								<textarea name="ijin_operasional_pt_mitra" class=" form-control field " placeholder="Izin Operasional" maxlength="1000" id="mce_5" aria-hidden="true">{{$bab1->ijin_operasional_pt_mitra}}</textarea>
 								<br>
 								<span>Scan Izin Operasional</span><br>
-								<input type="file" name="scan_ijin_operasional_pt_mitra" value="" class="form-control" data-size="2 MB">
+								<input type="file" accept="application/pdf" name="scan_ijin_operasional_pt_mitra" value="" class="form-control" data-size="2 MB">
 								<input type="hidden" name="scan_ijin_operasional_pt_mitra_hidden" value="{{$bab1->scan_ijin_operasional_pt}}">
 								<small class="keterangan" style="color:red;">Maks. 2 MB dan harus .pdf</small>
 								<br>
@@ -207,7 +207,7 @@
 									</select>
 								<br>
 								<span>Scan SK Akreditasi Institusi</span><br>
-								<input type="file" name="scan_status_akreditasi_institusi_mitra" value="" class="form-control" data-size="2 MB">
+								<input type="file" accept="application/pdf" name="scan_status_akreditasi_institusi_mitra" value="" class="form-control" data-size="2 MB">
 								<input type="hidden" name="scan_status_akreditasi_institusi_mitra_hidden" value="{{$bab1->scan_status_akreditasi_institusi_mitra}}">
 								<small class="keterangan" style="color:red;">Maks. 2 MB dan harus .pdf</small>
 								<br>
@@ -298,7 +298,7 @@
 								<td class="item block"></td>
 								<td class="block" width="30%">
 									<span>Scan SK Akreditasi Prodi</span><br>
-									<input type="file" name="scan_sk_akreditasi_prodi" value="" class="form-control" data-size="2 MB">
+									<input type="file" accept="application/pdf" name="scan_sk_akreditasi_prodi" value="" class="form-control" data-size="2 MB">
 									<small class="keterangan" style="color:red;">Maks. 2 MB dan harus .pdf</small>
 									<input type="hidden" name="scan_sk_akreditasi_prodi_hidden" value="{{$bab1->scan_sk_akreditasi_prodi}}">
 									<br>
@@ -308,7 +308,7 @@
 								</td>
 								<td class="block" width="30%">
 									<span>Scan SK Akreditasi Prodi</span><br>
-									<input type="file" name="scan_sk_akreditasi_prodi_mitra" value="" class="form-control" data-size="2 MB">
+									<input type="file" accept="application/pdf" name="scan_sk_akreditasi_prodi_mitra" value="" class="form-control" data-size="2 MB">
 									<small class="keterangan" style="color:red;">Maks. 2 MB dan harus .pdf</small>
 									<input type="hidden" name="scan_sk_akreditasi_prodi_mitra_hidden" value="{{$bab1->scan_sk_akreditasi_prodi_mitra}}">
 									<br>
@@ -328,7 +328,7 @@
 								<td class="item block"></td>
 								<td class="block" width="30%">
 									<span>Scan Izin Operasional Prodi</span><br>
-									<input type="file" name="scan_ijin_operasional_prodi" value="" class="form-control" data-size="2 MB">
+									<input type="file" accept="application/pdf" name="scan_ijin_operasional_prodi" value="" class="form-control" data-size="2 MB">
 									<small class="keterangan" style="color:red;">Maks. 2 MB dan harus .pdf</small>
 									<input type="hidden" name="scan_ijin_operasional_prodi_hidden" value="{{$bab1->scan_ijin_operasional_prodi}}">
 									<br>
@@ -338,7 +338,7 @@
 								</td>
 								<td class="block" width="30%">
 									<span>Scan Izin Operasional Prodi</span><br>
-									<input type="file" name="scan_ijin_operasional_prodi_mitra" value="" class="form-control" data-size="2 MB">
+									<input type="file" accept="application/pdf" name="scan_ijin_operasional_prodi_mitra" value="" class="form-control" data-size="2 MB">
 									<small class="keterangan" style="color:red;">Maks. 2 MB dan harus .pdf</small>
 									<input type="hidden" name="scan_ijin_operasional_prodi_mitra_hidden" value="{{$bab1->scan_ijin_operasional_prodi_mitra}}">
 									<br>
@@ -362,7 +362,7 @@
 									Perguruan Tinggi<em style="color:red;">*</em>
 								</td>
 								<td class="block" width="60%">
-									<input type="file" name="proposal_usulan_kerjsama" value="" class="form-control" data-size="20 MB">
+									<input type="file" accept="application/pdf" name="proposal_usulan_kerjsama" value="" class="form-control" data-size="20 MB">
 									<small class="keterangan" style="color:red;">Maks. 20 MB dan harus .pdf</small>
 									<input type="hidden" name="proposal_usulan_kerjsama_hidden" value="{{$bab1->proposal_usulan_kerjsama}}">
 									<br>
