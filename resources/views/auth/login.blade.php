@@ -66,20 +66,6 @@
               </a>
             </li>
 
-            <li class="nav-item">
-              <a class="nav-link nav-link-icon" href="{{ route('register') }}">
-                <i class="fas fa-user"></i>
-                <span class="nav-link-inner--text">Buat Akun Baru</span>
-              </a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link nav-link-icon" href="{{ route('login') }}">
-                <i class="fas fa-key"></i>
-                <span class="nav-link-inner--text text-yellow">Login</span>
-              </a>
-            </li>
-
           </ul>
         </div>
       </div>
@@ -154,9 +140,6 @@
           <div class="row mt-3">
             <div class="col-6">
               <a class="text-white" href=""><small style="font-size: 90%">Lupa password?</small></a>
-            </div>
-            <div class="col-6 text-right">
-              <a href="{{ route('register') }}" class="text-white"><small style="font-size: 90%">Buat Akun Baru</small></a>
             </div>
           </div>
         </div> 
